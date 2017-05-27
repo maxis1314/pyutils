@@ -1,3 +1,3 @@
 # crawler
-A full crawler for cnblog, all data will be saved in sqlitedb.
-You can make small changes to be adapted to your use case.
+A full crawler for cnblog, sina blog and tianya blog, all data will be saved in sqlitedb.
+You can make small changes to be adapted to your own use case.
