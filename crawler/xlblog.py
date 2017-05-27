@@ -110,8 +110,7 @@ def process_article(article):
     result = titlepattern.search(article)
     if result is not None:
         title = result.group(1).strip()
-    
-    bodypattern = re.compile(u'<div id="cnblogs_post_body">(.*?)</div><div id="MySignature">', re.S | re.U)
+    bodypattern = re.compile(u'<div id="cnblogs_post_body"[^>]*?>(.*?)</div><div id="MySignature">', re.S | re.U)
     result = bodypattern.search(article)
     if result is not None:
         body = result.group(1)
