@@ -133,15 +133,18 @@ class CrawlerBase:
             self.qinglog.error('delete from oz failed! reason:%s' % str(e))
             return False
 
-    def start(self):
+    def start(self,oz_url,extract,process_article):
+        #if extract is None:
+        #    extract = self.extract
+        #if process_article is None:
+        #    process_article = self.process_article
         #print get_html('http://www.shanghaidaily.com/')
         #sys.exit()
-        self.clear_oz()
-        page = 1
-        oz_url='http://www.cnblogs.com/buptzym/default.html?page='
+        self.clear_oz()        
+        page = 1        
         while True:
         #while page == 1:
-            page_url = '%s%s' % (oz_url, str(page))
+            page_url = oz_url % str(page)
             self.qinglog.info('get page:%s' % page_url)
             page_html = self.get_html(page_url)
             
@@ -149,15 +152,14 @@ class CrawlerBase:
                 self.qinglog.info('%s is None' % page_url)
                 page = page + 1
                 continue       
-            
-            links,years,dates = self.extract(page_html)        
+            links = extract(page_html)        
             
             if links is None or len(links) == 0:
                 self.qinglog.info('no links or years or dates in %s' % page_url)
                 break       
             
             if True:
-                for link,year,date in zip(links,years,dates):
+                for link in links:
                     #article_url = '%s/%s.html' % (oz_url, link)
                     article_url = link
                     print link
@@ -167,7 +169,7 @@ class CrawlerBase:
                         page = page + 1
                         continue
 
-                    title, body, dt = self.process_article(article_page)                                
+                    title, body, dt = process_article(article_page)                                
                     title = title.replace('&amp;', '&')
                     self.insert_db(dt,article_url, title.replace("'", "''"), body.replace("'", "''"))                            
             else:
