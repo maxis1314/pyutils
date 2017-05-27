@@ -106,7 +106,7 @@ def process_article(article):
     body = ''
     img_urls = []
     
-    titlepattern = re.compile(u'<a id="cb_post_title_url" class="postTitle2" href=".*?">(.*?)</a>', re.S | re.U)
+    titlepattern = re.compile(u'<a id="cb_post_title_url" class=".*?" href=".*?">(.*?)</a>', re.S | re.U)
     result = titlepattern.search(article)
     if result is not None:
         title = result.group(1).strip()
