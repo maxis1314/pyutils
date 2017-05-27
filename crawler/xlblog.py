@@ -29,10 +29,21 @@ class logger:
     def get_logger(self):
         return self.log
 
-qinglog = logutils.logger('qingblog').get_logger()
+qinglog = logger('qingblog').get_logger()
 #设置一下主页链接
 oz_url = 'http://qing.blog.sina.com.cn/xxxxxxxxxxx'
 conn = sqlite3.connect('qingblog.db')
+cu=conn.cursor()
+
+
+#init table 
+cursor = conn.cursor()        
+cursor.execute("create table oz (id integer primary key,dt varchar(10),title varchar(100), body text NULL)")
+conn.commit()
+cursor.close()
+
+
+sql=''
     
 def gz_decode(data):
     compressedstream = StringIO.StringIO(data)  
