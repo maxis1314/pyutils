@@ -20,11 +20,11 @@ class logger:
         ch = logging.StreamHandler()
         ch.setFormatter(formatter)
         ch.setLevel(logging.DEBUG)
-        fh = logging.FileHandler('qingblog.log')
-        fh.setFormatter(formatter)
-        fh.setLevel(logging.DEBUG)
+        #fh = logging.FileHandler('qingblog.log')
+        #fh.setFormatter(formatter)
+        #fh.setLevel(logging.DEBUG)
         
-        self.log.addHandler(fh)
+        #self.log.addHandler(fh)
         self.log.addHandler(ch)
 
     def get_logger(self):
