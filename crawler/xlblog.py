@@ -7,6 +7,7 @@ import logging
 import sqlite3
 import logutils
 import urllib
+import sys
 
 class logger:
     def __init__(self, name):
@@ -31,14 +32,14 @@ class logger:
 
 qinglog = logger('qingblog').get_logger()
 #设置一下主页链接
-oz_url = 'http://qing.blog.sina.com.cn/xxxxxxxxxxx'
+oz_url = 'http://wp.rabbit-e.com/wp'
 conn = sqlite3.connect('qingblog.db')
 cu=conn.cursor()
 
 
 #init table 
 cursor = conn.cursor()        
-cursor.execute("create table oz (id integer primary key,dt varchar(10),title varchar(100), body text NULL)")
+cursor.execute("create table if not exists oz(id integer primary key,dt varchar(10),title varchar(100), body text NULL)")
 conn.commit()
 cursor.close()
 
@@ -65,16 +66,16 @@ def get_img(img_urls, img_path):
                           
 def get_html(url):
     try:
-        header = {'Host': 'qing.blog.sina.com.cn',\
-                'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; rv:35.0) Gecko/20100101 Firefox/35.0',\
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',\
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; rv:35.0) Gecko/20100101 Firefox/35.0',\
+                'Accept': 'text/plain,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',\
                 'Accept-Language': 'zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3',\
                 'Accept-Encoding': 'gzip, deflate',\
                 'Connection': 'keep-alive'}
         request = urllib2.Request(url, None, header)
         response = urllib2.urlopen(request)
         result = response.read()
-        return gz_decode(result).decode('UTF-8')
+        return result;
+        #return gz_decode(result).decode('UTF-8')
     except Exception,e:
         print qinglog.error('get_page failed, url:%s, reason:%s' % (url, str(e)))
         return None
@@ -185,13 +186,16 @@ def clear_oz():
         return False
 
 if __name__ == '__main__':
+    print get_html('http://www.shanghaidaily.com/')
+    sys.exit()
     clear_oz()
     page = 1
     while True:
     #while page == 1:
-        page_url = '%s?page=%s' % (oz_url, str(page))
+        page_url = '%s/page/%s' % (oz_url, str(page))
         qinglog.info('get page:%s' % page_url)
         page_html = get_html(page_url)
+        qinglog.info(page_html)
         if page_html is None:
             qinglog.info('%s is None' % page_url)
             page = page + 1

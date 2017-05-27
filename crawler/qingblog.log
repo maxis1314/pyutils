@@ -26871,3 +26871,304 @@
 2017-05-27 13:58:52,256 xlblog.py:196 qingblog INFO :http://qing.blog.sina.com.cn/xxxxxxxxxxx?page=8957 is None
 2017-05-27 13:58:52,256 xlblog.py:193 qingblog INFO :get page:http://qing.blog.sina.com.cn/xxxxxxxxxxx?page=8958
 2017-05-27 13:58:52,257 xlblog.py:79 qingblog ERROR :get_page failed, url:http://qing.blog.sina.com.cn/xxxxxxxxxxx?page=8958, reason:<urlopen error [Errno 11004] getaddrinfo failed>
+2017-05-27 14:01:49,484 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=1
+2017-05-27 14:01:49,740 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=1, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:49,743 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=1 is None
+2017-05-27 14:01:49,743 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=2
+2017-05-27 14:01:49,986 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=2, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:49,987 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=2 is None
+2017-05-27 14:01:49,989 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=3
+2017-05-27 14:01:50,232 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=3, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:50,234 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=3 is None
+2017-05-27 14:01:50,236 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=4
+2017-05-27 14:01:50,479 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=4, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:50,480 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=4 is None
+2017-05-27 14:01:50,480 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=5
+2017-05-27 14:01:50,726 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=5, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:50,730 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=5 is None
+2017-05-27 14:01:50,730 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=6
+2017-05-27 14:01:50,983 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=6, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:50,986 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=6 is None
+2017-05-27 14:01:50,986 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=7
+2017-05-27 14:01:51,232 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=7, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:51,233 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=7 is None
+2017-05-27 14:01:51,233 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=8
+2017-05-27 14:01:51,476 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=8, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:51,480 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=8 is None
+2017-05-27 14:01:51,480 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=9
+2017-05-27 14:01:51,727 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=9, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:51,732 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=9 is None
+2017-05-27 14:01:51,733 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=10
+2017-05-27 14:01:51,987 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=10, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:51,990 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=10 is None
+2017-05-27 14:01:51,990 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=11
+2017-05-27 14:01:52,240 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=11, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:52,243 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=11 is None
+2017-05-27 14:01:52,243 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=12
+2017-05-27 14:01:52,496 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=12, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:52,499 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=12 is None
+2017-05-27 14:01:52,499 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=13
+2017-05-27 14:01:52,743 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=13, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:52,746 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=13 is None
+2017-05-27 14:01:52,749 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=14
+2017-05-27 14:01:53,002 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=14, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:53,006 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=14 is None
+2017-05-27 14:01:53,007 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=15
+2017-05-27 14:01:53,257 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=15, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:53,260 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=15 is None
+2017-05-27 14:01:53,263 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=16
+2017-05-27 14:01:53,509 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=16, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:53,512 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=16 is None
+2017-05-27 14:01:53,512 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=17
+2017-05-27 14:01:53,755 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=17, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:53,756 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=17 is None
+2017-05-27 14:01:53,756 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=18
+2017-05-27 14:01:54,003 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=18, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:54,005 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=18 is None
+2017-05-27 14:01:54,006 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=19
+2017-05-27 14:01:54,247 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=19, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:54,253 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=19 is None
+2017-05-27 14:01:54,253 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=20
+2017-05-27 14:01:54,503 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=20, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:54,506 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=20 is None
+2017-05-27 14:01:54,506 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=21
+2017-05-27 14:01:54,750 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=21, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:54,755 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=21 is None
+2017-05-27 14:01:54,756 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=22
+2017-05-27 14:01:55,006 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=22, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:55,009 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=22 is None
+2017-05-27 14:01:55,009 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=23
+2017-05-27 14:01:55,259 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=23, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:55,262 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=23 is None
+2017-05-27 14:01:55,263 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=24
+2017-05-27 14:01:55,515 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=24, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:55,517 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=24 is None
+2017-05-27 14:01:55,519 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=25
+2017-05-27 14:01:55,767 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=25, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:55,770 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=25 is None
+2017-05-27 14:01:55,772 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=26
+2017-05-27 14:01:56,019 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=26, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:56,023 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=26 is None
+2017-05-27 14:01:56,025 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=27
+2017-05-27 14:01:56,272 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=27, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:56,273 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=27 is None
+2017-05-27 14:01:56,273 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=28
+2017-05-27 14:01:56,519 xlblog.py:79 qingblog ERROR :get_page failed, url:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=28, reason:HTTP Error 301: The HTTP server returned a redirect error that would lead to an infinite loop.
+The last 30x error message was:
+Moved Permanently
+2017-05-27 14:01:56,520 xlblog.py:196 qingblog INFO :http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=28 is None
+2017-05-27 14:01:56,522 xlblog.py:193 qingblog INFO :get page:http://blog.sina.com.cn/s/articlelist_2138684605_0_1.html?page=29
+2017-05-27 14:08:37,119 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=1
+2017-05-27 14:08:38,104 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/?page=1, reason:HTTP Error 404: Not Found
+2017-05-27 14:08:38,105 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/?page=1 is None
+2017-05-27 14:08:38,107 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=2
+2017-05-27 14:08:38,608 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/?page=2, reason:HTTP Error 404: Not Found
+2017-05-27 14:08:38,609 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/?page=2 is None
+2017-05-27 14:08:38,609 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=3
+2017-05-27 14:08:39,134 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/?page=3, reason:HTTP Error 404: Not Found
+2017-05-27 14:08:39,135 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/?page=3 is None
+2017-05-27 14:08:39,137 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=4
+2017-05-27 14:08:39,624 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/?page=4, reason:HTTP Error 404: Not Found
+2017-05-27 14:08:39,627 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/?page=4 is None
+2017-05-27 14:08:39,628 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=5
+2017-05-27 14:08:40,138 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/?page=5, reason:HTTP Error 404: Not Found
+2017-05-27 14:08:40,141 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/?page=5 is None
+2017-05-27 14:08:40,141 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=6
+2017-05-27 14:08:40,630 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/?page=6, reason:HTTP Error 404: Not Found
+2017-05-27 14:08:40,634 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/?page=6 is None
+2017-05-27 14:08:40,635 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/?page=7
+2017-05-27 14:09:24,651 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp//page/1
+2017-05-27 14:09:25,177 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp//page/1, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:25,180 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp//page/1 is None
+2017-05-27 14:09:25,180 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp//page/2
+2017-05-27 14:09:25,667 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp//page/2, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:25,671 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp//page/2 is None
+2017-05-27 14:09:25,671 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp//page/3
+2017-05-27 14:09:26,191 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp//page/3, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:26,194 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp//page/3 is None
+2017-05-27 14:09:26,194 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp//page/4
+2017-05-27 14:09:26,681 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp//page/4, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:26,684 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp//page/4 is None
+2017-05-27 14:09:26,684 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp//page/5
+2017-05-27 14:09:42,549 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/1
+2017-05-27 14:09:43,078 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/1, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:43,079 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/page/1 is None
+2017-05-27 14:09:43,081 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/2
+2017-05-27 14:09:43,588 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/2, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:43,588 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/page/2 is None
+2017-05-27 14:09:43,588 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/3
+2017-05-27 14:09:44,076 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/3, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:44,078 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/page/3 is None
+2017-05-27 14:09:44,078 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/4
+2017-05-27 14:09:44,586 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/4, reason:HTTP Error 404: Not Found
+2017-05-27 14:09:44,588 xlblog.py:196 qingblog INFO :http://wp.rabbit-e.com/wp/page/4 is None
+2017-05-27 14:09:44,589 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/5
+2017-05-27 14:10:32,078 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/1
+2017-05-27 14:10:32,571 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/1, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:32,573 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:32,575 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/1 is None
+2017-05-27 14:10:32,575 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/2
+2017-05-27 14:10:33,079 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/2, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:33,082 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:33,082 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/2 is None
+2017-05-27 14:10:33,082 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/3
+2017-05-27 14:10:33,585 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/3, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:33,586 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:33,586 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/3 is None
+2017-05-27 14:10:33,588 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/4
+2017-05-27 14:10:34,094 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/4, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:34,096 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:34,096 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/4 is None
+2017-05-27 14:10:34,098 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/5
+2017-05-27 14:10:34,976 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/5, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:34,977 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:34,979 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/5 is None
+2017-05-27 14:10:34,979 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/6
+2017-05-27 14:10:35,680 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/6, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:35,680 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:35,681 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/6 is None
+2017-05-27 14:10:35,681 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/7
+2017-05-27 14:10:36,306 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/7, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:36,309 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:36,311 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/7 is None
+2017-05-27 14:10:36,311 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/8
+2017-05-27 14:10:36,819 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/8, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:36,822 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:36,823 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/8 is None
+2017-05-27 14:10:36,825 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/9
+2017-05-27 14:10:37,312 xlblog.py:79 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/9, reason:HTTP Error 404: Not Found
+2017-05-27 14:10:37,312 xlblog.py:195 qingblog INFO :None
+2017-05-27 14:10:37,312 xlblog.py:197 qingblog INFO :http://wp.rabbit-e.com/wp/page/9 is None
+2017-05-27 14:10:37,313 xlblog.py:193 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/10
+2017-05-27 14:11:12,102 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/1
+2017-05-27 14:11:12,622 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/1, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:12,625 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:12,625 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/1 is None
+2017-05-27 14:11:12,627 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/2
+2017-05-27 14:11:13,118 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/2, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:13,119 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:13,121 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/2 is None
+2017-05-27 14:11:13,121 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/3
+2017-05-27 14:11:13,631 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/3, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:13,631 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:13,631 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/3 is None
+2017-05-27 14:11:13,632 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/4
+2017-05-27 14:11:14,121 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/4, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:14,124 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:14,124 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/4 is None
+2017-05-27 14:11:14,125 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/5
+2017-05-27 14:11:50,061 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/1
+2017-05-27 14:11:50,561 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/1, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:50,563 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:50,563 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/1 is None
+2017-05-27 14:11:50,563 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/2
+2017-05-27 14:11:51,072 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/2, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:51,072 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:51,073 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/2 is None
+2017-05-27 14:11:51,073 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/3
+2017-05-27 14:11:51,561 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/3, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:51,562 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:51,563 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/3 is None
+2017-05-27 14:11:51,563 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/4
+2017-05-27 14:11:52,069 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/4, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:52,072 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:52,072 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/4 is None
+2017-05-27 14:11:52,073 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/5
+2017-05-27 14:11:52,559 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/5, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:52,562 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:52,562 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/5 is None
+2017-05-27 14:11:52,563 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/6
+2017-05-27 14:11:53,069 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/6, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:53,072 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:53,072 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/6 is None
+2017-05-27 14:11:53,072 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/7
+2017-05-27 14:11:53,558 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/7, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:53,559 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:53,561 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/7 is None
+2017-05-27 14:11:53,562 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/8
+2017-05-27 14:11:54,068 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/8, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:54,069 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:54,071 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/8 is None
+2017-05-27 14:11:54,071 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/9
+2017-05-27 14:11:54,555 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/9, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:54,558 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:54,558 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/9 is None
+2017-05-27 14:11:54,559 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/10
+2017-05-27 14:11:55,065 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/10, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:55,069 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:55,069 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/10 is None
+2017-05-27 14:11:55,069 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/11
+2017-05-27 14:11:55,572 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/11, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:55,575 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:55,575 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/11 is None
+2017-05-27 14:11:55,575 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/12
+2017-05-27 14:11:56,098 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/12, reason:HTTP Error 404: Not Found
+2017-05-27 14:11:56,101 xlblog.py:196 qingblog INFO :None
+2017-05-27 14:11:56,101 xlblog.py:198 qingblog INFO :http://wp.rabbit-e.com/wp/page/12 is None
+2017-05-27 14:11:56,101 xlblog.py:194 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/13
+2017-05-27 14:13:19,042 xlblog.py:80 qingblog ERROR :get_page failed, url:http://www.shanghaidaily.com/, reason:''
+2017-05-27 14:13:19,183 xlblog.py:195 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/1
+2017-05-27 14:13:19,671 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/1, reason:HTTP Error 404: Not Found
+2017-05-27 14:13:19,674 xlblog.py:197 qingblog INFO :None
+2017-05-27 14:13:19,676 xlblog.py:199 qingblog INFO :http://wp.rabbit-e.com/wp/page/1 is None
+2017-05-27 14:13:19,676 xlblog.py:195 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/2
+2017-05-27 14:13:20,184 xlblog.py:80 qingblog ERROR :get_page failed, url:http://wp.rabbit-e.com/wp/page/2, reason:HTTP Error 404: Not Found
+2017-05-27 14:13:20,186 xlblog.py:197 qingblog INFO :None
+2017-05-27 14:13:20,186 xlblog.py:199 qingblog INFO :http://wp.rabbit-e.com/wp/page/2 is None
+2017-05-27 14:13:20,186 xlblog.py:195 qingblog INFO :get page:http://wp.rabbit-e.com/wp/page/3
+2017-05-27 14:13:46,825 xlblog.py:80 qingblog ERROR :get_page failed, url:http://www.shanghaidaily.com/, reason:''
+2017-05-27 14:13:57,155 xlblog.py:81 qingblog ERROR :get_page failed, url:http://www.shanghaidaily.com/, reason:''
