@@ -165,7 +165,7 @@ if __name__ == '__main__':
     #sys.exit()
     clear_oz()
     page = 1
-    oz_url='http://www.cnblogs.com/bluescorpio/default.html?page='
+    oz_url='http://www.cnblogs.com/buptzym/default.html?page='
     while True:
     #while page == 1:
         page_url = '%s%s' % (oz_url, str(page))
@@ -177,9 +177,8 @@ if __name__ == '__main__':
             page = page + 1
             continue       
         
-        links,years,dates = extract(page_html)
+        links,years,dates = extract(page_html)        
         
-        print links;
         if links is None or len(links) == 0:
             qinglog.info('no links or years or dates in %s' % page_url)
             break       
@@ -188,6 +187,7 @@ if __name__ == '__main__':
             for link,year,date in zip(links,years,dates):
                 #article_url = '%s/%s.html' % (oz_url, link)
                 article_url = link
+                print link
                 article_page = get_html(article_url)
                 if article_page is None:
                     qinglog.info('%s is None' % article_url)
