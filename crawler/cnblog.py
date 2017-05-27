@@ -1,5 +1,5 @@
 #-*- encoding:UTF-8 -*-
-from CrawlerBase import *
+from tools.CrawlerBase import *
                             
 def extract(page):
     if page is None:
