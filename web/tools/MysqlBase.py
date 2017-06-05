@@ -32,7 +32,15 @@ class MysqlBase:
         cur.execute(sql)       
         self.conn.commit()
         cur.close()
-        
+    def query(self,sql,value=None):        
+        cur=self.conn.cursor()
+        if value is None:
+            cur.execute(sql)
+        else:
+            cur.execute(sql,value)
+        alldata = cur.fetchall()
+        cur.close()
+        return alldata
     def insert(self,sql,value):
         values=[]
         values.append(value)
