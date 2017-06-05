@@ -20,8 +20,13 @@ def blogDetail():
 
 @app.route('/blogHome')
 def blogHome():
-    list = mysql.query('select * from blog')
-    return render_template('blog_index.html',list=list)
+    _from = request.args.get('from')
+    if _from is None or _from.strip()== '':
+        _from=0
+    else:
+        _from=int(float(_from))
+    list = mysql.query(u'select * from blog order by id limit '+str(_from)+u',20')
+    return render_template('blog_index.html',list=list,_from=_from)
     
 @app.route('/showSignUp')
 def showSignUp():
