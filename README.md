@@ -4,4 +4,4 @@ You can make small changes to be adapted to your own use case.
 
 # web
 A powerful web framework build on flask. 
-Full view of blog data from crawler.
+Full view and search of blog data from crawler.
