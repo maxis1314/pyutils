@@ -9,7 +9,6 @@ import logutils
 import urllib
 import sys
 import MySQLdb
-
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
