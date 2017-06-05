@@ -17,13 +17,20 @@
       <div class="header">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation" class="active"><a href="/blogHome">Home</a></li>
             <li role="presentation"><a href="#">Sign In</a></li>
  	    <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Blog List</h3>
       </div>
+      
+<div  style="width:100%;padding:0;margin:0;box-sizing:border-box;align:right;clear:both;"> 
+ <form action='/blogSearch' method=get>
+         <input type="text" name="key" id="search" placeholder="Search" value="" class="placeholder">
+        <button type="submit" class="btn btn-primary">Search</button>
+         </form>
+</div> 
 
       <div class="jumbotron">
         <h1>Blog List</h1>

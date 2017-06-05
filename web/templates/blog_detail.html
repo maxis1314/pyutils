@@ -25,10 +25,27 @@
         <h3 class="text-muted">Blog Detail</h3>
       </div>
 
+<div  style="width:100%;padding:0;margin:0;box-sizing:border-box;align:right;clear:both;"> 
+ <form action='/blogSearch' method=get>
+         <input type="text" name="key" id="search" placeholder="Search" value="" class="placeholder">
+        <button type="submit" class="btn btn-primary">Search</button>
+         </form>
+</div> 
+
       <div class="jumbotron">
         <h1>{{ blog[0] }}. {{ blog[3] }}</h1>
         <p class="lead"></p>        
       </div>
+      
+       <div style="width:95%;margin:10px;">
+         <div style="width:50%;padding:0;margin:0;float:left;box-sizing:border-box;align:left;">
+        <a href="/blogDetail?id={{id-1}}">上一篇</a>
+         </div>
+        <div style="width:50%;padding:0;margin:0;float:right;box-sizing:border-box;align:right;"><div style='float:right;'>
+        <a href="/blogDetail?id={{id+1}}">下一篇</a>
+        </div>
+     </div>
+     <hr>
 
       <div class="row marketing">
         <div class="col-lg-6">
