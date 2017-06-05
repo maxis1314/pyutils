@@ -1,6 +1,10 @@
 #-*- encoding:UTF-8 -*-
 from tools.CrawlerBase import *
-                            
+from tools.MysqlBase import *                          
+
+
+db = MysqlBase('python')
+
 def extract(page):
     if page is None:
         return (None,None,None)
@@ -33,12 +37,11 @@ def process_article(article):
     return (title, body.strip(), post_date)
 
 def insert_db(dt,link, title, body):
+    global db
     sql=''
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
-    print link
-    print title
-    print body
+    db.insert('insert ignore into blog(dt,link,title,body) values(%s,%s,%s,%s)',(dt,link, title, body));
 
     
 if __name__ == '__main__':   

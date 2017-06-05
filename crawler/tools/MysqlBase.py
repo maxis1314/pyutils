@@ -13,18 +13,26 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 class MysqlBase:
-    def __init__(self):
+    def __init__(self,dbname):
         self.conn=MySQLdb.connect(host='localhost',user='root',passwd='',port=3306)
-        cur=self.conn.cursor()
+        #cur=self.conn.cursor()
      
         #cur.execute('create database if not exists python')
-        self.conn.select_db('python')
+        self.conn.select_db(dbname)
+        self.conn.set_character_set('utf8')
         #cur.execute('create table if not exists test(id int,info varchar(20))')
          
-        value=[3,'hi rollen']
-        cur.execute('insert into test values(%s,%s)',value)       
+        #value=[3,'hi rollen']
+        #cur.execute('insert into test values(%s,%s)',value)       
+        #self.conn.commit()
+        #cur.close()
+        
+    def execute(self,sql):
+        cur=self.conn.cursor()
+        cur.execute(sql)       
         self.conn.commit()
         cur.close()
+        
     def insert(self,sql,value):
         values=[]
         values.append(value)
