@@ -1,11 +1,14 @@
-from flask import Flask, render_template, json, request
+from flask import Flask, render_template, json, request,session,redirect,url_for
 from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
 from tools.MysqlBase import *
 import hashlib
 
+
+
 mysql = MysqlBase('python')
 app = Flask(__name__)
+app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 
 @app.route('/')
 @app.route('/showHome')
@@ -21,6 +24,10 @@ def blogDetail():
 
 @app.route('/blogHome')
 def blogHome():
+    if session.has_key('login') and session['login']:
+        print 1111
+    else:
+        return redirect(url_for('showSignIn'))
     _from = request.args.get('from')
     if _from is None or _from.strip()== '':
         _from=0
@@ -53,10 +60,9 @@ def signIn():
     _name = request.form['inputName']    
     _password = request.form['inputPassword']
     _hashed_password = hashlib.md5(_password).hexdigest()
-    user = mysql.query('select * from tbl_user where user_name=%s',(_name))
-    print user[0][3]
-    print _hashed_password
+    user = mysql.query('select * from tbl_user where user_name=%s',(_name))   
     if len(user)>0 and user[0][3] == _hashed_password:
+        session['login'] = True
         return json.dumps({'error':0})
     else:
         return json.dumps({'error':1})
@@ -75,7 +81,7 @@ def signUp():
             _hashed_password = hashlib.md5(_password).hexdigest()
             mysql.insert('insert into tbl_user(user_name,user_username,user_password) values(%s,%s,%s)',(_name,_email,_hashed_password));           
             if True:               
-                return json.dumps({'message':'User created successfully !','list':mysql.query('select * from tbl_user')})
+                return json.dumps({'message':'User created successfully !','error':0})
             else:
                 return json.dumps({'error':str(data[0])})
         else:
