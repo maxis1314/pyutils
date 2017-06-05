@@ -18,6 +18,8 @@ def main():
 
 @app.route('/blogDetail')
 def blogDetail():
+    if not session.has_key('login') or not session['login']:    
+        return redirect(url_for('showSignIn'))
     _id = request.args.get('id')
     blog = mysql.query('select * from blog where id=%s',(_id))
     return render_template('blog_detail.html',blog=blog[0],id=int(_id))
@@ -36,6 +38,8 @@ def blogHome():
 
 @app.route('/blogSearch')
 def blogSearch():
+    if not session.has_key('login') or not session['login']:    
+        return redirect(url_for('showSignIn'))
     _from = request.args.get('from')
     _key = request.args.get('key')
     if _from is None or _from.strip()== '':
