@@ -24,9 +24,7 @@ def blogDetail():
 
 @app.route('/blogHome')
 def blogHome():
-    if session.has_key('login') and session['login']:
-        print 1111
-    else:
+    if not session.has_key('login') or not session['login']:    
         return redirect(url_for('showSignIn'))
     _from = request.args.get('from')
     if _from is None or _from.strip()== '':
