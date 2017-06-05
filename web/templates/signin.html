@@ -10,7 +10,6 @@
     <link href="../static/css/jumbotron-narrow.css" rel="stylesheet">
     <link href="../static/css/signup.css" rel="stylesheet">
     <script src="../static/js/jquery-1.11.2.js"></script>
-    <script src="../static/js/signUp.js"></script>
    
   </head>
 
@@ -22,23 +21,21 @@
           <ul class="nav nav-pills pull-right">
             <li role="presentation" ><a href="showHome">Home</a></li>
             <li role="presentation"><a href="/showSignIn">Sign In</a></li>
-            <li role="presentation" class="active"><a href="/showSignup">Sign Up</a></li>
+            <li role="presentation" class="active"><a href="/showSignUp">Sign Up</a></li>
           </ul>
         </nav>
         <h3 class="text-muted">Python Flask App</h3>
       </div>
 
       <div class="jumbotron">
-        <h1>Bucket List App</h1>
+        <h1>Sign In</h1>
         <form class="form-signin">
         <label for="inputName" class="sr-only">Name</label>
-        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>        
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
         
-        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+        <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
       </form>
       </div>
 
@@ -51,4 +48,22 @@
     </div>
   </body>
 </html>
+<script>
+$(function(){
+	$('#btnSignUp').click(function(){
+		
+		$.ajax({
+			url: '/signIn',
+			data: $('form').serialize(),
+			type: 'POST',
+			success: function(response){
+				console.log(response);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+});
 
+</script>
