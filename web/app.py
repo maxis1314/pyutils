@@ -3,13 +3,19 @@ from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
 from tools.MysqlBase import *
 
-mysql = MysqlBase('BucketList')
+mysql = MysqlBase('python')
 app = Flask(__name__)
 
 @app.route('/')
 @app.route('/showHome')
 def main():
-    return render_template('index.html')
+    userlist = mysql.query('select * from tbl_user')
+    return render_template('index.html',list=userlist)
+
+@app.route('/blogHome')
+def blogHome():
+    list = mysql.query('select * from blog')
+    return render_template('blog_index.html',list=list)
 
 @app.route('/showSignUp')
 def showSignUp():
