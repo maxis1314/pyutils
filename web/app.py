@@ -12,11 +12,17 @@ def main():
     userlist = mysql.query('select * from tbl_user')
     return render_template('index.html',list=userlist)
 
+@app.route('/blogDetail')
+def blogDetail():
+    _id = request.args.get('id')
+    blog = mysql.query('select * from blog where id=%s',(_id))
+    return render_template('blog_detail.html',blog=blog[0])
+
 @app.route('/blogHome')
 def blogHome():
     list = mysql.query('select * from blog')
     return render_template('blog_index.html',list=list)
-
+    
 @app.route('/showSignUp')
 def showSignUp():
     return render_template('signup.html')
