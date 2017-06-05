@@ -39,4 +39,4 @@ def process_article(article):
     
 if __name__ == '__main__':   
     crawler = CrawlerBase()
-    crawler.start('http://blog.sina.com.cn/s/articlelist_1259295385_0_%s.html',extract,process_article)
+    crawler.start('http://blog.sina.com.cn/s/articlelist_1259295385_0_%s.html',extract,process_article,None)

@@ -31,8 +31,16 @@ def process_article(article):
 
     print 'title=',title
     return (title, body.strip(), post_date)
-    
+
+def insert_db(dt,link, title, body):
+    sql=''
+    title = title.replace("\r", u'')
+    body = body.replace("\n", u'')
+    print link
+    print title
+    print body
+
     
 if __name__ == '__main__':   
     crawler = CrawlerBase()
-    crawler.start('http://www.cnblogs.com/buptzym/default.html?page=%s',extract,process_article)
+    crawler.start('http://www.cnblogs.com/buptzym/default.html?page=%s',extract,process_article,insert_db)
