@@ -1,2 +1,3 @@
 /crawler/*.db
 /crawler/*.pyc
+/crawler/tools/*.pyc
