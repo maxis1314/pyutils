@@ -37,7 +37,7 @@ def blogSearch():
     else:
         _from=int(float(_from))
     list = mysql.query(u'select * from blog where title like "%'+_key+u'%" or body like "%'+_key+u'%" order by id limit '+str(_from)+u',100')
-    return render_template('blog_index.html',list=list,_from=_from)
+    return render_template('blog_index.html',list=list,_from=_from,_key=_key)
     
 @app.route('/showSignUp')
 def showSignUp():
