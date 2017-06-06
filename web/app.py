@@ -46,7 +46,9 @@ def blogSearch():
         _from=0
     else:
         _from=int(float(_from))
-    list = mysql.query(u'select * from blog where title like \'%'+_key+u'%\' order by id desc')
+    sql = u'select * from blog where title like \'%'+_key+u'%\' order by id desc'
+    print sql
+    list = mysql.query(sql)
     return render_template('blog_index.html',list=list,_from=_from,_key=_key,is_search=True)
     
 @app.route('/showSignUp')
