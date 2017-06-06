@@ -56,6 +56,12 @@ def blogSearch():
 def showSignUp():
     return render_template('signup.html')
 
+@app.route('/logout')
+def logout():
+    session['login'] = False
+    session['name'] = None
+    return redirect(url_for('showSignIn'))
+
 @app.route('/showSignIn')
 def showSignIn():
     return render_template('signin.html')

@@ -20,7 +20,7 @@
             <li role="presentation" class="active"><a href="/blogHome">Home</a></li>
             {% if session['name']%}
             <li role="presentation">{% if session['name']%}<a href="#">{{session['name']}}</a>{%endif%}</li>
- 	    
+            <li role="presentation"><a href="/logout">Logout</a></li>
             {%else%}
             <li role="presentation"><a href="/showSignIn">Sign In</a></li>
             <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
