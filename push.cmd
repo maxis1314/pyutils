@@ -5,5 +5,6 @@ set /p var=ÇëÊäÈëÄÚÈÝ:
 git add *
 git commit -m "%var% %date:~0,10%"
 git push origin master
-pause
+rem pause
+ping 127.0.0.1 -n 10 > nul
 rem )
