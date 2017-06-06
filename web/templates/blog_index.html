@@ -53,7 +53,7 @@
               
             {% for one in list %}
                 <h3><a href="/blogDetail?id={{ one[0] }}"><font color=green>{{ one[0] }}. {{ one[3] }} - {{ one[2] }}</font></a></h3>
-                <p>{{ one[4]|safe }} -- {{ one[1] }}</p>
+                {% if not is_search %}<p>{{ one[4]|safe }} -- {{ one[1] }}</p>{% endif%}
             {% endfor %}
        
 

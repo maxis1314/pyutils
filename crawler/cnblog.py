@@ -1,6 +1,7 @@
 #-*- encoding:UTF-8 -*-
 from tools.CrawlerBase import *
 from tools.MysqlBase import *                          
+import sys
 
 
 db = MysqlBase('python')
@@ -44,6 +45,10 @@ def insert_db(dt,link, title, body):
     db.insert('insert ignore into blog(dt,link,title,body) values(%s,%s,%s,%s)',(dt,link, title, body));
 
     
-if __name__ == '__main__':   
-    crawler = CrawlerBase()
-    crawler.start('http://www.cnblogs.com/buptzym/default.html?page=%s',extract,process_article,insert_db)
+if __name__ == '__main__':
+    name = sys.argv[1]
+    if name is not None:
+        crawler = CrawlerBase()
+        crawler.start(u'http://www.cnblogs.com/'+name+'/default.html?page=%s',extract,process_article,insert_db)
+    else:
+        print 'name is none'
