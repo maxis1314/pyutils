@@ -56,6 +56,10 @@ def blogSearch():
 def showSignUp():
     return render_template('signup.html')
 
+@app.route('/showAddBlog')
+def showAddBlog():
+    return render_template('add_blog.html')
+    
 @app.route('/logout')
 def logout():
     session['login'] = False
@@ -79,6 +83,13 @@ def signIn():
     else:
         return json.dumps({'error':1})
 
+        
+@app.route('/addBlog',methods=['POST','GET'])
+def addBlog():
+    _name = request.form['inputName']
+    mysql.insert('insert into bloglist(type,name) values(%s,%s)',('cnblog',_name));   
+    return json.dumps({'error':0})   
+    
 @app.route('/signUp',methods=['POST','GET'])
 def signUp():
     try:
