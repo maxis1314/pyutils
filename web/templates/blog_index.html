@@ -30,8 +30,8 @@
         <div class="col-lg-6">
               
             {% for one in list %}
-                <h3><a href="/blogDetail?id={{ one[0] }}"><font color=green>{{ one[0] }}. {{ one[3] }} - {{ one[2] }}</font></a></h3>
-                {% if not is_search %}<p>{{ one[4]|safe }} -- </p>{% endif%}{{ one[1] }}
+                <h3><a target=_blank href="/blogDetail?id={{ one[0] }}"><font color=green>{{ one[0] }}. {{ one[3] }} - {{ one[2] }}</font></a></h3>
+                {% if not is_search %}<p>{{ one[4]|safe }} -- </p>{% endif%}<a href='{{ one[1] }}' target=_blank>{{ one[1] }}</a>
             {% endfor %}
        
 

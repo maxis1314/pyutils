@@ -9,37 +9,45 @@ import logutils
 import urllib
 import sys
 import MySQLdb
-
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
 class MysqlBase:
     def __init__(self,dbname):
-        self.conn=MySQLdb.connect(host='localhost',user='root',passwd='',port=3306)
-        #cur=self.conn.cursor()
-     
-        #cur.execute('create database if not exists python')
-        self.conn.select_db(dbname)
+        self.conn=None
+        self.dbname=dbname
+        self.reconnect()
+    
+    def reconnect(self):
+        if self.conn is not None:
+            self.conn.close()
+        self.conn=MySQLdb.connect(host='localhost',user='root',passwd='',port=3306)        
+        self.conn.select_db(self.dbname)
         self.conn.set_character_set('utf8')
-        #cur.execute('create table if not exists test(id int,info varchar(20))')
-         
-        #value=[3,'hi rollen']
-        #cur.execute('insert into test values(%s,%s)',value)       
-        #self.conn.commit()
-        #cur.close()
-        
+    
     def execute(self,sql):
+        self.reconnect()
         cur=self.conn.cursor()
         cur.execute(sql)       
         self.conn.commit()
         cur.close()
-        
-    def insert(self,sql,value):
+    def query(self,sql,value=None):
+        self.reconnect()
+        cur=self.conn.cursor()
+        if value is None:
+            cur.execute(sql)
+        else:
+            cur.execute(sql,value)
+        alldata = cur.fetchall()
+        cur.close()
+        return alldata
+    def insert(self,sql,value):        
         values=[]
         values.append(value)
         self.multi_insert(sql,values)
         
     def multi_insert(self,sql,values):
+        self.reconnect()
         cur=self.conn.cursor()
         cur.executemany(sql,values)
         self.conn.commit()
