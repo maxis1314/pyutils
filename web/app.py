@@ -33,8 +33,9 @@ def blogHome():
         _from=0
     else:
         _from=int(float(_from))
-    list = mysql.query(u'select * from blog order by id limit '+str(_from)+u',20')
-    return render_template('blog_index.html',list=list,_from=_from)
+    list = mysql.query(u'select * from blog order by dt desc limit '+str(_from)+u',20')
+    numblog = mysql.query(u'select count(*) from blog')
+    return render_template('blog_index.html',list=list,_from=_from,numblog=numblog[0][0])
 
 @app.route('/blogSearch')
 def blogSearch():
@@ -46,7 +47,7 @@ def blogSearch():
         _from=0
     else:
         _from=int(float(_from))
-    sql = u'select * from blog where title like \'%'+_key+u'%\' order by id desc'
+    sql = u'select * from blog where title like \'%'+_key+u'%\' order by dt desc'
     print sql
     list = mysql.query(sql)
     return render_template('blog_index.html',list=list,_from=_from,_key=_key,is_search=True)
@@ -67,6 +68,7 @@ def signIn():
     user = mysql.query('select * from tbl_user where user_name=%s',(_name))   
     if len(user)>0 and user[0][3] == _hashed_password:
         session['login'] = True
+        session['name'] = _name
         return json.dumps({'error':0})
     else:
         return json.dumps({'error':1})

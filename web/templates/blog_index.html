@@ -18,8 +18,13 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active"><a href="/blogHome">Home</a></li>
+            {% if session['name']%}
+            <li role="presentation">{% if session['name']%}<a href="#">{{session['name']}}</a>{%endif%}</li>
+ 	    
+            {%else%}
             <li role="presentation"><a href="/showSignIn">Sign In</a></li>
- 	    <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+            <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
+            {%endif%}
           </ul>
         </nav>
         <h3 class="text-muted">Blog List</h3>
@@ -34,7 +39,7 @@
 
       <div class="jumbotron">
         <h1>Blog List</h1>
-        <p class="lead"></p>        
+        <p class="lead">{{numblog}}</p>        
       </div>
      
     <div style="width:95%;margin:10px;">
