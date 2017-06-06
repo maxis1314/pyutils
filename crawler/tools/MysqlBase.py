@@ -30,11 +30,15 @@ class MysqlBase:
             self.connect()
     
     def execute(self,sql):
-        self.reconnect()
-        cur=self.conn.cursor()
-        cur.execute(sql)       
-        self.conn.commit()
-        cur.close()
+        try:
+            self.reconnect()
+            cur=self.conn.cursor()
+            cur.execute(sql)       
+            self.conn.commit()
+            cur.close()
+        except Exception,e:
+            print 'db failed, reason:%s' % str(e)
+            return None
     def query(self,sql,value=None):
         self.reconnect()
         cur=self.conn.cursor()
@@ -51,11 +55,15 @@ class MysqlBase:
         self.multi_insert(sql,values)
         
     def multi_insert(self,sql,values):
-        self.reconnect()
-        cur=self.conn.cursor()
-        cur.executemany(sql,values)
-        self.conn.commit()
-        cur.close()
+        try:
+            self.reconnect()
+            cur=self.conn.cursor()
+            cur.executemany(sql,values)
+            self.conn.commit()
+            cur.close()
+        except Exception,e:
+            print 'db failed, reason:%s' % str(e)
+            return None
         
     def multi_insert_test(self):    
         values=[]
