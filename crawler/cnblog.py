@@ -10,7 +10,7 @@ def extract(page):
     if page is None:
         return (None,None,None)
 
-    linkpattern = re.compile(u'class="postTitle2" href="(.*?)">', re.S | re.U)
+    linkpattern = re.compile(u'id=".*?List_TitleUrl_.*?".*?href="(.*?)">', re.S | re.U)
     links = linkpattern.findall(page)    
     return (links)
 
@@ -20,7 +20,7 @@ def process_article(article):
     post_date=''
     img_urls = []
     
-    titlepattern = re.compile(u'<a id="cb_post_title_url" class=".*?" href=".*?">(.*?)</a>', re.S | re.U)
+    titlepattern = re.compile(u'<a id="cb_post_title_url".*?href=".*?">(.*?)</a>', re.S | re.U)
     result = titlepattern.search(article)
     if result is not None:
         title = result.group(1).strip()
