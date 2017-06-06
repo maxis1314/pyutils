@@ -1,7 +1,28 @@
-CREATE DATABASE BucketList;
-CREATE TABLE `BucketList`.`tbl_user` (
-  `user_id` BIGINT NULL AUTO_INCREMENT,
-  `user_name` VARCHAR(45) NULL,
-  `user_username` VARCHAR(45) NULL,
-  `user_password` VARCHAR(45) NULL,
-  PRIMARY KEY (`user_id`));
+ `python`.CREATE DATABASE `python` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+DROP TABLE IF EXISTS `python`.`blog`;
+CREATE TABLE  `python`.`blog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `link` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `dt` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `title` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `body` text COLLATE utf8_bin,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `link` (`link`)
+) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+DROP TABLE IF EXISTS `python`.`tbl_user`;
+CREATE TABLE  `python`.`tbl_user` (
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(45) DEFAULT NULL,
+  `user_username` varchar(45) DEFAULT NULL,
+  `user_password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `python`.`test`;
+CREATE TABLE  `python`.`test` (
+  `id` int(11) DEFAULT NULL,
+  `info` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
