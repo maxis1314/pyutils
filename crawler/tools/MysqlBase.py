@@ -15,15 +15,19 @@ sys.setdefaultencoding('utf8')
 class MysqlBase:
     def __init__(self,dbname):
         self.conn=None
+        self.reconn=False
         self.dbname=dbname
-        self.reconnect()
-    
-    def reconnect(self):
+        self.connect()
+    def connect(self):
         if self.conn is not None:
             self.conn.close()
         self.conn=MySQLdb.connect(host='localhost',user='root',passwd='',port=3306)        
         self.conn.select_db(self.dbname)
         self.conn.set_character_set('utf8')
+        
+    def reconnect(self):
+        if self.reconn:
+            self.connect()
     
     def execute(self,sql):
         self.reconnect()
