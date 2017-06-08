@@ -36,12 +36,12 @@ class logger:
 class CrawlerBase:
     def __init__(self):   
         self.qinglog = logger('qingblog').get_logger()       
-        self.conn = sqlite3.connect('qingblog.db')
+        #self.conn = sqlite3.connect('qingblog.db')
         #init table 
-        cursor = self.conn.cursor()        
-        cursor.execute("create table if not exists oz(id integer primary key,link varchar(100),dt varchar(10),title varchar(100), body text NULL)")
-        self.conn.commit()
-        cursor.close()
+        #cursor = self.conn.cursor()        
+        #cursor.execute("create table if not exists oz(id integer primary key,link varchar(100),dt varchar(10),title varchar(100), body text NULL)")
+        #self.conn.commit()
+        #cursor.close()
     
     def gz_decode(self,data):
         compressedstream = StringIO.StringIO(data)  
@@ -153,7 +153,7 @@ class CrawlerBase:
         #    process_article = self.process_article
         #print get_html('http://www.shanghaidaily.com/')
         #sys.exit()
-        self.clear_oz()        
+        #self.clear_oz()        
         page = 1        
         while True:
         #while page == 1:
