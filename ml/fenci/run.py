@@ -7,6 +7,8 @@ sys.setdefaultencoding( "utf-8" )
 
 import jieba
 
+def f(x): return x!='\n' and x!='\t' and x!=' ' and x!='，' and len(x)>1 and len(x)<8
+
 rfile_object = open('input.tsv', 'r')
 list_of_all_the_lines = rfile_object.readlines()
 linenum = len(list_of_all_the_lines)
@@ -16,16 +18,25 @@ wfile_object = open('output.csv', 'w')
 all_words=[]
 part_words=[]
 class_article=[]
+count_words={}
 for line in list_of_all_the_lines:
     line = line.strip()
     listFromLine = line.split('\t')
     class_article.append(listFromLine[1])
     seg_list = jieba.cut(listFromLine[0], cut_all=False)
     list1 =list(seg_list)
+    list1 = filter(f, list1) 
+    for word in list1:
+        if count_words.has_key(word):
+            count_words[word]=count_words[word]+1
+        else:
+            count_words[word]=1
     part_words.append(list1)
     all_words.extend(list1)   
 
 all_words=list(set(all_words))
+
+all_words = filter(f, all_words) 
 wordnum=len(all_words);
 trainingMat = zeros((linenum,wordnum))
 
@@ -35,9 +46,11 @@ for i in range(0,len(part_words)):
         trainingMat[i][j]=int(part_words[i].count(all_words[j]))
 
 print trainingMat
+for i in sorted(count_words.items(), key=lambda d: d[1],reverse=True):
+    print i[0],'\t',i[1],len(i[0])
 
-def f(x): return x!='\n' and x!='\t' and x!=' ' and x!='，'
-all_words = filter(f, all_words) 
+
+
 
 
 wfile_object.write('#'+"\t".join(all_words))
