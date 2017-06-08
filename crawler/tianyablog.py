@@ -34,9 +34,9 @@ def process_article(article):
         post_date = result.group(1)
     
     print 'title=',title.encode('gbk')    
-    return (title, body.strip(), post_date)
+    print (title, body.strip(), post_date)
     
     
 if __name__ == '__main__':   
     crawler = CrawlerBase()
-    crawler.start('http://blog.tianya.cn/blog-4698784-%s.shtml',extract,process_article,None)
+    crawler.start('http://blog.tianya.cn/blog-4698784-%s.shtml',extract,process_article)
