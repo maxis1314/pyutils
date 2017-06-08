@@ -1,27 +1,13 @@
 #encoding=utf-8
 import sys
 from numpy import *
-import kNN
-import bayes
-
-
-#datingDataMat,datingLabels = kNN.file2matrix('thefile.csv','\t')
-#print datingDataMat
-#bayes.testingNB2(datingDataMat,datingLabels)
-
-
-kNN.commonClassTest('thefile.csv','\t',0.2);
-
-
-
-sys.exit()
 
 reload(sys) 
 sys.setdefaultencoding( "utf-8" )
 
 import jieba
 
-rfile_object = open('data2.txt', 'r')
+rfile_object = open('input.tsv', 'r')
 list_of_all_the_lines = rfile_object.readlines()
 linenum = len(list_of_all_the_lines)
 
