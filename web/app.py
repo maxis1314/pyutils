@@ -33,7 +33,7 @@ def blogHome():
         _from=0
     else:
         _from=int(float(_from))
-    list = mysql.query(u'select * from blog order by dt desc limit '+str(_from)+u',20')
+    list = mysql.query(u'select * from blog order by id desc limit '+str(_from)+u',20')
     numblog = mysql.query(u'select count(*) from blog')
     return render_template('blog_index.html',list=list,_from=_from,numblog=numblog[0][0])
 
