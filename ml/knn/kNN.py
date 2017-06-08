@@ -73,6 +73,8 @@ def file2matrix(filename,seperator='\t'):
         line = line.strip()
         listFromLine = line.split(seperator)
         numField = len(listFromLine)
+        print numField
+        #print listFromLine
         returnMat[index,:] = listFromLine[0:numField-1]
         classLabelVector.append(listFromLine[-1])
         index += 1
