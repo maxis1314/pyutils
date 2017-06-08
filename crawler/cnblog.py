@@ -2,10 +2,12 @@
 from tools.CrawlerBase import *
 from tools.MysqlBase import *                          
 import sys
-
+import urlparse
+import json 
 
 db = MysqlBase('python')
 count = 0;
+crawlernew = CrawlerBase()
 
 def extract(page):
     if page is None:
@@ -15,10 +17,10 @@ def extract(page):
     links = linkpattern.findall(page)    
     return (links)
 
-def process_article(article):
+def process_article(article,link):
     title = ''
     body = ''
-    post_date=''
+    dt=''
     img_urls = []
     
     titlepattern = re.compile(u'<a id="cb_post_title_url".*?href=".*?">(.*?)</a>', re.S | re.U)
@@ -33,26 +35,60 @@ def process_article(article):
     imgpattern = re.compile(u'<span id="post-date">(.*?)</span>', re.S | re.U | re.I)
     result = imgpattern.search(article)
     if result is not None:
-        post_date = result.group(1)
-
+        dt = result.group(1)
+        
+    
+    imgpattern = re.compile(u'cb_blogId=([0-9]+),', re.S | re.U | re.I)
+    result = imgpattern.search(article)
+    if result is not None:
+        bloggerid = result.group(1)
+        
     print 'title=',title
-    return (title, body.strip(), post_date)
+    
+    title = title.replace('&amp;', '&')
+    title = title.replace("'", "''")
+    body = body.replace("'", "''").strip()                  
 
-def insert_db(dt,link, title, body):
-    global db,count    
+    postId = link.split('.')[2].split('/')[-1]
+    
+    url2 = u'http://www.cnblogs.com/mvc/blog/CategoriesTags.aspx?blogApp=gavin-cn&blogId='+bloggerid+'&postId='+postId+'&_='
+    
+    
+    global db,count,crawlernew
+    
+
+    locations = json.loads(crawlernew.get_html(url2)) 
+    tags = locations['Tags']
+    categories = locations['Categories']
+    
+    
+    linkpattern = re.compile(u'>(.*?)<', re.S | re.U)
+    tags = linkpattern.findall(tags)
+    categories = linkpattern.findall(categories)
+    
+    tags = set(tags)
+    tags = list(tags)
+
+    categories = set(categories)
+    categories = list(categories)
+
+    
+    print 'categories=',categories
+    print 'tags=',tags
+    
     sql=''
     count=count+1
     if count>200:
         db.connect()
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
-    db.insert('insert ignore into blog(dt,link,title,body) values(%s,%s,%s,%s)',(dt,link, title, body));
+    db.insert('insert ignore into blog(dt,link,title,body,tags,categories,bid) values(%s,%s,%s,%s,%s,%s,%s)',(dt,link, title, body,','.join(tags),','.join(categories),bloggerid));
 
     
 if __name__ == '__main__':
     name = sys.argv[1]
     if name is not None:
         crawler = CrawlerBase()
-        crawler.start(u'http://www.cnblogs.com/'+name+'/default.html?page=%s',extract,process_article,insert_db)
+        crawler.start(u'http://www.cnblogs.com/'+name+'/default.html?page=%s',extract,process_article)
     else:
         print 'name is none'

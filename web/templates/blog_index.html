@@ -33,6 +33,8 @@
                 <h3><a target=_blank href="/blogDetail?id={{ one[0] }}"><font color=green>{{ one[0] }}. {{ one[3] }} - {{ one[2] }}</font></a></h3>
                 <a href='{{ one[1] }}' target=_blank>{{ one[1] }}</a>
                 {% if not is_search %}<p>{{ one[4]|safe }} -- </p>{% endif%}
+                {% if one[5] %}Tags: {{ one[5]|safe }}{% endif%}
+                {% if one[6] %}Categories: {{ one[6]|safe }}{% endif%}
             {% endfor %}
        
 

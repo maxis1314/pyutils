@@ -148,9 +148,7 @@ class CrawlerBase:
             self.qinglog.error('delete from oz failed! reason:%s' % str(e))
             return False
 
-    def start(self,oz_url,extract,process_article,insert_db):        
-        if insert_db is None:
-            insert_db = self.insert_db
+    def start(self,oz_url,extract,process_article):                
         #if process_article is None:
         #    process_article = self.process_article
         #print get_html('http://www.shanghaidaily.com/')
@@ -184,9 +182,8 @@ class CrawlerBase:
                         page = page + 1
                         continue
 
-                    title, body, dt = process_article(article_page)                                
-                    title = title.replace('&amp;', '&')
-                    insert_db(dt,article_url, title.replace("'", "''"), body.replace("'", "''"))                            
+                    process_article(article_page,link)                                
+                                                
             else:
                 self.qinglog.info('length of years, dates, links not equal in %s' % page_url)
             page = page + 1
