@@ -43,7 +43,7 @@ def process_article(article,link):
     if result is not None:
         bloggerid = result.group(1)
         
-    print 'title=',title
+    print 'title=',title.encode('gb2312')
     
     title = title.replace('&amp;', '&')
     title = title.replace("'", "''")
