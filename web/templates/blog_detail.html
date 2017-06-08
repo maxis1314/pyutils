@@ -3,10 +3,16 @@
       </div>
 
 <div  style="width:100%;padding:0;margin:0;box-sizing:border-box;align:right;clear:both;"> 
+<table><tr><td>
  <form action='/blogSearch' method=get>
-         <input type="text" name="key" id="search" placeholder="Search" value="" class="placeholder">
+         <input type="text" name="key" id="search" placeholder="Title" value="{{_key}}" class="placeholder">
+        <button type="submit" class="btn btn-primary">Search</button>
+         </form></td><td>&nbsp;</td><td>
+ <form action='/tagSearch' method=get>
+         <input type="text" name="key" id="search" placeholder="Tag" value="{{_key}}" class="placeholder">
         <button type="submit" class="btn btn-primary">Search</button>
          </form>
+         </td><tr></table>
 </div> 
 
       <div class="jumbotron">
@@ -27,7 +33,9 @@
       <div class="row marketing">
         <div class="col-lg-6">
               
-
+                {% if blog[5] %}Tags: {{ blog[5]|safe }}{% endif%}
+                {% if blog[6] %}Categories: {{ blog[6]|safe }}{% endif%}                
+                
                 <p>{{ blog[4]|safe }} - {{ blog[2] }} - <a href='{{ blog[1] }}' target=_blank>{{ blog[1] }}</a></p>
 
 
