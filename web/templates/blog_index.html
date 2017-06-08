@@ -31,7 +31,8 @@
               
             {% for one in list %}
                 <h3><a target=_blank href="/blogDetail?id={{ one[0] }}"><font color=green>{{ one[0] }}. {{ one[3] }} - {{ one[2] }}</font></a></h3>
-                {% if not is_search %}<p>{{ one[4]|safe }} -- </p>{% endif%}<a href='{{ one[1] }}' target=_blank>{{ one[1] }}</a>
+                <a href='{{ one[1] }}' target=_blank>{{ one[1] }}</a>
+                {% if not is_search %}<p>{{ one[4]|safe }} -- </p>{% endif%}
             {% endfor %}
        
 

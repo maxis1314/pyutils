@@ -12,7 +12,21 @@
       </form>
       </div>
 
-      
+       <div class="row marketing">
+        <div class="col-lg-6">
+             <table border=1>
+            {% for one in list %}
+            <tr>
+                <td>{{ one[0] }}</td>
+                <td>{{ one[1] }}</td>
+                <td>{{ one[2] }}</td>
+                <td>{{ one[3] }}</td>                
+                </tr>
+            {% endfor %}
+            </table>
+
+        </div>         
+      </div>
 
       <footer class="footer">
         <p>&copy; Company 2015</p>

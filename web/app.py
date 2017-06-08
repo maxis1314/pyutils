@@ -58,7 +58,8 @@ def showSignUp():
 
 @app.route('/showAddBlog')
 def showAddBlog():
-    return render_template('add_blog.html')
+    list = mysql.query('select * from bloglist order by flag')
+    return render_template('add_blog.html',list=list)
     
 @app.route('/logout')
 def logout():

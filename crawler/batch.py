@@ -2,7 +2,7 @@
 from tools.MysqlBase import *
 import subprocess
 import time 
-if __name__ == '__main__':   
+if __name__ == '__main__':    
     db = MysqlBase('python')
     while True:
         list = db.query('select * from bloglist where flag=0 limit 10')
