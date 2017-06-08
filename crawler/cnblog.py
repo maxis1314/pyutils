@@ -4,6 +4,7 @@ from tools.MysqlBase import *
 import sys
 import urlparse
 import json 
+import time
 
 db = MysqlBase('python')
 count = 0;
@@ -51,7 +52,7 @@ def process_article(article,link):
 
     postId = link.split('.')[2].split('/')[-1]
     
-    url2 = u'http://www.cnblogs.com/mvc/blog/CategoriesTags.aspx?blogApp=gavin-cn&blogId='+bloggerid+'&postId='+postId+'&_='
+    url2 = u'http://www.cnblogs.com/mvc/blog/CategoriesTags.aspx?blogApp=gavin-cn&blogId='+bloggerid+'&postId='+postId+'&_='+str(int(time.time()))
     
     
     global db,count,crawlernew
