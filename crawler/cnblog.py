@@ -78,7 +78,7 @@ def process_article(article,link):
     
     sql=''
     count=count+1
-    if count>200:
+    if count%200==0:
         db.connect()
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
