@@ -2,7 +2,7 @@
 import sys
 from numpy import *
 import kNN
-import bayes
+
 
 
 #datingDataMat,datingLabels = kNN.file2matrix('thefile.csv','\t')
