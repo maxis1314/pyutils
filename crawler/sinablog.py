@@ -1,5 +1,5 @@
 #-*- encoding:UTF-8 -*-
-from CrawlerBase import *
+from tools.CrawlerBase import *
 import sys
 reload(sys)  
 sys.setdefaultencoding('utf8')
@@ -13,7 +13,7 @@ def extract(page):
     links = linkpattern.findall(page)    
     return (links)
 
-def process_article(article):   
+def process_article(article,link):   
     title = ''
     body = ''
     post_date=''

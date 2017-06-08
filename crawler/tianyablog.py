@@ -13,7 +13,7 @@ def extract(page):
     links = linkpattern.findall(page)    
     return (links)
 
-def process_article(article):   
+def process_article(article,link):   
     title = ''
     body = ''
     post_date=''
