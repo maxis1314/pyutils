@@ -9,10 +9,10 @@ if __name__ == '__main__':
         for i in list:
             if i[1] == 'cnblog':
                 subprocess.Popen(u'python cnblog.py '+i[2],shell=True).wait()            
-                
-            db.execute('update  bloglist set flag = 1 where id =%d' % (i[0]));
+            db.execute('update  bloglist set flag = 1 where id =%d' % (i[0]))
             
-        time.sleep(10);
+        time.sleep(10)
+        db.connect()
             
     #print 22222222222
     #db.multi_insert_test()

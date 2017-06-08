@@ -5,6 +5,7 @@ import sys
 
 
 db = MysqlBase('python')
+count = 0;
 
 def extract(page):
     if page is None:
@@ -38,8 +39,11 @@ def process_article(article):
     return (title, body.strip(), post_date)
 
 def insert_db(dt,link, title, body):
-    global db
+    global db,count    
     sql=''
+    count=count+1
+    if count>200:
+        db.connect()
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
     db.insert('insert ignore into blog(dt,link,title,body) values(%s,%s,%s,%s)',(dt,link, title, body));
