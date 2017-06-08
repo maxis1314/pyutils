@@ -19,6 +19,7 @@ class MysqlBase:
         self.dbname=dbname
         self.connect()
     def connect(self):
+        print '===========connect to database=============='
         if self.conn is not None:
             self.conn.close()
         self.conn=MySQLdb.connect(host='localhost',user='root',passwd='',port=3306)        
