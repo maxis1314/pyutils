@@ -4,10 +4,16 @@
       </div>
       
 <div  style="width:100%;padding:0;margin:0;box-sizing:border-box;align:right;clear:both;"> 
+<table><tr><td>
  <form action='/blogSearch' method=get>
-         <input type="text" name="key" id="search" placeholder="Search" value="{{_key}}" class="placeholder">
+         <input type="text" name="key" id="search" placeholder="Title" value="{{_key}}" class="placeholder">
+        <button type="submit" class="btn btn-primary">Search</button>
+         </form></td><td>
+ <form action='/tagSearch' method=get>
+         <input type="text" name="key" id="search" placeholder="Tag" value="{{_key}}" class="placeholder">
         <button type="submit" class="btn btn-primary">Search</button>
          </form>
+         </td><tr></table>
 </div> 
 
       <div class="jumbotron">

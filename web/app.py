@@ -51,6 +51,22 @@ def blogSearch():
     print sql
     list = mysql.query(sql)
     return render_template('blog_index.html',list=list,_from=_from,_key=_key,is_search=True)
+
+@app.route('/tagSearch')
+def tagSearch():
+    if not session.has_key('login') or not session['login']:    
+        return redirect(url_for('showSignIn'))
+    _from = request.args.get('from')
+    _key = request.args.get('key')
+    if _from is None or _from.strip()== '':
+        _from=0
+    else:
+        _from=int(float(_from))
+    sql = u'select * from blog where tags like \'%'+_key+u'%\' order by dt desc'
+    print sql
+    list = mysql.query(sql)
+    return render_template('blog_index.html',list=list,_from=_from,_key=_key,is_search=True)
+
     
 @app.route('/showSignUp')
 def showSignUp():
