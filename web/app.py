@@ -62,7 +62,7 @@ def tagSearch():
         _from=0
     else:
         _from=int(float(_from))
-    sql = u'select * from blog where tags like \'%'+_key+u'%\' order by dt desc'
+    sql = u'select * from blog where tags like \'%'+_key+u'%\' or categories like \'%'+_key+u'%\' order by dt desc'
     print sql
     list = mysql.query(sql)
     return render_template('blog_index.html',list=list,_from=_from,_key=_key,is_search=True)
