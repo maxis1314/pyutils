@@ -65,7 +65,22 @@ class CrawlerBase:
         except Exception,e:
             print self.qinglog.error('get_page failed, url:%s, reason:%s' % (url, str(e)))
             return None
-
+    def post_html(self,url,values):
+        data = urllib.urlencode(values)
+        try:
+            header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; rv:35.0) Gecko/20100101 Firefox/35.0',\
+                    'Accept': 'text/plain,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',\
+                    'Accept-Language': 'zh-cn,zh;q=0.8,en-us;q=0.5,en;q=0.3',\
+                    #'Accept-Encoding': 'gzip, deflate',\
+                    'Connection': 'keep-alive'}
+            request = urllib2.Request(url, data, header)
+            response = urllib2.urlopen(request)
+            result = response.read()
+            return result;
+            #return gz_decode(result).decode('GBK')#.decode('UTF-8')
+        except Exception,e:
+            print self.qinglog.error('get_page failed, url:%s, reason:%s' % (url, str(e)))
+            return None
     def extract(self,page):
         if page is None:
             return (None,None,None)
