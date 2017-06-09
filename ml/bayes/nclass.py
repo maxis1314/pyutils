@@ -5,9 +5,19 @@ import re
 import jieba
 import operator
 import sys
+import pickle
 reload(sys) 
 sys.setdefaultencoding( "utf-8" )
 
+def f(x): 
+    if x=='\n' or x=='\t' or x==' ' or x=='，' or len(x)<=1 or len(x)>=8:
+        return False       
+    
+    #match = re.search('^[0-9a-zA-Z\.\-_#]+$', x)    
+    #if match:
+    #    return False
+    return True
+    
 ##############################################################
 ## 1. 创建新文件夹，存放预处理后的文本数据
 ##############################################################
@@ -50,7 +60,9 @@ def createProcessFile(srcFilesName,dataFilesName):
 ## @return words 按非字母分隔后的单词所组成的列表
 ##############################################################
 def lineProcess(line):
-    return jieba.cut(line, cut_all=False)
+    list1 = list(jieba.cut(line, cut_all=False))
+    list1 = filter(f, list1)
+    return list1
     
     
 ########################################################
@@ -201,16 +213,20 @@ def getCateWordsProb(strDir):
 ## @param classifyResultFileNew  分类结果文件
 ## @return 返回该测试样本在该类别的概率
 ##########################################
-def NBprocess(traindir,testdir,classifyResultFileNew):
+def NBprocess(index,traindir,testdir,classifyResultFileNew):
     crWriter = open(classifyResultFileNew,'w')
     # traindir = 'TrainSample0'
     # testdir = 'TestSample0'
     #返回类k下词C的出现次数，类k总词数
     cateWordsProb, cateWordsNum = getCateWordsProb(traindir)
-
+    trainDirFiles = listdir(traindir)#all categories
+    
     #训练集的总词数
     trainTotalNum = sum(cateWordsNum.values())
     print 'trainTotalNum: %d' % trainTotalNum
+    
+    
+    savetofile(u'model/'+str(index)+'.model',(trainDirFiles,cateWordsProb, cateWordsNum))
 
     #开始对测试样例做分类
     testDirFiles = listdir(testdir)
@@ -226,7 +242,7 @@ def NBprocess(traindir,testdir,classifyResultFileNew):
                 testFilesWords.append(word)
 
             maxP = 0.0
-            trainDirFiles = listdir(traindir)#all categories
+            #trainDirFiles = listdir(traindir)#all categories
             for k in range(len(trainDirFiles)):
                 p = computeCateProb(trainDirFiles[k], testFilesWords,\
                                     cateWordsNum, trainTotalNum, cateWordsProb)
@@ -242,6 +258,26 @@ def NBprocess(traindir,testdir,classifyResultFileNew):
             crWriter.write('%s %s\n' % (testSample[j],bestCate))
     crWriter.close()
 
+def classify(modelname,str):
+    testFilesWords=list(lineProcess(str))
+    print testFilesWords
+    trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(modelname)
+    for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
+        print i[0],'\t',i[1]
+    trainTotalNum = sum(cateWordsNum.values())
+    for k in range(len(trainDirFiles)):
+        p = computeCateProb(trainDirFiles[k], testFilesWords,\
+                            cateWordsNum, trainTotalNum, cateWordsProb)
+        print trainDirFiles[k],'~',p
+        if k==0:
+            maxP = p
+            bestCate = trainDirFiles[k]
+            continue
+        if p > maxP:
+            maxP = p
+            bestCate = trainDirFiles[k]
+    return bestCate
+    
 #################################################
 ## @param traindir       类k
 ## @param testFilesWords 某个测试文档
@@ -309,7 +345,7 @@ def step2():
         traindir = 'TrainSample' + str(i)
         testdir = 'TestSample' + str(i)
         classifyResultFileNew = 'classifyResultFileNew' + str(i) + '.txt'
-        NBprocess(traindir,testdir,classifyResultFileNew)
+        NBprocess(i,traindir,testdir,classifyResultFileNew)
 ##############################################################################
 ## 计算准确率
 def step3():
@@ -319,7 +355,19 @@ def step3():
         resultCate = 'classifyResultFileNew'+str(i)+'.txt'
         accuracyOfEveryExp.append(computeAccuracy(rightCate,resultCate,i))
     return accuracyOfEveryExp
+
+def savetofile(filename,summer):
+    with open(filename, 'w') as f:                     # open file with write-mode
+        picklestring = pickle.dump(summer, f)   # serialize and save object
+def loadtovar(filename):
+    with open(filename, 'r') as f:
+        summer = pickle.load(f)   # read file and build object
+    return summer
     
 step1()
 step2()
 step3()
+
+predict_word = 'buy'
+result = classify('model/0.model',predict_word)
+print predict_word,' => ',result
