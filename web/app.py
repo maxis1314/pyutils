@@ -29,7 +29,7 @@ def blogCatPredict():
     _id = request.args.get('id')
     predict = Predict()
     blog = mysql.query('select * from blog where id=%s',(_id))
-    result = predict.classify(blog[0][4])
+    result = predict.classify(blog[0][3]+' '+blog[0][4])
     #return json.dumps({'predict_cat':result})
     return render_template('info.html',title=result)
 
@@ -48,7 +48,7 @@ def ajaxBlogCatPredict():
     _id = request.args.get('id')
     predict = Predict()
     blog = mysql.query('select * from blog where id=%s',(_id))
-    result = predict.maybe(blog[0][4],3)
+    result = predict.maybe(blog[0][3]+' '+blog[0][4],3)
     return json.dumps({'predict_cat':','.join(result)})
     
     
