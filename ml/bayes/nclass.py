@@ -13,9 +13,9 @@ def f(x):
     if x=='\n' or x=='\t' or x==' ' or x=='£¬' or len(x)<=1 or len(x)>=8:
         return False       
     
-    #match = re.search('^[0-9a-zA-Z\.\-_#]+$', x)    
-    #if match:
-    #    return False
+    match = re.search('^[0-9a-zA-Z\.\-_#]+$', x)    
+    if match:
+        return False
     return True
     
 ##############################################################
@@ -369,7 +369,8 @@ def loadtovar(filename):
         summer = pickle.load(f)   # read file and build object
     return summer
 
-   
+inspectmodel('model/0.model')
+sys.exit() 
 step1()
 step2()
 step3()
