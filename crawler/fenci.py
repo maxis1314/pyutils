@@ -20,7 +20,7 @@ def f(x):
     return True
 
 
-list_of_all_the_lines = db.query('select * from blog where tags<>"" limit 1000')
+list_of_all_the_lines = db.query('select * from blog where categories<>"" limit 1000')
 linenum = 0
 
 wfile_object = open('../ml/knn/input.csv', 'w')
