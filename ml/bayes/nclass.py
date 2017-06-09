@@ -246,7 +246,7 @@ def NBprocess(index,traindir,testdir,classifyResultFileNew):
             for k in range(len(trainDirFiles)):
                 p = computeCateProb(trainDirFiles[k], testFilesWords,\
                                     cateWordsNum, trainTotalNum, cateWordsProb)
-                print j,'=',trainDirFiles[k],'~',p
+                #print j,'=',trainDirFiles[k],'~',p
                 if k==0:
                     maxP = p
                     bestCate = trainDirFiles[k]
@@ -268,7 +268,7 @@ def classify(modelname,str):
     for k in range(len(trainDirFiles)):
         p = computeCateProb(trainDirFiles[k], testFilesWords,\
                             cateWordsNum, trainTotalNum, cateWordsProb)
-        print trainDirFiles[k],'~',p
+        #print trainDirFiles[k],'~',p
         if k==0:
             maxP = p
             bestCate = trainDirFiles[k]
@@ -369,8 +369,8 @@ def loadtovar(filename):
         summer = pickle.load(f)   # read file and build object
     return summer
 
-inspectmodel('model/0.model')
-sys.exit() 
+#inspectmodel('model/0.model')
+#sys.exit() 
 step1()
 step2()
 step3()

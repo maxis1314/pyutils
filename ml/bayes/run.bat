@@ -1,3 +1,3 @@
-python run.py
+python nclass.py
 
 pause
