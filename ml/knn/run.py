@@ -10,4 +10,4 @@ import kNN
 #bayes.testingNB2(datingDataMat,datingLabels)
 
 
-kNN.commonClassTest('output.csv','\t',0.2);
+kNN.commonClassTest('input.csv','\t',0.2);

@@ -1,5 +1,3 @@
-/crawler/*.db
-/crawler/*.pyc
-/crawler/tools/*.pyc
-/web/tools/*.pyc
-/ml/KNN/*.pyc
+*.db
+*.pyc
+*.csv

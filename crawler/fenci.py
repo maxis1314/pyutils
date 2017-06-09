@@ -23,7 +23,7 @@ def f(x):
 list_of_all_the_lines = db.query('select * from blog where tags<>"" limit 1000')
 linenum = 0
 
-wfile_object = open('output.csv', 'w')
+wfile_object = open('../ml/knn/input.csv', 'w')
 
 all_words=[]
 part_words=[]
@@ -36,7 +36,7 @@ for record in list_of_all_the_lines:
     list1 =list(seg_list)
     list1 = filter(f, list1) 
     
-    tags = record[5].split(',')
+    tags = record[6].split(',')
     if tags is None or tags[0]=='':
         continue
     linenum=linenum+1
