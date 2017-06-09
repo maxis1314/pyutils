@@ -32,7 +32,15 @@ def blogCatPredict():
     result = predict.classify(blog[0][4])
     #return json.dumps({'predict_cat':result})
     return render_template('info.html',title=result)
-
+    
+@app.route('/ajaxBlogCatPredict')
+def ajaxBlogCatPredict():
+    _id = request.args.get('id')
+    predict = Predict()
+    blog = mysql.query('select * from blog where id=%s',(_id))
+    result = predict.classify(blog[0][4])
+    return json.dumps({'predict_cat':result})
+    
     
 @app.route('/blogHome')
 def blogHome():

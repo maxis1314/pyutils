@@ -35,7 +35,7 @@
               
                 {% if blog[5] %}Tags: {{ blog[5]|safe }}{% endif%}
                 {% if blog[6] %}Categories: {{ blog[6]|safe }}{% endif%}                
-                
+                Cat: <a id='catp' href="javascript:catPredict('catp',{{ blog[0] }})">Predict</a>
                 <p>{{ blog[4]|safe }} - {{ blog[2] }} - <a href='{{ blog[1] }}' target=_blank>{{ blog[1] }}</a></p>
 
 

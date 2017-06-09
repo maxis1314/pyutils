@@ -40,7 +40,7 @@
                 {% if one[5] %}Tags: {{ one[5]|safe }}{% endif%}
                 {% if one[6] %}Categories: {{ one[6]|safe }}{% endif%}
                 Link: <a href='{{ one[1] }}' target=_blank>{{ one[1] }}</a>
-                Cat: <a href='/blogCatPredict?id={{ one[0] }}' target=_blank> Predict</a>
+                Cat: <a id='catp{{ one[0] }}' href="javascript:catPredict('catp{{ one[0] }}',{{ one[0] }})">Predict</a>
                 
                 {% if not is_search %}<p>{{ one[4]|safe }} </p>{% endif%}
                 

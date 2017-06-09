@@ -11,7 +11,25 @@
     <script src="../static/js/jquery-1.11.2.js" type="text/javascript"></script>  
 
   </head>
+<script>
+function catPredict(domid,id){   
+    $('#'+domid).text('loading..');          
+    $.ajax({
+        url: '/ajaxBlogCatPredict?id='+id,
+        data: {id:id},
+        type: 'GET',
+        success: function(response){
+            var json_parsed = $.parseJSON(response);
+            console.log(json_parsed);
+            $('#'+domid).text(json_parsed.predict_cat);            
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
 
+</script>
   <body>
 
     <div class="container">
