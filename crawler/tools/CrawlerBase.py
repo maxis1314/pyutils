@@ -165,7 +165,8 @@ class CrawlerBase:
                 self.qinglog.info('%s is None' % page_url)
                 page = page + 1
                 continue       
-            links = extract(page_html)        
+            links = extract(page_html)   
+            print links
             
             if links is None or len(links) == 0:
                 self.qinglog.info('no links or years or dates in %s' % page_url)

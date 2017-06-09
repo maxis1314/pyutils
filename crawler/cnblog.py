@@ -14,7 +14,7 @@ def extract(page):
     if page is None:
         return (None,None,None)
 
-    linkpattern = re.compile(u'id=".*?List_TitleUrl_.*?".*?href="(.*?)">', re.S | re.U)
+    linkpattern = re.compile(u'id="[^>]*?List_TitleUrl_[^>]*?"[^>]*?href="(.*?)">', re.S | re.U)
     links = linkpattern.findall(page)    
     return (links)
 
