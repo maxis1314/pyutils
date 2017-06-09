@@ -24,6 +24,13 @@ def blogDetail():
     blog = mysql.query('select * from blog where id=%s',(_id))
     return render_template('blog_detail.html',blog=blog[0],id=int(_id))
 
+@app.route('/blogCatPredict')
+def blogCatPredict():
+    _id = request.args.get('id')
+    blog = mysql.query('select * from blog where id=%s',(_id))
+    return render_template('blog_detail.html',blog=blog[0],id=int(_id))
+
+    
 @app.route('/blogHome')
 def blogHome():
     if not session.has_key('login') or not session['login']:    
