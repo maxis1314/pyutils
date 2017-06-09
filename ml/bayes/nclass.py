@@ -260,10 +260,10 @@ def NBprocess(index,traindir,testdir,classifyResultFileNew):
 
 def classify(modelname,str):
     testFilesWords=list(lineProcess(str))
-    print testFilesWords
+    #print testFilesWords
     trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(modelname)
-    for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
-        print i[0],'\t',i[1]
+    #for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
+    #    print i[0],'\t',i[1]
     trainTotalNum = sum(cateWordsNum.values())
     for k in range(len(trainDirFiles)):
         p = computeCateProb(trainDirFiles[k], testFilesWords,\
@@ -277,6 +277,11 @@ def classify(modelname,str):
             maxP = p
             bestCate = trainDirFiles[k]
     return bestCate
+def inspectmodel(modelname):
+    trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(modelname)
+    for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
+        print i[0],'\t',i[1]
+
     
 #################################################
 ## @param traindir       Ààk
@@ -368,6 +373,8 @@ step1()
 step2()
 step3()
 
-predict_word = 'buy'
-result = classify('model/0.model',predict_word)
-print predict_word,' => ',result
+for i in range(10):
+    predict_word = '100 pills'
+    result = classify('model/'+str(i)+'.model',predict_word)
+    print predict_word,' => ',result
+inspectmodel('model/0.model')
