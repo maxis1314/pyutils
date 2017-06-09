@@ -2,3 +2,4 @@
 *.pyc
 *.csv
 /ml/bayes/temp
+/crawler/originSample

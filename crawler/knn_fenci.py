@@ -3,6 +3,7 @@ import sys
 from numpy import *
 from tools.MysqlBase import *
 import jieba
+from os import makedirs
 
 reload(sys) 
 sys.setdefaultencoding( "utf-8" )

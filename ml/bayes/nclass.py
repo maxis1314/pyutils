@@ -200,8 +200,8 @@ def getCateWordsProb(strDir):
         cateWordsNum[cateDir[i]] = count
         print 'cate %d contains %d' % (i,cateWordsNum[cateDir[i]])
     print 'cate-word unique num: %d' % len(cateWordsProb)
-    print cateWordsProb
-    print cateWordsNum
+    #print cateWordsProb
+    #print cateWordsNum
     return cateWordsProb, cateWordsNum
     
     
