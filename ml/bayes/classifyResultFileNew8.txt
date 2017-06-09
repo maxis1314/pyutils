@@ -1,0 +1,6 @@
+5.txt ham
+6.txt ham
+7.txt ham
+1_5.txt spam
+1_6.txt spam
+1_7.txt spam

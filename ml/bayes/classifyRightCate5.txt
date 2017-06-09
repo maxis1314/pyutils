@@ -1,0 +1,4 @@
+21.txt ham
+22.txt ham
+1_21.txt spam
+1_22.txt spam

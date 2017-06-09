@@ -108,6 +108,7 @@ def textParse(bigString):    #input is big string, #output is word list
     return [tok.lower() for tok in listOfTokens if len(tok) > 2] 
     
 def spamTest():
+    print 1111
     docList=[]; classList = []; fullText =[]
     for i in range(1,26):
         wordList = textParse(open('email/spam/%d.txt' % i).read())
