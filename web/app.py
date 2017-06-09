@@ -3,7 +3,7 @@ from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
 from tools.MysqlBase import *
 import hashlib
-
+from tools.Predict import *
 
 
 mysql = MysqlBase('python')
@@ -27,8 +27,10 @@ def blogDetail():
 @app.route('/blogCatPredict')
 def blogCatPredict():
     _id = request.args.get('id')
+    predict = Predict()
     blog = mysql.query('select * from blog where id=%s',(_id))
-    return render_template('blog_detail.html',blog=blog[0],id=int(_id))
+    result = predict.classify(blog[0][4])
+    return json.dumps({'predict_cat':result})
 
     
 @app.route('/blogHome')

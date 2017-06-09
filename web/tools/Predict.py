@@ -1,22 +1,11 @@
 #-*- encoding:UTF-8 -*-
-import urllib2
-import re
-import StringIO
-import gzip
-import logging
-import sqlite3
-import logutils
-import urllib
-import sys
-import MySQLdb
+import os
+import pickle
 from Tools import *
-reload(sys)  
-import jieba
-sys.setdefaultencoding('utf8')
-
+from numpy import *
     
 class Predict:
-    def __init__(self,dbname):
+    def __init__(self):
         self.model = os.path.join(os.path.dirname(__file__),'../model/0.model')
         trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(os.path.join(os.path.dirname(__file__),'../model/0.model'))
         self.md5_cat = loadtovar(os.path.join(os.path.dirname(__file__),'../model/md5_catname'))
@@ -24,7 +13,7 @@ class Predict:
         self.cateWordsProb=cateWordsProb
         self.cateWordsNum=cateWordsNum
         
-    def classify(str):
+    def classify(self,str):
         testFilesWords=list(lineProcess(str))
         #print testFilesWords
         
@@ -32,17 +21,30 @@ class Predict:
         #    print i[0],'\t',i[1]
         trainTotalNum = sum(self.cateWordsNum.values())
         for k in range(len(self.trainDirFiles)):
-            p = computeCateProb(self.trainDirFiles[k], testFilesWords,\
+            p = self.computeCateProb(self.trainDirFiles[k], testFilesWords,\
                                 self.cateWordsNum, trainTotalNum, self.cateWordsProb)
             #print trainDirFiles[k],'~',p
             if k==0:
                 maxP = p
-                bestCate = trainDirFiles[k]
+                bestCate = self.trainDirFiles[k]
                 continue
             if p > maxP:
                 maxP = p
-                bestCate = trainDirFiles[k]
+                bestCate = self.trainDirFiles[k]
         return self.md5_cat[bestCate]
         
-    
+    def computeCateProb(self,traindir,testFilesWords,cateWordsNum,\
+                    totalWordsNum,cateWordsProb):
+        prob = 0
+        wordNumInCate = cateWordsNum[traindir]  # 类k下单词总数 <类目，单词总数>
+        for i in range(len(testFilesWords)):
+            keyName = traindir + '_' + testFilesWords[i]
+            if cateWordsProb.has_key(keyName):
+                testFileWordNumInCate = cateWordsProb[keyName] # 类k下词c出现的次数
+            else: testFileWordNumInCate = 0.0
+            xcProb = log((testFileWordNumInCate + 0.0001) / (wordNumInCate + totalWordsNum))  # 求对数避免很多很小的数相乘下溢出
+                     
+            prob = prob + xcProb
+        res = prob + log(wordNumInCate) - log(totalWordsNum)
+        return res
                             

@@ -1,17 +1,9 @@
 #-*- encoding:UTF-8 -*-
-import urllib2
-import re
-import StringIO
-import gzip
-import logging
-import sqlite3
-import logutils
-import urllib
+
 import sys
-import MySQLdb
-reload(sys)  
+import pickle
 import jieba
-sys.setdefaultencoding('utf8')
+import re
 
 def lineProcess(line):
     list1 = list(jieba.cut(line, cut_all=False))
