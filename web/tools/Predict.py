@@ -23,7 +23,7 @@ class Predict:
         for k in range(len(self.trainDirFiles)):
             p = self.computeCateProb(self.trainDirFiles[k], testFilesWords,\
                                 self.cateWordsNum, trainTotalNum, self.cateWordsProb)
-            #print trainDirFiles[k],'~',p
+            #print self.trainDirFiles[k],'~',p
             if k==0:
                 maxP = p
                 bestCate = self.trainDirFiles[k]
@@ -32,6 +32,29 @@ class Predict:
                 maxP = p
                 bestCate = self.trainDirFiles[k]
         return self.md5_cat[bestCate]
+        
+    def maybe(self,str,n):
+        testFilesWords=list(lineProcess(str))
+        #print testFilesWords
+        
+        #for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
+        #    print i[0],'\t',i[1]
+        trainTotalNum = sum(self.cateWordsNum.values())
+        score={}
+        for k in range(len(self.trainDirFiles)):
+            p = self.computeCateProb(self.trainDirFiles[k], testFilesWords,\
+                                self.cateWordsNum, trainTotalNum, self.cateWordsProb)
+            #print trainDirFiles[k],'~',p
+            score[self.trainDirFiles[k]]=p
+        
+        count=0
+        possiblelabel = []
+        for i in sorted(score.items(), key=lambda d: d[1],reverse=True):            
+            possiblelabel.append(self.md5_cat[i[0]]) 
+            count=count+1
+            if count >= n:
+                break
+        return possiblelabel
         
     def computeCateProb(self,traindir,testFilesWords,cateWordsNum,\
                     totalWordsNum,cateWordsProb):
@@ -47,4 +70,4 @@ class Predict:
             prob = prob + xcProb
         res = prob + log(wordNumInCate) - log(totalWordsNum)
         return res
-                            
+                       

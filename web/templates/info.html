@@ -7,7 +7,28 @@
         <p class="lead">{{info}}</p>        
       </div>
 
- 
+        <div class="row marketing">
+        <div class="col-lg-6">
+              
+           <div class="row marketing">
+            <div class="col-lg-6">
+             <table border=1 style='width:80%'>
+            {% for one in list %}
+            <tr>
+                <td>{{ one[1] }}</td>
+                <td>{{ one[0] }}</td>                             
+                <td>{{ one[2] }}</td>      
+                </tr>
+            {% endfor %}
+            </table>
+
+        </div>         
+      </div>
+       
+
+           
+        </div>         
+      </div>
 
       <footer class="footer">
         <p>&copy; Company 2015</p>

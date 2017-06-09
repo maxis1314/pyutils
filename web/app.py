@@ -32,14 +32,24 @@ def blogCatPredict():
     result = predict.classify(blog[0][4])
     #return json.dumps({'predict_cat':result})
     return render_template('info.html',title=result)
+
+@app.route('/blogModel')
+def blogModel():   
+    predict = Predict()    
+    list = []
+    for i in sorted(predict.cateWordsProb.items(), key=lambda d: d[1],reverse=True): 
+        ra = i[0].split('_')
+        list.append((predict.md5_cat[ra[0]],ra[1],i[1]))
+
+    return render_template('info.html',title='Model Detail',list=list)
     
 @app.route('/ajaxBlogCatPredict')
 def ajaxBlogCatPredict():
     _id = request.args.get('id')
     predict = Predict()
     blog = mysql.query('select * from blog where id=%s',(_id))
-    result = predict.classify(blog[0][4])
-    return json.dumps({'predict_cat':result})
+    result = predict.maybe(blog[0][4],3)
+    return json.dumps({'predict_cat':','.join(result)})
     
     
 @app.route('/blogHome')
