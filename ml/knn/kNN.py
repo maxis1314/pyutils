@@ -92,7 +92,7 @@ def autoNorm(dataSet):
 
 def commonClassTest(filename,seperator='\t',hoRatio = 0.10):
     #hoRatio = 0.10      #hold out 10%
-    datingDataMat,datingLabels = file2matrix(filename,seperator)       #load data setfrom file
+    datingDataMat,datingLabels = file2matrix(filename,seperator)       #load data setfrom file    
    
     datingDataMat,datingLabels = randomArray(datingDataMat,datingLabels)
     normMat, ranges, minVals = autoNorm(datingDataMat)
@@ -107,7 +107,9 @@ def commonClassTest(filename,seperator='\t',hoRatio = 0.10):
         else:
             print "the classifier came back with: %s, the real answer is: %s" % (classifierResult, datingLabels[i])
     print "the total error rate is: %f" % (errorCount/float(numTestVecs))
-    print errorCount,'/',numTestVecs
+    uniqueLabels = list(set(datingLabels))
+    print errorCount,'/',numTestVecs, len(uniqueLabels)
+    print uniqueLabels
 	
 def datingClassTest():
     hoRatio = 0.50      #hold out 10%
