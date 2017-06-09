@@ -254,7 +254,7 @@ def NBprocess(index,traindir,testdir,classifyResultFileNew):
                 if p > maxP:
                     maxP = p
                     bestCate = trainDirFiles[k]
-                print bestCate
+                #print bestCate
             crWriter.write('%s %s\n' % (testSample[j],bestCate))
     crWriter.close()
 
@@ -369,8 +369,8 @@ def loadtovar(filename):
         summer = pickle.load(f)   # read file and build object
     return summer
 
-#inspectmodel('model/0.model')
-#sys.exit() 
+inspectmodel('model/0.model')
+sys.exit() 
 step1()
 step2()
 step3()
