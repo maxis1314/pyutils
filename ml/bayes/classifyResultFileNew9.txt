@@ -1,4 +1,0 @@
-8.txt ham
-9.txt ham
-1_8.txt spam
-1_9.txt spam

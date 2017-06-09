@@ -22,13 +22,13 @@ def f(x):
 ## 1. 创建新文件夹，存放预处理后的文本数据
 ##############################################################
 def createFiles():
-    srcFilesList = listdir('originSample')
+    srcFilesList = listdir('temp/originSample')
     print srcFilesList
     for i in range(len(srcFilesList)):
         #if i==0: continue
-        dataFilesDir = 'originSample/' + srcFilesList[i] # 20个文件夹每个的路径
+        dataFilesDir = 'temp/originSample/' + srcFilesList[i] # 20个文件夹每个的路径
         dataFilesList = listdir(dataFilesDir)
-        targetDir = 'processedSample_includeNotSpecial/' + srcFilesList[i] # 20个新文件夹每个的路径
+        targetDir = 'temp/processedSample_includeNotSpecial/' + srcFilesList[i] # 20个新文件夹每个的路径
         if path.exists(targetDir)==False:
             makedirs(targetDir)
         else:
@@ -44,8 +44,8 @@ def createFiles():
 ## @param dataList 数据文件按行读取后的字符串列表
 ##############################################################
 def createProcessFile(srcFilesName,dataFilesName):
-    srcFile = 'originSample/' + srcFilesName + '/' + dataFilesName
-    targetFile= 'processedSample_includeNotSpecial/' + srcFilesName\
+    srcFile = 'temp/originSample/' + srcFilesName + '/' + dataFilesName
+    targetFile= 'temp/processedSample_includeNotSpecial/' + srcFilesName\
                 + '/' + dataFilesName
     fw = open(targetFile,'w')
     dataList = open(srcFile).readlines()
@@ -74,7 +74,7 @@ def lineProcess(line):
 def countWords():
     wordMap = {}
     newWordMap = {}
-    fileDir = 'processedSample_includeNotSpecial'
+    fileDir = 'temp/processedSample_includeNotSpecial'
     sampleFilesList = listdir(fileDir)
     for i in range(len(sampleFilesList)):
         sampleFilesDir = fileDir + '/' + sampleFilesList[i]
@@ -98,7 +98,7 @@ def countWords():
 def printWordMap():
     print 'Print Word Map'
     countLine=0
-    fr = open('allDicWordCountMap.txt','w')
+    fr = open('temp/allDicWordCountMap.txt','w')
     sortedWordMap = countWords()
     for item in sortedWordMap:
         fr.write('%s %.1f\n' % (item[0],item[1]))
@@ -109,15 +109,15 @@ def printWordMap():
 ##特征词选取,去除无相关词
 ####################################################
 def filterSpecialWords():
-    fileDir = 'processedSample_includeNotSpecial'
+    fileDir = 'temp/processedSample_includeNotSpecial'
     wordMapDict = {}
     sortedWordMap = countWords()
     for i in range(len(sortedWordMap)):
         wordMapDict[sortedWordMap[i][0]]=sortedWordMap[i][0]    
     sampleDir = listdir(fileDir)
     for i in range(len(sampleDir)):
-        targetDir = 'processedSampleOnlySpecial' + '/' + sampleDir[i]
-        srcDir = 'processedSample_includeNotSpecial' + '/' + sampleDir[i]
+        targetDir = 'temp/processedSampleOnlySpecial' + '/' + sampleDir[i]
+        srcDir = 'temp/processedSample_includeNotSpecial' + '/' + sampleDir[i]
         if path.exists(targetDir) == False:
             makedirs(targetDir)
         sample = listdir(srcDir)
@@ -139,7 +139,7 @@ def filterSpecialWords():
 ############################################################
 def createTestSample(indexOfSample,classifyRightCate,trainSamplePercent=0.9):
     fr = open(classifyRightCate,'w')
-    fileDir = 'processedSampleOnlySpecial'
+    fileDir = 'temp/processedSampleOnlySpecial'
     sampleFilesList=listdir(fileDir)
     for i in range(len(sampleFilesList)):
         sampleFilesDir = fileDir + '/' + sampleFilesList[i]
@@ -152,10 +152,10 @@ def createTestSample(indexOfSample,classifyRightCate,trainSamplePercent=0.9):
             # 一行对应一个文件，方便统计准确率  
             if (j > testBeginIndex) and (j < testEndIndex): 
                 fr.write('%s %s\n' % (sampleList[j],sampleFilesList[i])) # 写入内容：每篇文档序号 它所在的文档名称即分类
-                targetDir = 'TestSample'+str(indexOfSample)+\
+                targetDir = 'temp/TestSample'+str(indexOfSample)+\
                             '/'+sampleFilesList[i]
             else:
-                targetDir = 'TrainSample'+str(indexOfSample)+\
+                targetDir = 'temp/TrainSample'+str(indexOfSample)+\
                             '/'+sampleFilesList[i]
             if path.exists(targetDir) == False:
                 makedirs(targetDir)
@@ -170,7 +170,7 @@ def createTestSample(indexOfSample,classifyRightCate,trainSamplePercent=0.9):
 # 调用以上函数生成标注集，训练和测试集合
 def test():
     for i in range(10):
-        classifyRightCate = 'classifyRightCate' + str(i) + '.txt'
+        classifyRightCate = 'temp/classifyRightCate' + str(i) + '.txt'
         createTestSample(i,classifyRightCate)
         
         
@@ -340,24 +340,24 @@ def step1():
     createFiles()
     filterSpecialWords()
     for i in range(10):
-        classifyRightCate = 'classifyRightCate' + str(i) + '.txt'
+        classifyRightCate = 'temp/classifyRightCate' + str(i) + '.txt'
         createTestSample(i,classifyRightCate)
 ##############################################################################
 ## bayes对测试文档做分类
 def step2():
     for i in range(10):       
         print i
-        traindir = 'TrainSample' + str(i)
-        testdir = 'TestSample' + str(i)
-        classifyResultFileNew = 'classifyResultFileNew' + str(i) + '.txt'
+        traindir = 'temp/TrainSample' + str(i)
+        testdir = 'temp/TestSample' + str(i)
+        classifyResultFileNew = 'temp/classifyResultFileNew' + str(i) + '.txt'
         NBprocess(i,traindir,testdir,classifyResultFileNew)
 ##############################################################################
 ## 计算准确率
 def step3():
     accuracyOfEveryExp = []
     for i in range(10):
-        rightCate = 'classifyRightCate'+str(i)+'.txt'
-        resultCate = 'classifyResultFileNew'+str(i)+'.txt'
+        rightCate = 'temp/classifyRightCate'+str(i)+'.txt'
+        resultCate = 'temp/classifyResultFileNew'+str(i)+'.txt'
         accuracyOfEveryExp.append(computeAccuracy(rightCate,resultCate,i))
     return accuracyOfEveryExp
 
@@ -368,7 +368,8 @@ def loadtovar(filename):
     with open(filename, 'r') as f:
         summer = pickle.load(f)   # read file and build object
     return summer
-    
+
+   
 step1()
 step2()
 step3()
@@ -377,4 +378,4 @@ for i in range(10):
     predict_word = '100 pills'
     result = classify('model/'+str(i)+'.model',predict_word)
     print predict_word,' => ',result
-inspectmodel('model/0.model')
+#inspectmodel('model/0.model')

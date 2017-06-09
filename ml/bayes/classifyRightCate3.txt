@@ -1,4 +1,0 @@
-17.txt ham
-18.txt ham
-1_17.txt spam
-1_18.txt spam
