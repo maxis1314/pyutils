@@ -7,6 +7,7 @@ from os import listdir,mkdir,path,makedirs
 import hashlib
 import base64
 import pickle
+import re
 
 reload(sys) 
 sys.setdefaultencoding( "utf-8" )
@@ -26,6 +27,7 @@ mapfile={}
 for record in list_of_all_the_lines:
     line = record[3]+' '+record[4]
     
+    record[6] = re.sub('^,+', '', record[6])
     tags = record[6].split(',')
     if tags is None or tags[0]=='':
         continue

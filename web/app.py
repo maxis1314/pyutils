@@ -22,6 +22,8 @@ def blogDetail():
         return redirect(url_for('showSignIn'))
     _id = request.args.get('id')
     blog = mysql.query('select * from blog where id=%s'%(_id))
+    if len(blog)<1:
+        return render_template('info.html',title='blog not exits')
     return render_template('blog_detail.html',blog=blog[0],id=int(_id))
 
 @app.route('/blogCatPredict')
