@@ -21,14 +21,14 @@ def blogDetail():
     if not session.has_key('login') or not session['login']:    
         return redirect(url_for('showSignIn'))
     _id = request.args.get('id')
-    blog = mysql.query('select * from blog where id=%s',(_id))
+    blog = mysql.query('select * from blog where id=%s'%(_id))
     return render_template('blog_detail.html',blog=blog[0],id=int(_id))
 
 @app.route('/blogCatPredict')
 def blogCatPredict():
     _id = request.args.get('id')
     predict = Predict()
-    blog = mysql.query('select * from blog where id=%s',(_id))
+    blog = mysql.query('select * from blog where id=%s'%(_id))
     result = predict.classify(blog[0][3]+' '+blog[0][4])
     #return json.dumps({'predict_cat':result})
     return render_template('info.html',title=result)
@@ -47,7 +47,7 @@ def blogModel():
 def ajaxBlogCatPredict():
     _id = request.args.get('id')
     predict = Predict()
-    blog = mysql.query('select * from blog where id=%s',(_id))
+    blog = mysql.query('select * from blog where id=%s'%(_id))
     result = predict.maybe(blog[0][3]+' '+blog[0][4],3)
     return json.dumps({'predict_cat':','.join(result)})
     
@@ -120,7 +120,8 @@ def signIn():
     _name = request.form['inputName']    
     _password = request.form['inputPassword']
     _hashed_password = hashlib.md5(_password).hexdigest()
-    user = mysql.query('select * from tbl_user where user_name=%s',(_name))   
+    user = mysql.query("""select * from tbl_user where user_name='%s'"""%(_name))   
+    print user,_name
     if len(user)>0 and user[0][3] == _hashed_password:
         session['login'] = True
         session['name'] = _name
