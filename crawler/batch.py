@@ -1,11 +1,14 @@
 #-*- encoding:UTF-8 -*-
 from tools.MysqlBase import *
 import subprocess
-import time 
+import time
+import random 
 if __name__ == '__main__':    
     db = MysqlBase('python')
     while True:
-        list = db.query('select * from bloglist where flag=0 limit 10')
+        list = db.query('select * from bloglist where flag=0 limit 100')
+        randInx = int(len(list)*random.random())
+        list=[list[randInx]]
         for i in list:
             if i[1] == 'cnblog':
                 subprocess.Popen(u'python cnblog.py '+i[2],shell=True).wait()            
