@@ -35,7 +35,7 @@ def createFiles():
             print '%s exists' % targetDir
         for j in range(len(dataFilesList)):
             createProcessFile(srcFilesList[i],dataFilesList[j]) # 调用createProcessFile()在新文档中处理文本
-            print '%s %s' % (srcFilesList[i],dataFilesList[j])
+            print 'processed %s %s' % (srcFilesList[i],dataFilesList[j])
 
 ##############################################################
 ## 2. 建立目标文件夹，生成目标文件
@@ -369,8 +369,8 @@ def loadtovar(filename):
         summer = pickle.load(f)   # read file and build object
     return summer
 
-inspectmodel('model/0.model')
-sys.exit() 
+#inspectmodel('model/0.model')
+#sys.exit() 
 step1()
 step2()
 step3()

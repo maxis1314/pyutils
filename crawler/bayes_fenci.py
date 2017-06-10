@@ -27,8 +27,8 @@ mapfile={}
 for record in list_of_all_the_lines:
     line = record[3]+' '+record[4]
     
-    record[6] = re.sub('^,+', '', record[6])
-    tags = record[6].split(',')
+    aaa = re.sub('^,+', '', record[6])
+    tags = aaa.split(',')
     if tags is None or tags[0]=='':
         continue
     #dirname = base64.b64encode(tags[0])
