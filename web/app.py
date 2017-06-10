@@ -1,5 +1,5 @@
 from flask import Flask, render_template, json, request,session,redirect,url_for
-from flask.ext.mysql import MySQL
+#from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
 from tools.MysqlBase import *
 import hashlib
