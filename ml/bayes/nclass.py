@@ -10,7 +10,7 @@ reload(sys)
 sys.setdefaultencoding( "utf-8" )
 
 def f(x): 
-    if x=='\n' or x=='\t' or x==' ' or x=='£¬' or len(x)<=1 or len(x)>=8:
+    if x=='\n' or x=='\t' or x==' ' or x=='ï¼Œ' or len(x)<=1 or len(x)>=8:
         return False       
     
     match = re.search('^[0-9a-zA-Z\.\-_#]+$', x)    
@@ -19,29 +19,29 @@ def f(x):
     return True
     
 ##############################################################
-## 1. ´´½¨ĞÂÎÄ¼ş¼Ğ£¬´æ·ÅÔ¤´¦ÀíºóµÄÎÄ±¾Êı¾İ
+## 1. åˆ›å»ºæ–°æ–‡ä»¶å¤¹ï¼Œå­˜æ”¾é¢„å¤„ç†åçš„æ–‡æœ¬æ•°æ®
 ##############################################################
 def createFiles():
     srcFilesList = listdir('temp/originSample')
     print srcFilesList
     for i in range(len(srcFilesList)):
         #if i==0: continue
-        dataFilesDir = 'temp/originSample/' + srcFilesList[i] # 20¸öÎÄ¼ş¼ĞÃ¿¸öµÄÂ·¾¶
+        dataFilesDir = 'temp/originSample/' + srcFilesList[i] # 20ä¸ªæ–‡ä»¶å¤¹æ¯ä¸ªçš„è·¯å¾„
         dataFilesList = listdir(dataFilesDir)
-        targetDir = 'temp/processedSample_includeNotSpecial/' + srcFilesList[i] # 20¸öĞÂÎÄ¼ş¼ĞÃ¿¸öµÄÂ·¾¶
+        targetDir = 'temp/processedSample_includeNotSpecial/' + srcFilesList[i] # 20ä¸ªæ–°æ–‡ä»¶å¤¹æ¯ä¸ªçš„è·¯å¾„
         if path.exists(targetDir)==False:
             makedirs(targetDir)
         else:
             print '%s exists' % targetDir
         for j in range(len(dataFilesList)):
-            createProcessFile(srcFilesList[i],dataFilesList[j]) # µ÷ÓÃcreateProcessFile()ÔÚĞÂÎÄµµÖĞ´¦ÀíÎÄ±¾
+            createProcessFile(srcFilesList[i],dataFilesList[j]) # è°ƒç”¨createProcessFile()åœ¨æ–°æ–‡æ¡£ä¸­å¤„ç†æ–‡æœ¬
             print 'processed %s %s' % (srcFilesList[i],dataFilesList[j])
 
 ##############################################################
-## 2. ½¨Á¢Ä¿±êÎÄ¼ş¼Ğ£¬Éú³ÉÄ¿±êÎÄ¼ş
-## @param srcFilesName Ä³×éĞÂÎÅÎÄ¼ş¼ĞµÄÎÄ¼şÃû£¬±ÈÈçalt.atheism
-## @param dataFilesName ÎÄ¼ş¼ĞÏÂÄ³¸öÊı¾İÎÄ¼şµÄÎÄ¼şÃû
-## @param dataList Êı¾İÎÄ¼ş°´ĞĞ¶ÁÈ¡ºóµÄ×Ö·û´®ÁĞ±í
+## 2. å»ºç«‹ç›®æ ‡æ–‡ä»¶å¤¹ï¼Œç”Ÿæˆç›®æ ‡æ–‡ä»¶
+## @param srcFilesName æŸç»„æ–°é—»æ–‡ä»¶å¤¹çš„æ–‡ä»¶åï¼Œæ¯”å¦‚alt.atheism
+## @param dataFilesName æ–‡ä»¶å¤¹ä¸‹æŸä¸ªæ•°æ®æ–‡ä»¶çš„æ–‡ä»¶å
+## @param dataList æ•°æ®æ–‡ä»¶æŒ‰è¡Œè¯»å–åçš„å­—ç¬¦ä¸²åˆ—è¡¨
 ##############################################################
 def createProcessFile(srcFilesName,dataFilesName):
     srcFile = 'temp/originSample/' + srcFilesName + '/' + dataFilesName
@@ -50,14 +50,14 @@ def createProcessFile(srcFilesName,dataFilesName):
     fw = open(targetFile,'w')
     dataList = open(srcFile).readlines()
     for line in dataList:
-        resLine = lineProcess(line) # µ÷ÓÃlineProcess()´¦ÀíÃ¿ĞĞÎÄ±¾
+        resLine = lineProcess(line) # è°ƒç”¨lineProcess()å¤„ç†æ¯è¡Œæ–‡æœ¬
         for word in resLine:
-            fw.write('%s\n' % word) #Ò»ĞĞÒ»¸öµ¥´Ê
+            fw.write('%s\n' % word) #ä¸€è¡Œä¸€ä¸ªå•è¯
     fw.close()
 ##############################################################
-##3. ¶ÔÃ¿ĞĞ×Ö·û´®½øĞĞ´¦Àí£¬Ö÷ÒªÊÇÈ¥³ı·Ç×ÖÄ¸×Ö·û£¬×ª»»´óĞ´ÎªĞ¡Ğ´£¬È¥³ıÍ£ÓÃ´Ê
-## @param line ´ı´¦ÀíµÄÒ»ĞĞ×Ö·û´®
-## @return words °´·Ç×ÖÄ¸·Ö¸ôºóµÄµ¥´ÊËù×é³ÉµÄÁĞ±í
+##3. å¯¹æ¯è¡Œå­—ç¬¦ä¸²è¿›è¡Œå¤„ç†ï¼Œä¸»è¦æ˜¯å»é™¤éå­—æ¯å­—ç¬¦ï¼Œè½¬æ¢å¤§å†™ä¸ºå°å†™ï¼Œå»é™¤åœç”¨è¯
+## @param line å¾…å¤„ç†çš„ä¸€è¡Œå­—ç¬¦ä¸²
+## @return words æŒ‰éå­—æ¯åˆ†éš”åçš„å•è¯æ‰€ç»„æˆçš„åˆ—è¡¨
 ##############################################################
 def lineProcess(line):
     list1 = list(jieba.cut(line, cut_all=False))
@@ -66,10 +66,10 @@ def lineProcess(line):
     
     
 ########################################################
-## Í³¼ÆÃ¿¸ö´ÊµÄ×ÜµÄ³öÏÖ´ÎÊı
+## ç»Ÿè®¡æ¯ä¸ªè¯çš„æ€»çš„å‡ºç°æ¬¡æ•°
 ## @param strDir
 ## @param wordMap
-## return newWordMap ·µ»Ø×Öµä£¬<key, value>½á¹¹£¬°´keyÅÅĞò£¬value¶¼´óÓÚ4£¬¼´¶¼ÊÇ³öÏÖ´ÎÊı´óÓÚ4µÄ´Ê
+## return newWordMap è¿”å›å­—å…¸ï¼Œ<key, value>ç»“æ„ï¼ŒæŒ‰keyæ’åºï¼Œvalueéƒ½å¤§äº4ï¼Œå³éƒ½æ˜¯å‡ºç°æ¬¡æ•°å¤§äº4çš„è¯
 #########################################################
 def countWords():
     wordMap = {}
@@ -84,7 +84,7 @@ def countWords():
             for line in open(sampleDir).readlines():
                 word = line.strip('\n')
                 wordMap[word] = wordMap.get(word,0.0) + 1.0
-    #Ö»·µ»Ø³öÏÖ´ÎÊı´óÓÚ4µÄµ¥´Ê
+    #åªè¿”å›å‡ºç°æ¬¡æ•°å¤§äº4çš„å•è¯
     for key, value in wordMap.items():
         if value > 4:
             newWordMap[key] = value
@@ -93,7 +93,7 @@ def countWords():
     print 'newWordMap size : %d' % len(sortedNewWordMap)
     return sortedNewWordMap
 ############################################################
-##´òÓ¡ÊôĞÔ×Öµä
+##æ‰“å°å±æ€§å­—å…¸
 ###########################################################
 def printWordMap():
     print 'Print Word Map'
@@ -106,7 +106,7 @@ def printWordMap():
     print 'sortedWordMap size : %d' % countLine
     
 #####################################################
-##ÌØÕ÷´ÊÑ¡È¡,È¥³ıÎŞÏà¹Ø´Ê
+##ç‰¹å¾è¯é€‰å–,å»é™¤æ— ç›¸å…³è¯
 ####################################################
 def filterSpecialWords():
     fileDir = 'temp/processedSample_includeNotSpecial'
@@ -115,6 +115,7 @@ def filterSpecialWords():
     for i in range(len(sortedWordMap)):
         wordMapDict[sortedWordMap[i][0]]=sortedWordMap[i][0]    
     sampleDir = listdir(fileDir)
+    savetofile('model/wordset.txt',wordMapDict)
     for i in range(len(sampleDir)):
         targetDir = 'temp/processedSampleOnlySpecial' + '/' + sampleDir[i]
         srcDir = 'temp/processedSample_includeNotSpecial' + '/' + sampleDir[i]
@@ -130,12 +131,20 @@ def filterSpecialWords():
                 if word in wordMapDict.keys():
                     fr.write('%s\n' % word)
             fr.close()
-            
+
+def filterWords(words):    
+    wordMapDict = loadtovar('model/wordset.txt')
+    newwords=[]
+    for word in words:        
+        if word in wordMapDict.keys():
+            newwords.append(word)
+    return newwords
+
 ##########################################################
-## ´´½¨ÑµÁ·ÑùÀı¼¯ºÏºÍ²âÊÔÑùÀı¼¯ºÏ
-## @param indexOfSample µÚk´ÎÊµÑé
-## @param classifyRightCate µÚk´ÎÊµÑéµÄ²âÊÔ¼¯ÖĞ£¬<doc rightCategory>Êı¾İ
-## @param trainSamplePercent ÑµÁ·¼¯Óë²âÊÔ¼¯µÄ·Ö¸î±ÈÀı
+## åˆ›å»ºè®­ç»ƒæ ·ä¾‹é›†åˆå’Œæµ‹è¯•æ ·ä¾‹é›†åˆ
+## @param indexOfSample ç¬¬kæ¬¡å®éªŒ
+## @param classifyRightCate ç¬¬kæ¬¡å®éªŒçš„æµ‹è¯•é›†ä¸­ï¼Œ<doc rightCategory>æ•°æ®
+## @param trainSamplePercent è®­ç»ƒé›†ä¸æµ‹è¯•é›†çš„åˆ†å‰²æ¯”ä¾‹
 ############################################################
 def createTestSample(indexOfSample,classifyRightCate,trainSamplePercent=0.9):
     fr = open(classifyRightCate,'w')
@@ -148,10 +157,10 @@ def createTestSample(indexOfSample,classifyRightCate,trainSamplePercent=0.9):
         testBeginIndex = indexOfSample * ( m * (1-trainSamplePercent) ) 
         testEndIndex = (indexOfSample + 1) * ( m * (1-trainSamplePercent) )
         for j in range(m):
-            # ĞòºÅÔÚ¹æ¶¨Çø¼äÄÚµÄ×÷Îª²âÊÔÑù±¾£¬ĞèÒªÎª²âÊÔÑù±¾Éú³ÉÀà±ğ-ĞòºÅÎÄ¼ş£¬×îºó¼ÓÈë·ÖÀàµÄ½á¹û£¬
-            # Ò»ĞĞ¶ÔÓ¦Ò»¸öÎÄ¼ş£¬·½±ãÍ³¼Æ×¼È·ÂÊ  
+            # åºå·åœ¨è§„å®šåŒºé—´å†…çš„ä½œä¸ºæµ‹è¯•æ ·æœ¬ï¼Œéœ€è¦ä¸ºæµ‹è¯•æ ·æœ¬ç”Ÿæˆç±»åˆ«-åºå·æ–‡ä»¶ï¼Œæœ€ååŠ å…¥åˆ†ç±»çš„ç»“æœï¼Œ
+            # ä¸€è¡Œå¯¹åº”ä¸€ä¸ªæ–‡ä»¶ï¼Œæ–¹ä¾¿ç»Ÿè®¡å‡†ç¡®ç‡  
             if (j > testBeginIndex) and (j < testEndIndex): 
-                fr.write('%s %s\n' % (sampleList[j],sampleFilesList[i])) # Ğ´ÈëÄÚÈİ£ºÃ¿ÆªÎÄµµĞòºÅ ËüËùÔÚµÄÎÄµµÃû³Æ¼´·ÖÀà
+                fr.write('%s %s\n' % (sampleList[j],sampleFilesList[i])) # å†™å…¥å†…å®¹ï¼šæ¯ç¯‡æ–‡æ¡£åºå· å®ƒæ‰€åœ¨çš„æ–‡æ¡£åç§°å³åˆ†ç±»
                 targetDir = 'temp/TestSample'+str(indexOfSample)+\
                             '/'+sampleFilesList[i]
             else:
@@ -167,7 +176,7 @@ def createTestSample(indexOfSample,classifyRightCate,trainSamplePercent=0.9):
             sampleWriter.close()
     fr.close()
     
-# µ÷ÓÃÒÔÉÏº¯ÊıÉú³É±ê×¢¼¯£¬ÑµÁ·ºÍ²âÊÔ¼¯ºÏ
+# è°ƒç”¨ä»¥ä¸Šå‡½æ•°ç”Ÿæˆæ ‡æ³¨é›†ï¼Œè®­ç»ƒå’Œæµ‹è¯•é›†åˆ
 def test():
     for i in range(10):
         classifyRightCate = 'temp/classifyRightCate' + str(i) + '.txt'
@@ -175,10 +184,10 @@ def test():
         
         
 ########################################################################
-## Í³¼ÆÑµÁ·Ñù±¾ÖĞ£¬Ã¿¸öÄ¿Â¼ÏÂÃ¿¸öµ¥´ÊµÄ³öÏÖ´ÎÊı, ¼°Ã¿¸öÄ¿Â¼ÏÂµÄµ¥´Ê×ÜÊı
-## @param ÑµÁ·Ñù±¾¼¯Ä¿Â¼
-## @return cateWordsProb <ÀàÄ¿_µ¥´Ê ,Ä³µ¥´Ê³öÏÖ´ÎÊı>
-## @return cateWordsNum <ÀàÄ¿£¬µ¥´Ê×ÜÊı>
+## ç»Ÿè®¡è®­ç»ƒæ ·æœ¬ä¸­ï¼Œæ¯ä¸ªç›®å½•ä¸‹æ¯ä¸ªå•è¯çš„å‡ºç°æ¬¡æ•°, åŠæ¯ä¸ªç›®å½•ä¸‹çš„å•è¯æ€»æ•°
+## @param è®­ç»ƒæ ·æœ¬é›†ç›®å½•
+## @return cateWordsProb <ç±»ç›®_å•è¯ ,æŸå•è¯å‡ºç°æ¬¡æ•°>
+## @return cateWordsNum <ç±»ç›®ï¼Œå•è¯æ€»æ•°>
 #########################################################################
 def getCateWordsProb(strDir):
     #strDir = TrainSample0 
@@ -186,7 +195,7 @@ def getCateWordsProb(strDir):
     cateWordsProb = {}
     cateDir = listdir(strDir)
     for i in range(len(cateDir)):
-        count = 0 # ¼ÇÂ¼Ã¿¸öÄ¿Â¼ÏÂ£¨¼´Ã¿¸öÀàÏÂ£©µ¥´Ê×ÜÊı
+        count = 0 # è®°å½•æ¯ä¸ªç›®å½•ä¸‹ï¼ˆå³æ¯ä¸ªç±»ä¸‹ï¼‰å•è¯æ€»æ•°
         sampleDir = strDir + '/' + cateDir[i]
         sample = listdir(sampleDir)
         for j in range(len(sample)):
@@ -196,7 +205,7 @@ def getCateWordsProb(strDir):
                 count = count + 1
                 word = line.strip('\n')                
                 keyName = cateDir[i] + '_' + word
-                cateWordsProb[keyName] = cateWordsProb.get(keyName,0)+1 # ¼ÇÂ¼Ã¿¸öÄ¿Â¼ÏÂ£¨¼´Ã¿¸öÀàÏÂ£©Ã¿¸öµ¥´ÊµÄ³öÏÖ´ÎÊı
+                cateWordsProb[keyName] = cateWordsProb.get(keyName,0)+1 # è®°å½•æ¯ä¸ªç›®å½•ä¸‹ï¼ˆå³æ¯ä¸ªç±»ä¸‹ï¼‰æ¯ä¸ªå•è¯çš„å‡ºç°æ¬¡æ•°
         cateWordsNum[cateDir[i]] = count
         print 'cate %d contains %d' % (i,cateWordsNum[cateDir[i]])
     print 'cate-word unique num: %d' % len(cateWordsProb)
@@ -207,28 +216,29 @@ def getCateWordsProb(strDir):
     
     
 ##########################################
-## ÓÃ±´Ò¶Ë¹¶Ô²âÊÔÎÄµµ·ÖÀà
-## @param traindir ÑµÁ·¼¯Ä¿Â¼
-## @param testdir  ²âÊÔ¼¯Ä¿Â¼
-## @param classifyResultFileNew  ·ÖÀà½á¹ûÎÄ¼ş
-## @return ·µ»Ø¸Ã²âÊÔÑù±¾ÔÚ¸ÃÀà±ğµÄ¸ÅÂÊ
+## ç”¨è´å¶æ–¯å¯¹æµ‹è¯•æ–‡æ¡£åˆ†ç±»
+## @param traindir è®­ç»ƒé›†ç›®å½•
+## @param testdir  æµ‹è¯•é›†ç›®å½•
+## @param classifyResultFileNew  åˆ†ç±»ç»“æœæ–‡ä»¶
+## @return è¿”å›è¯¥æµ‹è¯•æ ·æœ¬åœ¨è¯¥ç±»åˆ«çš„æ¦‚ç‡
 ##########################################
 def NBprocess(index,traindir,testdir,classifyResultFileNew):
     crWriter = open(classifyResultFileNew,'w')
     # traindir = 'TrainSample0'
     # testdir = 'TestSample0'
-    #·µ»ØÀàkÏÂ´ÊCµÄ³öÏÖ´ÎÊı£¬Ààk×Ü´ÊÊı
+    #è¿”å›ç±»kä¸‹è¯Cçš„å‡ºç°æ¬¡æ•°ï¼Œç±»kæ€»è¯æ•°
     cateWordsProb, cateWordsNum = getCateWordsProb(traindir)
     trainDirFiles = listdir(traindir)#all categories
     
-    #ÑµÁ·¼¯µÄ×Ü´ÊÊı
+    #è®­ç»ƒé›†çš„æ€»è¯æ•°
     trainTotalNum = sum(cateWordsNum.values())
     print 'trainTotalNum: %d' % trainTotalNum
     
+    wordMapDict = loadtovar('model/wordset.txt')
     
-    savetofile(u'model/'+str(index)+'.model',(trainDirFiles,cateWordsProb, cateWordsNum))
+    savetofile(u'model/'+str(index)+'.model',(trainDirFiles,cateWordsProb, cateWordsNum,wordMapDict))
 
-    #¿ªÊ¼¶Ô²âÊÔÑùÀı×ö·ÖÀà
+    #å¼€å§‹å¯¹æµ‹è¯•æ ·ä¾‹åšåˆ†ç±»
     testDirFiles = listdir(testdir)
     for i in range(len(testDirFiles)):
         testSampleDir = testdir + '/' + testDirFiles[i]
@@ -264,8 +274,9 @@ def classify_file(modelname,sampleDir):
     for line in lines:
         word = line.strip('\n')
         testFilesWords.append(word)
-        
-    trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(modelname)
+        print word
+    
+    trainDirFiles,cateWordsProb, cateWordsNum,wordDict = loadtovar(modelname)
     trainTotalNum = sum(cateWordsNum.values())
     maxP = 0.0
     #trainDirFiles = listdir(traindir)#all categories
@@ -285,8 +296,13 @@ def classify_file(modelname,sampleDir):
     
 def classify(modelname,str):
     testFilesWords=list(lineProcess(str))
+    testFilesWords = filterWords(testFilesWords)
+    testFilesWords = [ww.encode('utf-8') for ww in testFilesWords]  
+    for ww in testFilesWords:
+        print ww
+    
     #print testFilesWords
-    trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(modelname)
+    trainDirFiles,cateWordsProb, cateWordsNum,wordsDict = loadtovar(modelname)
     #for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
     #    print i[0],'\t',i[1]
     trainTotalNum = sum(cateWordsNum.values())
@@ -309,24 +325,25 @@ def inspectmodel(modelname):
 
     
 #################################################
-## @param traindir       Ààk
-## @param testFilesWords Ä³¸ö²âÊÔÎÄµµ
-## @param cateWordsNum   ÑµÁ·¼¯ÀàkÏÂµ¥´Ê×ÜÊı <ÀàÄ¿£¬µ¥´Ê×ÜÊı>
-## @param totalWordsNum  ÑµÁ·¼¯µ¥´Ê×ÜÊı
-## @param cateWordsProb  ÑµÁ·¼¯ÀàkÏÂ´Êc³öÏÖµÄ´ÎÊı <ÀàÄ¿_µ¥´Ê ,Ä³µ¥´Ê³öÏÖ´ÎÊı>
-## ¼ÆËã Ìõ¼ş¸ÅÂÊ =£¨ÀàkÖĞµ¥´ÊiµÄÊıÄ¿+0.0001£©/£¨ÀàkÖĞµ¥´Ê×ÜÊı+ÑµÁ·Ñù±¾ÖĞËùÓĞÀàµ¥´Ê×ÜÊı£©
-## ¼ÆËã ÏÈÑé¸ÅÂÊ =£¨ÀàkÖĞµ¥´Ê×ÜÊı£©/£¨ÑµÁ·Ñù±¾ÖĞËùÓĞÀàµ¥´Ê×ÜÊı£©
+## @param traindir       ç±»k
+## @param testFilesWords æŸä¸ªæµ‹è¯•æ–‡æ¡£
+## @param cateWordsNum   è®­ç»ƒé›†ç±»kä¸‹å•è¯æ€»æ•° <ç±»ç›®ï¼Œå•è¯æ€»æ•°>
+## @param totalWordsNum  è®­ç»ƒé›†å•è¯æ€»æ•°
+## @param cateWordsProb  è®­ç»ƒé›†ç±»kä¸‹è¯cå‡ºç°çš„æ¬¡æ•° <ç±»ç›®_å•è¯ ,æŸå•è¯å‡ºç°æ¬¡æ•°>
+## è®¡ç®— æ¡ä»¶æ¦‚ç‡ =ï¼ˆç±»kä¸­å•è¯içš„æ•°ç›®+0.0001ï¼‰/ï¼ˆç±»kä¸­å•è¯æ€»æ•°+è®­ç»ƒæ ·æœ¬ä¸­æ‰€æœ‰ç±»å•è¯æ€»æ•°ï¼‰
+## è®¡ç®— å…ˆéªŒæ¦‚ç‡ =ï¼ˆç±»kä¸­å•è¯æ€»æ•°ï¼‰/ï¼ˆè®­ç»ƒæ ·æœ¬ä¸­æ‰€æœ‰ç±»å•è¯æ€»æ•°ï¼‰
 #################################################
 def computeCateProb(traindir,testFilesWords,cateWordsNum,\
                     totalWordsNum,cateWordsProb):
     prob = 0
-    wordNumInCate = cateWordsNum[traindir]  # ÀàkÏÂµ¥´Ê×ÜÊı <ÀàÄ¿£¬µ¥´Ê×ÜÊı>
+    wordNumInCate = cateWordsNum[traindir]  # ç±»kä¸‹å•è¯æ€»æ•° <ç±»ç›®ï¼Œå•è¯æ€»æ•°>
     for i in range(len(testFilesWords)):
         keyName = traindir + '_' + testFilesWords[i]
         if cateWordsProb.has_key(keyName):
-            testFileWordNumInCate = cateWordsProb[keyName] # ÀàkÏÂ´Êc³öÏÖµÄ´ÎÊı
+            testFileWordNumInCate = cateWordsProb[keyName] # ç±»kä¸‹è¯cå‡ºç°çš„æ¬¡æ•°
+            print "hit"
         else: testFileWordNumInCate = 0.0
-        xcProb = log((testFileWordNumInCate + 0.0001) / (wordNumInCate + totalWordsNum))  # Çó¶ÔÊı±ÜÃâºÜ¶àºÜĞ¡µÄÊıÏà³ËÏÂÒç³ö
+        xcProb = log((testFileWordNumInCate + 0.0001) / (wordNumInCate + totalWordsNum))  # æ±‚å¯¹æ•°é¿å…å¾ˆå¤šå¾ˆå°çš„æ•°ç›¸ä¹˜ä¸‹æº¢å‡º
                  
         prob = prob + xcProb
     res = prob + log(wordNumInCate) - log(totalWordsNum)
@@ -361,7 +378,7 @@ def computeAccuracy(rightCate,resultCate,k):
     
     
 #############################################################################
-## Éú³ÉÃ¿´Îµü´úµÄ²âÊÔÓÃÀı¡¢±ê×¢¼¯
+## ç”Ÿæˆæ¯æ¬¡è¿­ä»£çš„æµ‹è¯•ç”¨ä¾‹ã€æ ‡æ³¨é›†
 def step1():
     createFiles()
     filterSpecialWords()
@@ -369,7 +386,7 @@ def step1():
         classifyRightCate = 'temp/classifyRightCate' + str(i) + '.txt'
         createTestSample(i,classifyRightCate)
 ##############################################################################
-## bayes¶Ô²âÊÔÎÄµµ×ö·ÖÀà
+## bayeså¯¹æµ‹è¯•æ–‡æ¡£åšåˆ†ç±»
 def step2():
     for i in range(10):       
         print i
@@ -378,7 +395,7 @@ def step2():
         classifyResultFileNew = 'temp/classifyResultFileNew' + str(i) + '.txt'
         NBprocess(i,traindir,testdir,classifyResultFileNew)
 ##############################################################################
-## ¼ÆËã×¼È·ÂÊ
+## è®¡ç®—å‡†ç¡®ç‡
 def step3():
     accuracyOfEveryExp = []
     for i in range(10):
@@ -395,9 +412,18 @@ def loadtovar(filename):
         summer = pickle.load(f)   # read file and build object
     return summer
 
-    
-classify_file('model/0.model','temp/processedSampleOnlySpecial/e5c8c3431da69c60a62254f080c60f2b/10226.txt');sys.exit()
-computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);sys.exit()
+
+computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);  
+file = '674df412a56185e63631413d4a99d4db/1618.txt'
+lines = open(u'temp/originSample/'+file).readlines()
+testFilesWords=[]
+for line in lines:
+    testFilesWords.append(line)
+print classify('model/0.model',' '.join(testFilesWords));
+print "\n======================\n"
+#classify_file('model/0.model',u'temp/processedSampleOnlySpecial/'+file);
+sys.exit()
+#computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);sys.exit()
 #inspectmodel('model/0.model')
 #sys.exit() 
 step1()

@@ -7,14 +7,16 @@ from numpy import *
 class Predict:
     def __init__(self):
         self.model = os.path.join(os.path.dirname(__file__),'../model/0.model')
-        trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(os.path.join(os.path.dirname(__file__),'../model/0.model'))
+        trainDirFiles,cateWordsProb, cateWordsNum,wordMapDict = loadtovar(os.path.join(os.path.dirname(__file__),'../model/0.model'))
         self.md5_cat = loadtovar(os.path.join(os.path.dirname(__file__),'../model/md5_catname'))
         self.trainDirFiles=trainDirFiles
         self.cateWordsProb=cateWordsProb
         self.cateWordsNum=cateWordsNum
+        self.wordMapDict=wordMapDict
         
     def classify(self,str):
         testFilesWords=list(lineProcess(str))
+        testFilesWords = filterWords(testFilesWords)
         #print testFilesWords
         
         #for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
@@ -35,6 +37,7 @@ class Predict:
         
     def maybe(self,str,n):
         testFilesWords=list(lineProcess(str))
+        testFilesWords = filterWords(testFilesWords)
         for x in testFilesWords:
             print x
         
@@ -72,3 +75,9 @@ class Predict:
         res = prob + log(wordNumInCate) - log(totalWordsNum)
         return res
                        
+    def filterWords(words):    
+        newwords=[]
+        for word in words:        
+            if word in self.wordMapDict.keys():
+                newwords.append(word)
+        return newwords
