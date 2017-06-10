@@ -370,7 +370,7 @@ def computeAccuracy(rightCate,resultCate,k):
 
         if (rightCateDict[sampleFile]==resultCateDict[sampleFile]):
             rightCount += 1.0
-            print sampleFile,rightCateDict[sampleFile]
+            #print sampleFile,rightCateDict[sampleFile]
     print 'rightCount : %d  rightCate: %d' % (rightCount,len(rightCateDict))
     accuracy = rightCount/len(rightCateDict)
     print 'accuracy %d : %f' % (k,accuracy)
@@ -421,6 +421,7 @@ for line in lines:
     testFilesWords.append(line)
 print classify('model/0.model',' '.join(testFilesWords));
 print "\n======================\n"
+step3()
 #classify_file('model/0.model',u'temp/processedSampleOnlySpecial/'+file);
 sys.exit()
 #computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);sys.exit()
