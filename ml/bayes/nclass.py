@@ -257,7 +257,32 @@ def NBprocess(index,traindir,testdir,classifyResultFileNew):
                 #print bestCate
             crWriter.write('%s %s\n' % (testSample[j],bestCate))
     crWriter.close()
-
+    
+def classify_file(modelname,sampleDir):
+    lines = open(sampleDir).readlines()
+    testFilesWords=[]
+    for line in lines:
+        word = line.strip('\n')
+        testFilesWords.append(word)
+        
+    trainDirFiles,cateWordsProb, cateWordsNum = loadtovar(modelname)
+    trainTotalNum = sum(cateWordsNum.values())
+    maxP = 0.0
+    #trainDirFiles = listdir(traindir)#all categories
+    for k in range(len(trainDirFiles)):
+        p = computeCateProb(trainDirFiles[k], testFilesWords,\
+                            cateWordsNum, trainTotalNum, cateWordsProb)
+        #print j,'=',trainDirFiles[k],'~',p
+        if k==0:
+            maxP = p
+            bestCate = trainDirFiles[k]
+            continue
+        if p > maxP:
+            maxP = p
+            bestCate = trainDirFiles[k]
+    print bestCate    
+    return bestCate
+    
 def classify(modelname,str):
     testFilesWords=list(lineProcess(str))
     #print testFilesWords
@@ -328,6 +353,7 @@ def computeAccuracy(rightCate,resultCate,k):
 
         if (rightCateDict[sampleFile]==resultCateDict[sampleFile]):
             rightCount += 1.0
+            print sampleFile,rightCateDict[sampleFile]
     print 'rightCount : %d  rightCate: %d' % (rightCount,len(rightCateDict))
     accuracy = rightCount/len(rightCateDict)
     print 'accuracy %d : %f' % (k,accuracy)
@@ -369,6 +395,9 @@ def loadtovar(filename):
         summer = pickle.load(f)   # read file and build object
     return summer
 
+    
+classify_file('model/0.model','temp/processedSampleOnlySpecial/e5c8c3431da69c60a62254f080c60f2b/10226.txt');sys.exit()
+computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);sys.exit()
 #inspectmodel('model/0.model')
 #sys.exit() 
 step1()

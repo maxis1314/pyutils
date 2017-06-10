@@ -35,7 +35,8 @@ class Predict:
         
     def maybe(self,str,n):
         testFilesWords=list(lineProcess(str))
-        #print testFilesWords
+        for x in testFilesWords:
+            print x
         
         #for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
         #    print i[0],'\t',i[1]
@@ -44,7 +45,7 @@ class Predict:
         for k in range(len(self.trainDirFiles)):
             p = self.computeCateProb(self.trainDirFiles[k], testFilesWords,\
                                 self.cateWordsNum, trainTotalNum, self.cateWordsProb)
-            #print trainDirFiles[k],'~',p
+            #print self.trainDirFiles[k],'~',p
             score[self.trainDirFiles[k]]=p
         
         count=0
