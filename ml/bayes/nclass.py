@@ -274,7 +274,7 @@ def classify_file(modelname,sampleDir):
     for line in lines:
         word = line.strip('\n')
         testFilesWords.append(word)
-        print word
+        #print word
     
     trainDirFiles,cateWordsProb, cateWordsNum,wordDict = loadtovar(modelname)
     trainTotalNum = sum(cateWordsNum.values())
@@ -298,8 +298,8 @@ def classify(modelname,str):
     testFilesWords=list(lineProcess(str))
     testFilesWords = filterWords(testFilesWords)
     testFilesWords = [ww.encode('utf-8') for ww in testFilesWords]  
-    for ww in testFilesWords:
-        print ww
+    #for ww in testFilesWords:
+    #    print ww
     
     #print testFilesWords
     trainDirFiles,cateWordsProb, cateWordsNum,wordsDict = loadtovar(modelname)
@@ -341,7 +341,7 @@ def computeCateProb(traindir,testFilesWords,cateWordsNum,\
         keyName = traindir + '_' + testFilesWords[i]
         if cateWordsProb.has_key(keyName):
             testFileWordNumInCate = cateWordsProb[keyName] # 类k下词c出现的次数
-            print "hit"
+            #print "hit"
         else: testFileWordNumInCate = 0.0
         xcProb = log((testFileWordNumInCate + 0.0001) / (wordNumInCate + totalWordsNum))  # 求对数避免很多很小的数相乘下溢出
                  

@@ -16,7 +16,8 @@ class Predict:
         
     def classify(self,str):
         testFilesWords=list(lineProcess(str))
-        testFilesWords = filterWords(testFilesWords)
+        testFilesWords = self.filterWords(testFilesWords)
+        testFilesWords = [ww.encode('utf-8') for ww in testFilesWords]  
         #print testFilesWords
         
         #for i in sorted(cateWordsProb.items(), key=lambda d: d[1],reverse=True):
@@ -37,7 +38,8 @@ class Predict:
         
     def maybe(self,str,n):
         testFilesWords=list(lineProcess(str))
-        testFilesWords = filterWords(testFilesWords)
+        testFilesWords = self.filterWords(testFilesWords)
+        testFilesWords = [ww.encode('utf-8') for ww in testFilesWords]
         for x in testFilesWords:
             print x
         
@@ -75,7 +77,7 @@ class Predict:
         res = prob + log(wordNumInCate) - log(totalWordsNum)
         return res
                        
-    def filterWords(words):    
+    def filterWords(self,words):    
         newwords=[]
         for word in words:        
             if word in self.wordMapDict.keys():
