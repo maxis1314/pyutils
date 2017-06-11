@@ -37,6 +37,20 @@ def createFiles():
             createProcessFile(srcFilesList[i],dataFilesList[j]) # 调用createProcessFile()在新文档中处理文本
             print 'processed %s %s' % (srcFilesList[i],dataFilesList[j])
 
+            
+def filterStopWordCN(list1):
+    lines = open('chinese_stopword.txt').readlines()
+    stopWords=[]
+    for line in lines:
+        word = line.strip('\n')
+        stopWords.append(word)
+    list2 = []
+    for word in list1:
+        if word not in stopWords:
+            list2.append(word)
+            
+    return list2
+    
 ##############################################################
 ## 2. 建立目标文件夹，生成目标文件
 ## @param srcFilesName 某组新闻文件夹的文件名，比如alt.atheism
@@ -62,6 +76,7 @@ def createProcessFile(srcFilesName,dataFilesName):
 def lineProcess(line):
     list1 = list(jieba.cut(line, cut_all=False))
     list1 = filter(f, list1)
+    list1=filterStopWordCN(list1)
     return list1
     
     
@@ -413,23 +428,26 @@ def loadtovar(filename):
     return summer
 
 
-computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);  
-file = '674df412a56185e63631413d4a99d4db/1618.txt'
-lines = open(u'temp/originSample/'+file).readlines()
-testFilesWords=[]
-for line in lines:
-    testFilesWords.append(line)
-print classify('model/0.model',' '.join(testFilesWords));
-print "\n======================\n"
-step3()
-#classify_file('model/0.model',u'temp/processedSampleOnlySpecial/'+file);
-sys.exit()
+
+if len(sys.argv)>1 and sys.argv[1]=='1':
+    computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);  
+    file = '674df412a56185e63631413d4a99d4db/1618.txt'
+    lines = open(u'temp/originSample/'+file).readlines()
+    testFilesWords=[]
+    for line in lines:
+        testFilesWords.append(line)
+    print classify('model/0.model',' '.join(testFilesWords));
+    print "\n======================\n"
+    step3()
+    #classify_file('model/0.model',u'temp/processedSampleOnlySpecial/'+file);
+    sys.exit()
 #computeAccuracy('temp/classifyRightCate0.txt','temp/classifyResultFileNew0.txt',1);sys.exit()
 #inspectmodel('model/0.model')
 #sys.exit() 
-step1()
-step2()
-step3()
+else:
+    step1()
+    step2()
+    step3()
 
 for i in range(10):
     predict_word = '100 pills'
