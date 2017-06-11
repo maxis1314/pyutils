@@ -22,9 +22,17 @@ def blogDetail():
         return redirect(url_for('showSignIn'))
     _id = request.args.get('id')
     blog = mysql.query('select * from blog where id=%s'%(_id))
+    
+    before = mysql.query('select * from blog where id<%s order by id desc limit 1'%(_id))
+    after = mysql.query('select * from blog where id>%s order by id limit 1'%(_id))
+    if len(before)<1:
+        before=[[_id]]
+    if len(after)<1:
+        after=[[_id]]
+    
     if len(blog)<1:
         return render_template('info.html',title='blog not exits')
-    return render_template('blog_detail.html',blog=blog[0],id=int(_id))
+    return render_template('blog_detail.html',blog=blog[0],id=int(_id),beforeid=before[0][0],afterid=after[0][0])
 
 @app.route('/blogCatPredict')
 def blogCatPredict():
