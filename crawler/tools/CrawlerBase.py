@@ -58,6 +58,7 @@ class CrawlerBase:
                     #'Accept-Encoding': 'gzip, deflate',\
                     'Connection': 'keep-alive'}
             request = urllib2.Request(url, None, header)
+            urllib2.socket.setdefaulttimeout(20)
             response = urllib2.urlopen(request)
             result = response.read()
             return result;
@@ -74,6 +75,7 @@ class CrawlerBase:
                     #'Accept-Encoding': 'gzip, deflate',\
                     'Connection': 'keep-alive'}
             request = urllib2.Request(url, data, header)
+            urllib2.socket.setdefaulttimeout(20)
             response = urllib2.urlopen(request)
             result = response.read()
             return result;
