@@ -1,3 +1,3 @@
 python app.py
 
-pause
+cmd
