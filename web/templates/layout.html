@@ -19,7 +19,7 @@
           <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <img alt="LeanTodo" title="LeanTodo" src="{{ url_for('static', filename='leantodo.svg') }}">
+            <img alt="" title="" src="{{ url_for('static', filename='leantodo.svg') }}">
           </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-set">
@@ -30,10 +30,10 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if session['name']%}
-              <li><a href="{{ url_for('logout') }}">登出</a></li>
+              <li><a href="{{ url_for('users.logout') }}">登出</a></li>
             {% else %}
-              <li><a href="{{ url_for('showSignIn') }}">登录</a></li>
-              <li><a href="{{ url_for('showSignUp') }}">注册</a></li>
+              <li><a href="{{ url_for('users.login') }}">登录</a></li>
+              <li><a href="{{ url_for('users.register') }}">注册</a></li>
             {% endif %}
           </ul>
         </div>
