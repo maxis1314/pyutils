@@ -48,7 +48,7 @@ def password():
         #user.set_password(password)
         try:
             _hashed_password = hashlib.md5(password).hexdigest()
-            mysql.insert('update tbl_user set user_password=%s where id=%s',(_hashed_password,session['id']));   
+            mysql.insert('update tbl_user set user_password=%s where user_id=%s',(_hashed_password,session['id']));   
         except Exception as e:
             flash(str(e))
             return redirect(url_for('users.password'))
