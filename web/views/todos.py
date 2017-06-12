@@ -7,6 +7,7 @@ from flask import url_for
 from flask import render_template
 from flask import flash,session
 from tools.MysqlBase import *
+from tools.SqliteBase import *
 
 mysql = MysqlBase('python')
 
@@ -21,6 +22,8 @@ TRASHED, PLANNED, COMPLETED = -1, 0, 1
 def before_request():
     if not session.has_key('login') or not session['login']:    
         return redirect(url_for('users.login'))
+    #a = SqliteBase('aa')
+    #a.execute('insert into info(info) values("%s")'%("gaga"))
 
 # 显示所有 Todo
 @todos_view.route('')
