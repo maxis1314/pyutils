@@ -132,6 +132,7 @@ def showAddBlog():
 def logout():
     session['login'] = False
     session['name'] = None
+    session['id'] = None
     return redirect(url_for('showSignIn'))
 
 @app.route('/showSignIn')
@@ -148,6 +149,7 @@ def signIn():
     if len(user)>0 and user[0][3] == _hashed_password:
         session['login'] = True
         session['name'] = _name
+        session['id'] = user[0][0]
         return json.dumps({'error':0})
     else:
         return json.dumps({'error':1})

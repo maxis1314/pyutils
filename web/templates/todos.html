@@ -16,7 +16,7 @@
   {% if not session['name'] %}
     <div class="alert alert-info alert-box">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">&times;</span></button>
-    <p>未登录状态下创建的 todo 可以被所有人看到并修改或删除，<a class="alert-link" href="{{ url_for('users.login') }}">登录</a> 后创建的 todo 则只有自己可修改、删除。想要让自己创建的 todo 对其他人不可见，在代码中移除 <code>acl.set_public_read_access(True)</code> 这一行即可。</p>
+    <p>未登录状态下创建的 todo 可以被所有人看到并修改或删除，<a class="alert-link" href="{{ url_for('showSignIn') }}">登录</a> 后创建的 todo 则只有自己可修改、删除。想要让自己创建的 todo 对其他人不可见，在代码中移除 <code>acl.set_public_read_access(True)</code> 这一行即可。</p>
   </div>
 {% endif %}
 {% with messages = get_flashed_messages() %}

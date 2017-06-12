@@ -32,8 +32,8 @@
             {% if session['name']%}
               <li><a href="{{ url_for('logout') }}">登出</a></li>
             {% else %}
-              <li><a href="{{ url_for('users.login') }}">登录</a></li>
-              <li><a href="{{ url_for('users.register') }}">注册</a></li>
+              <li><a href="{{ url_for('showSignIn') }}">登录</a></li>
+              <li><a href="{{ url_for('showSignUp') }}">注册</a></li>
             {% endif %}
           </ul>
         </div>
