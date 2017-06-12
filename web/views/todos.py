@@ -17,6 +17,10 @@ todos_view = Blueprint('todos', __name__)
 
 TRASHED, PLANNED, COMPLETED = -1, 0, 1
 
+@todos_view.before_request
+def before_request():
+    if not session.has_key('login') or not session['login']:    
+        return redirect(url_for('users.login'))
 
 # 显示所有 Todo
 @todos_view.route('')
