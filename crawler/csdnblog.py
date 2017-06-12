@@ -52,9 +52,10 @@ def process_article(article,link):
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
     
-    if random.random()<0.3):
+    if random.random()<0.3:
         data =  db.query('select * from blog where link=%s limit 1',(link));
         if len(data)>0:
+            print "ditected duplicate records, start to terminate execution"
             return "stop"
     db.insert('insert ignore into blog(dt,link,title,body,tags,categories,bid) values(%s,%s,%s,%s,%s,%s,%s)',(dt,link, title, body,','.join([]),','.join([]),0));
     return 'ok'
