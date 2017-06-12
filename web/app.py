@@ -125,7 +125,7 @@ def showSignUp():
 
 @app.route('/showAddBlog')
 def showAddBlog():
-    list = mysql.query('select * from bloglist order by flag')
+    list = mysql.query('select * from bloglist order by id desc')
     return render_template('add_blog.html',list=list)
     
 @app.route('/logout')
@@ -158,7 +158,8 @@ def signIn():
 @app.route('/addBlog',methods=['POST','GET'])
 def addBlog():
     _name = request.form['inputName']
-    mysql.insert('insert into bloglist(type,name) values(%s,%s)',('cnblog',_name));   
+    _type = request.form['type']
+    mysql.insert('insert into bloglist(type,name) values(%s,%s)',(_type,_name));   
     return json.dumps({'error':0})   
     
 @app.route('/signUp',methods=['POST','GET'])
