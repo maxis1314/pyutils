@@ -1,3 +1,3 @@
 python batch.py
 
-pause
+cmd
