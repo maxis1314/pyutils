@@ -41,7 +41,7 @@ def add():
     try:
         mysql.insert('insert into todos(content,status) values(%s,%s)',(content,PLANNED));           
     except Exception as e:
-        flash('error')
+        flash('add error')
     return redirect(url_for('todos.show'))
 
 
@@ -49,25 +49,23 @@ def add():
 @todos_view.route('/<todo_id>', methods=['DELETE'])
 def delete(todo_id):
     status = int(request.args.get('status', PLANNED))
-    todo = Todo.create_without_data(todo_id)
-    todo.set('status', TRASHED)
+    #todo = Todo.create_without_data(todo_id)
+    #todo.set('status', TRASHED)
     try:
-        todo.save()
+        mysql.execute('update todos set status=%s where id=%s'%(TRASHED,todo_id));
     except Exception as e:
-        flash(e.error)
+        flash('delete error')
     return redirect(url_for('todos.show', status=status))
 
 
 # 将一个 Todo 的状态设置为已完成
 @todos_view.route('/<todo_id>/done', methods=['POST'])
 def done(todo_id):
-    status = int(request.args.get('status', PLANNED))
-    todo = Todo.create_without_data(todo_id)
-    todo.set('status', COMPLETED)
+    status = int(request.args.get('status', PLANNED))    
     try:
-        todo.save()
+        mysql.execute('update todos set status=%s where  id=%s'%(COMPLETED,todo_id));
     except Exception as e:
-        flash(e.error)
+        flash('done error')
     return redirect(url_for('todos.show', status=status))
 
 
