@@ -5,6 +5,7 @@ import sys
 import urlparse
 import json 
 import time
+import random
 
 db = MysqlBase('python')
 count = 0;
@@ -50,8 +51,13 @@ def process_article(article,link):
         db.connect()
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
+    
+    if random.random()<0.3):
+        data =  db.query('select * from blog where link=%s limit 1',(link));
+        if len(data)>0:
+            return "stop"
     db.insert('insert ignore into blog(dt,link,title,body,tags,categories,bid) values(%s,%s,%s,%s,%s,%s,%s)',(dt,link, title, body,','.join([]),','.join([]),0));
-    return 'stop'
+    return 'ok'
 
     
 if __name__ == '__main__':
