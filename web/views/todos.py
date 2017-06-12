@@ -22,9 +22,9 @@ TRASHED, PLANNED, COMPLETED = -1, 0, 1
 def before_request():
     if not session.has_key('login') or not session['login']:    
         return redirect(url_for('users.login'))
-    a = SqliteBase('min.db')
-    a.execute('insert into info(info) values("%s")'%("gaga"))
-    print a.query_h('select * from info')
+    #a = SqliteBase('min.db')
+    #a.execute('insert into info(info) values("%s")'%("gaga"))
+    #print a.query_h('select * from info')
 
 # 显示所有 Todo
 @todos_view.route('')
