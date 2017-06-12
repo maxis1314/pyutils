@@ -28,7 +28,7 @@ def show():
         status = PLANNED
     try:
         print 'select * from todos where status=%s and uid=%s'%(status,uid)
-        todos = mysql.query_h('select * from todos where status=%s and uid=%s'%(status,uid))#[{'content':'11','status':'111'},{'content':'222','status':'111'}]
+        todos = mysql.query_h('select * from todos where status=%s and uid=%s order by last_update desc'%(status,uid))#[{'content':'11','status':'111'},{'content':'222','status':'111'}]
     except Exception as e:
         todos = []
         flash(e)

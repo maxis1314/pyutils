@@ -40,9 +40,10 @@ CREATE TABLE  `python`.`test` (
 
 DROP TABLE IF EXISTS `python`.`todos`;
 CREATE TABLE  `python`.`todos` (
+  `last_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `content` varchar(512) CHARACTER SET utf8 DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `uid` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
