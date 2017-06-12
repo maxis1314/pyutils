@@ -5,6 +5,7 @@ You can make small changes to be adapted to your own use case.
 # web
 A powerful web framework build on flask. 
 Full view and search of blog data from crawler.
+Predict blog category using models trained by ml tools.
 
 # ml
 Data mining using python.
