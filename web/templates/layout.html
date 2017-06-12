@@ -26,11 +26,11 @@
           <ul class="nav navbar-nav">
             {% set active = active|default('todos') -%}
             <li {% if active == 'todos' %}class="active"{% endif %}><a href="{{ url_for('todos.show') }}">Todo List</a></li>
-            <li {% if active == 'help' %}class="active"{% endif %}><a href="#">说明</a></li>
+            <li {% if active == 'help' %}class="active"{% endif %}><a href="/">Blog</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            {% if g.user %}
-              <li><a href="{{ url_for('users.logout') }}">登出</a></li>
+            {% if session['name']%}
+              <li><a href="{{ url_for('logout') }}">登出</a></li>
             {% else %}
               <li><a href="{{ url_for('users.login') }}">登录</a></li>
               <li><a href="{{ url_for('users.register') }}">注册</a></li>
