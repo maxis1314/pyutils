@@ -31,10 +31,28 @@ def register():
             _hashed_password = hashlib.md5(password).hexdigest()
             mysql.insert('insert into tbl_user(user_name,user_username,user_password) values(%s,%s,%s)',(username,email,_hashed_password));   
         except Exception as e:
-            flash('db error')
+            str(e)
             return redirect(url_for('users.register'))
         return redirect(url_for('todos.show'))
 
+@users_view.route('/password', methods=['GET', 'POST'])
+def password():
+    if request.method == 'GET':
+        return render_template('users/password.html')
+    if request.method == 'POST':       
+        password = request.form.get('password', '').strip()        
+        if not password:
+            flash('用户名和密码不能为空。')
+            return redirect(url_for('users.register'))
+        #user.set_username(username)
+        #user.set_password(password)
+        try:
+            _hashed_password = hashlib.md5(password).hexdigest()
+            mysql.insert('update tbl_user set user_password=%s where id=%s',(_hashed_password,session['id']));   
+        except Exception as e:
+            flash(str(e))
+            return redirect(url_for('users.password'))
+        return redirect(url_for('todos.show'))
 
 @users_view.route('/login', methods=['GET', 'POST'])
 def login():
@@ -60,7 +78,7 @@ def login():
                 flash('username or password error!')
                 return redirect(url_for('users.login'))
         except Exception as e:
-            flash('db error')
+            str(e)
             return redirect(url_for('users.login'))
         return redirect(url_for('todos.show'))
 

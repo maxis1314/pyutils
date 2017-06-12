@@ -35,7 +35,7 @@ def show():
         todos = mysql.query_h('select * from todos where status=%s and uid=%s order by last_update desc'%(status,uid))#[{'content':'11','status':'111'},{'content':'222','status':'111'}]
     except Exception as e:
         todos = []
-        flash(e)
+        flash(str(e))
     return render_template('todos.html', todos=todos, status=status)
 
 
@@ -47,7 +47,7 @@ def add():
     try:
         mysql.insert('insert into todos(content,status,uid) values(%s,%s,%s)',(content,PLANNED,uid));           
     except Exception as e:
-        flash('add error')
+        flash(str(e))
     return redirect(url_for('todos.show'))
 
 
@@ -61,7 +61,7 @@ def delete(todo_id):
         mysql.execute('update todos set status=%s where id=%s'%(TRASHED,todo_id));
         print 'update todos set status=%s where id=%s'%(TRASHED,todo_id)
     except Exception as e:
-        flash('delete error')
+        flash(str(e))
     return redirect(url_for('todos.show', status=status))
 
 
@@ -72,7 +72,7 @@ def done(todo_id):
     try:
         mysql.execute('update todos set status=%s where  id=%s'%(COMPLETED,todo_id));
     except Exception as e:
-        flash('done error')
+        flash(str(e))
     return redirect(url_for('todos.show', status=status))
 
 
@@ -83,5 +83,5 @@ def undone(todo_id):
     try:
         mysql.execute('update todos set status=%s where  id=%s'%(PLANNED,todo_id));
     except Exception as e:
-        flash('undone error')
+        flash(str(e))
     return redirect(url_for('todos.show', status=status))
