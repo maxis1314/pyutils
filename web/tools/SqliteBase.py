@@ -11,6 +11,13 @@ import sys
 reload(sys)  
 sys.setdefaultencoding('utf8')
 
+
+def dict_factory(cursor, row): 
+  d = {} 
+  for idx, col in enumerate(cursor.description): 
+    d[col[0]] = row[idx] 
+  return d
+  
 class SqliteBase:
     def __init__(self,name):
         self.name = name
@@ -24,6 +31,7 @@ class SqliteBase:
         if self.conn is not None:
             self.conn.close()
         self.conn = sqlite3.connect(self.name)
+        self.conn.row_factory = dict_factory
         
     def reconnect(self):
         if self.reconn:
@@ -47,8 +55,7 @@ class SqliteBase:
         return alldata    
     def query_h(self,sql,value=None):
         self.reconnect()
-        cur=self.conn.cursor(sqlite3.cursors.DictCursor)
-
+        cur=self.conn.cursor()
         if value is None:
             cur.execute(sql)
         else:
