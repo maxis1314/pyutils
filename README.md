@@ -8,4 +8,4 @@ Full view and search of blog data from crawler.
 Predict blog category using models trained by ml tools.
 
 # ml
-Data mining using python.
+Data mining using python. Automaticaly generate model files.
