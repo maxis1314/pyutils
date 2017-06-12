@@ -1,11 +1,13 @@
 # crawler
-A full crawler for cnblog, sina blog, csdn blog and tianya blog etc. All data will be saved in Mysql.
+1. A full crawler for cnblog, sina blog, csdn blog and tianya blog etc. All data will be saved in Mysql.
 You can easily make small changes to be adapted to your own use case.
 
 # web
-A powerful web framework build on flask. 
-Full view and search of blog data from crawler.
-Predict blog category using models trained by ml tools.
+1. A powerful web framework build on flask. 
+2. Full view and search of blog data from crawler.
+3. Predict blog category using models trained by ml tools.
+4. Mini TODO Manage system
 
 # ml
-Data mining using python. Automaticaly generate model files.
+1. Data mining using python. 
+2. Automaticaly generate model files.
