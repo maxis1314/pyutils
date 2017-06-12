@@ -7,7 +7,7 @@ if __name__ == '__main__':
     db = MysqlBase('python')
     while True:
         print "================new round ============================="
-        list = db.query('select * from bloglist where flag=0 and type="csdnblog" limit 100')
+        list = db.query('select * from bloglist where flag=0 limit 100')
         if len(list)>0:
             randInx = int(len(list)*random.random())
             list=[list[randInx]]
