@@ -46,13 +46,14 @@ def add():
 
 
 # 删除一个 Todo
-@todos_view.route('/<todo_id>', methods=['DELETE'])
+@todos_view.route('/<todo_id>', methods=['GET'])
 def delete(todo_id):
     status = int(request.args.get('status', PLANNED))
     #todo = Todo.create_without_data(todo_id)
     #todo.set('status', TRASHED)
     try:
         mysql.execute('update todos set status=%s where id=%s'%(TRASHED,todo_id));
+        print 'update todos set status=%s where id=%s'%(TRASHED,todo_id)
     except Exception as e:
         flash('delete error')
     return redirect(url_for('todos.show', status=status))
@@ -73,10 +74,8 @@ def done(todo_id):
 @todos_view.route('/<todo_id>/undone', methods=['POST'])
 def undone(todo_id):
     status = int(request.args.get('status', PLANNED))
-    todo = Todo.create_without_data(todo_id)
-    todo.set('status', PLANNED)
     try:
-        todo.save()
+        mysql.execute('update todos set status=%s where  id=%s'%(PLANNED,todo_id));
     except Exception as e:
-        flash(e.error)
+        flash('undone error')
     return redirect(url_for('todos.show', status=status))
