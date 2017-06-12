@@ -4,7 +4,7 @@ You can easily make small changes to be adapted to your own use case.
 
 # web
 1. A powerful web framework build on flask. 
-2. Full view and search of blog data from crawler.
+2. Full view and search of blog data crabed from crawler.
 3. Predict blog category using models trained by ml tools.
 4. Mini TODO Manage system
 
