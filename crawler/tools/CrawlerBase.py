@@ -189,7 +189,9 @@ class CrawlerBase:
                         page = page + 1
                         continue
 
-                    process_article(article_page,link)                                
+                    result = process_article(article_page,link)                                
+                    if result is not None and result == 'stop':
+                        break
                                                 
             else:
                 self.qinglog.info('length of years, dates, links not equal in %s' % page_url)

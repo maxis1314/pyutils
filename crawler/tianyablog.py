@@ -35,6 +35,7 @@ def process_article(article,link):
     
     print 'title=',title.encode('gbk')    
     print (title, body.strip(), post_date)
+    return 'ok'
     
     
 if __name__ == '__main__':   

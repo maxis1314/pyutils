@@ -51,6 +51,7 @@ def process_article(article,link):
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
     db.insert('insert ignore into blog(dt,link,title,body,tags,categories,bid) values(%s,%s,%s,%s,%s,%s,%s)',(dt,link, title, body,','.join([]),','.join([]),0));
+    return 'stop'
 
     
 if __name__ == '__main__':
