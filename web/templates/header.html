@@ -37,15 +37,15 @@ function catPredict(domid,id){
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class=""><a href="/blogHome">Home</a></li>
-            {% if session['name']%}
-            <li role="presentation">{% if session['name']%}<a href="#">{{session['name']}}</a>{%endif%}</li>
-            <li role="presentation"><a href="/logout">Logout</a></li>
+            <li role="presentation"><a href="/showAddBlog">Add</a></li>
+            <li role="presentation"><a href="/blogModel">Model</a></li>
+            <li role="presentation"><a href="/todos">TODO</a></li>
+            {% if session['name']%}            
+            <li role="presentation"><a href="/logout">Logout({{session['name']}})</a></li>
             {%else%}
             <li role="presentation"><a href="/showSignIn">Sign In</a></li>
             <li role="presentation"><a href="/showSignUp">Sign Up</a></li>
             {%endif%}
-            <li role="presentation"><a href="/showAddBlog">Add</a></li>
-            <li role="presentation"><a href="/blogModel">Model</a></li>
-            <li role="presentation"><a href="/todos">TODO</a></li>
+            
           </ul>
         </nav>
