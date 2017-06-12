@@ -6,7 +6,9 @@ from flask import redirect
 from flask import url_for
 from flask import render_template
 from flask import flash
+from tools.MysqlBase import *
 
+mysql = MysqlBase('python')
 
 class Todo():
     pass
@@ -18,33 +20,28 @@ TRASHED, PLANNED, COMPLETED = -1, 0, 1
 
 # 显示所有 Todo
 @todos_view.route('')
-def show():
+def show():    
     status = int(request.args.get('status', PLANNED))
     if status == TRASHED:
         flash('无法查看已删除的 Todo')
         status = PLANNED
     try:
-        todos = [{'content':'11','status':'111'},{'content':'222','status':'111'}]
+        
+        todos = mysql.query_h('select * from todos where status=%s'%status)#[{'content':'11','status':'111'},{'content':'222','status':'111'}]
     except Exception as e:
         todos = []
-        flash(e.error)
+        flash(e)
     return render_template('todos.html', todos=todos, status=status)
 
 
 # 新建一个 Todo
 @todos_view.route('', methods=['POST'])
 def add():
-    content = request.form['content']
-    todo = Todo()
-    todo.set('content', content)
-    todo.set('status', PLANNED)
-    author = User.get_current()
-    if author:
-        print todo
+    content = request.form['content']  
     try:
-        todo.save()
+        mysql.insert('insert into todos(content,status) values(%s,%s)',(content,PLANNED));           
     except Exception as e:
-        flash(e.error)
+        flash('error')
     return redirect(url_for('todos.show'))
 
 

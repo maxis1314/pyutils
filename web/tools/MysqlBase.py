@@ -44,7 +44,19 @@ class MysqlBase:
             cur.execute(sql,value)
         alldata = cur.fetchall()
         cur.close()
+        return alldata    
+    def query_h(self,sql,value=None):
+        self.reconnect()
+        cur=self.conn.cursor(MySQLdb.cursors.DictCursor)
+
+        if value is None:
+            cur.execute(sql)
+        else:
+            cur.execute(sql,value)
+        alldata = cur.fetchall()
+        cur.close()
         return alldata
+        
     def insert(self,sql,value):        
         values=[]
         values.append(value)
