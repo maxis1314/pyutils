@@ -42,8 +42,8 @@ def password():
     if request.method == 'POST':       
         password = request.form.get('password', '').strip()        
         if not password:
-            flash('用户名和密码不能为空。')
-            return redirect(url_for('users.register'))
+            flash('密码不能为空。')
+            return redirect(url_for('users.password'))
         #user.set_username(username)
         #user.set_password(password)
         try:
