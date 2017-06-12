@@ -6,6 +6,7 @@ import random
 if __name__ == '__main__':    
     db = MysqlBase('python')
     while True:
+        print "================new round ============================="
         list = db.query('select * from bloglist where flag=0 and type="csdnblog" limit 100')
         if len(list)>0:
             randInx = int(len(list)*random.random())
@@ -15,7 +16,8 @@ if __name__ == '__main__':
                     subprocess.Popen(u'python cnblog.py '+i[2],shell=True).wait()            
                 elif i[1] == 'csdnblog':
                     subprocess.Popen(u'python csdnblog.py '+i[2],shell=True).wait()    
-            db.execute('update  bloglist set flag = 1 where id =%d' % (i[0]))
+            db.execute('update  bloglist set flag = 1 where id =%d' % (list[0][0]))
+            print 'update  bloglist set flag = 1 where id =%d' % (list[0][0])            
                 
         time.sleep(10)
         db.connect()

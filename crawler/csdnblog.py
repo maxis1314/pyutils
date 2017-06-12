@@ -57,6 +57,6 @@ if __name__ == '__main__':
     name = sys.argv[1]
     if name is not None:
         crawler = CrawlerBase()
-        crawler.start(u'http://blog.csdn.net/'+name+'/article/list/%s',extract,process_article)
+        crawler.start(u'http://blog.csdn.net/'+name+'/article/list/%s',extract,process_article,10)
     else:
         print 'name is none'

@@ -150,15 +150,17 @@ class CrawlerBase:
             self.qinglog.error('delete from oz failed! reason:%s' % str(e))
             return False
 
-    def start(self,oz_url,extract,process_article):                
+    def start(self,oz_url,extract,process_article,maxpage=100000):                
         #if process_article is None:
         #    process_article = self.process_article
         #print get_html('http://www.shanghaidaily.com/')
         #sys.exit()
         #self.clear_oz()        
-        page = 1        
-        while True:
+        page = 1   
+        while True:            
         #while page == 1:
+            if page>maxpage:
+                break
             page_url = oz_url % str(page)
             self.qinglog.info('get page:%s' % page_url)
             page_html = self.get_html(page_url)
