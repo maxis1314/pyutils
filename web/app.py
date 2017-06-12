@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, request,session,redirect,url_for
+from flask import Flask, render_template, json, request,session,redirect,url_for,send_from_directory
 #from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
 from tools.MysqlBase import *
@@ -16,6 +16,11 @@ def main():
     userlist = mysql.query('select * from tbl_user')
     return render_template('index.html',list=userlist)
 
+    
+@app.before_request
+def before_request():
+    print 'start procee request'
+    
 @app.route('/blogDetail')
 def blogDetail():
     if not session.has_key('login') or not session['login']:    
@@ -169,5 +174,11 @@ def signUp():
     except Exception as e:
         return json.dumps({'error':str(e)})
 
+@app.route('/robots.txt')
+@app.route('/favicon.svg')
+@app.route('/favicon.ico')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+    
 if __name__ == "__main__":
     app.run(port=5000,debug=True)
