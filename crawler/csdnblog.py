@@ -52,7 +52,7 @@ def process_article(article,link):
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')
     
-    if random.random()<0.3:
+    if random.random()<0.1:
         data =  db.query('select * from blog where link=%s limit 1',(link));
         if len(data)>0:
             print "ditected duplicate records, start to terminate execution"
