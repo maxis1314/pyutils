@@ -53,6 +53,7 @@
   {% for todo in todos %}
     <li class="list-group-item">
       <form class="pull-right" action="{{ url_for('todos.delete', todo_id=todo.id, status=0) }}" method="get" id=delete-{{todo.id}}>
+        {{ todo.get('last_update') }}
         <span class="glyphicon glyphicon-trash todo-delete"></span>
       </form>
       <form action="{{ url_for('todos.done', todo_id=todo.id, status=0) }}" method="post" id="done-{{todo.id}}">
@@ -66,6 +67,7 @@
   {% for todo in todos %}
     <li class="list-group-item">
       <form class="pull-right" action="{{ url_for('todos.delete', todo_id=todo.id, status=1) }}" method="get" id=delete-{{todo.id}}>
+        {{ todo.get('last_update') }}
         <span class="glyphicon glyphicon-trash todo-delete"></span>
       </form>
       <form action="{{ url_for('todos.undone', todo_id=todo.id, status=1) }}" method="post" id="undone-{{todo.id}}">
