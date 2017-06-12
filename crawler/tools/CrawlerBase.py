@@ -189,6 +189,6 @@ class CrawlerBase:
                 self.qinglog.info('length of years, dates, links not equal in %s' % page_url)
             page = page + 1
 
-        self.conn.close()
+        #self.conn.close()
 
                             
