@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>{% block title %}{% endblock %} - Flask Todo Demo</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='todo/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='todo/app.css') }}">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="mask-icon" href="/favicon.svg" color="#4A90E2">
     <meta name="viewport" content="width:device-width,initial-scale=1.0,user-scalable=no">
@@ -18,7 +18,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url_for('index') }}">
+          <a class="navbar-brand" href="#">
             <img alt="LeanTodo" title="LeanTodo" src="{{ url_for('static', filename='leantodo.svg') }}">
           </a>
         </div>
@@ -26,7 +26,7 @@
           <ul class="nav navbar-nav">
             {% set active = active|default('todos') -%}
             <li {% if active == 'todos' %}class="active"{% endif %}><a href="{{ url_for('todos.show') }}">Todo List</a></li>
-            <li {% if active == 'help' %}class="active"{% endif %}><a href="{{ url_for('help') }}">说明</a></li>
+            <li {% if active == 'help' %}class="active"{% endif %}><a href="#">说明</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if g.user %}

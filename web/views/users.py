@@ -1,7 +1,6 @@
 # coding: utf-8
 
-from leancloud import User
-from leancloud import LeanCloudError
+
 from flask import Blueprint
 from flask import request
 from flask import redirect

@@ -1,3 +1,4 @@
+# coding: utf-8
 from flask import Flask, render_template, json, request,session,redirect,url_for,send_from_directory
 #from flask.ext.mysql import MySQL
 from werkzeug import generate_password_hash, check_password_hash
@@ -6,9 +7,18 @@ import hashlib
 from tools.Predict import *
 
 
+from views.todos import todos_view
+from views.users import users_view
+
+
 mysql = MysqlBase('python')
 app = Flask(__name__)
 app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
+
+
+
+app.register_blueprint(todos_view, url_prefix='/todos')
+app.register_blueprint(users_view, url_prefix='/users')
 
 @app.route('/')
 @app.route('/showHome')

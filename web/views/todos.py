@@ -1,10 +1,5 @@
 # coding: utf-8
 
-from leancloud import Object
-from leancloud import User
-from leancloud import Query
-from leancloud import ACL
-from leancloud import LeanCloudError
 from flask import Blueprint
 from flask import request
 from flask import redirect
@@ -13,7 +8,7 @@ from flask import render_template
 from flask import flash
 
 
-class Todo(Object):
+class Todo():
     pass
 
 todos_view = Blueprint('todos', __name__)
@@ -29,8 +24,8 @@ def show():
         flash('无法查看已删除的 Todo')
         status = PLANNED
     try:
-        todos = Query(Todo).add_descending('createdAt').equal_to('status', status).find()
-    except LeanCloudError as e:
+        todos = [{'content':'11','status':'111'},{'content':'222','status':'111'}]
+    except Exception as e:
         todos = []
         flash(e.error)
     return render_template('todos.html', todos=todos, status=status)
@@ -45,10 +40,10 @@ def add():
     todo.set('status', PLANNED)
     author = User.get_current()
     if author:
-        todo.set('author', author)  # 关联 todo 的作者
+        print todo
     try:
         todo.save()
-    except LeanCloudError as e:
+    except Exception as e:
         flash(e.error)
     return redirect(url_for('todos.show'))
 
@@ -61,7 +56,7 @@ def delete(todo_id):
     todo.set('status', TRASHED)
     try:
         todo.save()
-    except LeanCloudError as e:
+    except Exception as e:
         flash(e.error)
     return redirect(url_for('todos.show', status=status))
 
@@ -74,7 +69,7 @@ def done(todo_id):
     todo.set('status', COMPLETED)
     try:
         todo.save()
-    except LeanCloudError as e:
+    except Exception as e:
         flash(e.error)
     return redirect(url_for('todos.show', status=status))
 
@@ -87,6 +82,6 @@ def undone(todo_id):
     todo.set('status', PLANNED)
     try:
         todo.save()
-    except LeanCloudError as e:
+    except Exception as e:
         flash(e.error)
     return redirect(url_for('todos.show', status=status))
