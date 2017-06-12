@@ -46,7 +46,7 @@ def process_article(article,link):
     
     sql=''
     count=count+1
-    if count%20==0:
+    if count%10==0:
         db.connect()
     title = title.replace("\r", u'')
     body = body.replace("\n", u'')

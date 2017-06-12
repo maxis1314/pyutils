@@ -160,6 +160,7 @@ class CrawlerBase:
             page_url = oz_url % str(page)
             self.qinglog.info('get page:%s' % page_url)
             page_html = self.get_html(page_url)
+            self.qinglog.info('done')
             
             if page_html is None:
                 self.qinglog.info('%s is None' % page_url)
@@ -176,8 +177,9 @@ class CrawlerBase:
                 for link in links:
                     #article_url = '%s/%s.html' % (oz_url, link)
                     article_url = link
-                    print link
+                    self.qinglog.info( 'get_html: %s' % link)
                     article_page = self.get_html(article_url)
+                    self.qinglog.info( 'done get')
                     if article_page is None:
                         self.qinglog.info('%s is None' % article_url)
                         page = page + 1
