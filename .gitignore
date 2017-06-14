@@ -3,3 +3,4 @@
 *.csv
 /ml/bayes/temp
 /crawler/originSample
+/ml/bayes2/*.npy
