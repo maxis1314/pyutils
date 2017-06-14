@@ -6,9 +6,14 @@ from sklearn import svm
 import matplotlib.pyplot as plt  
 from sklearn.cluster   import KMeans  
 from scipy import sparse  
-  
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+
 #数据读入  
-data = np.loadtxt('2.txt')  
+data = np.loadtxt('1.txt')  
 x_p = data[:, :2] # 取前2列  
 y_p = data[:,  2] # 取前2列  
 x = (sparse.csc_matrix((data[:,2], x_p.T)).astype(float))[:, :].todense()  
@@ -16,8 +21,8 @@ nUser = x.shape[0]
   
 #可视化矩阵  
 pyplot.imshow(x, interpolation='nearest')  
-pyplot.xlabel('用户')  
-pyplot.ylabel('用户')  
+pyplot.xlabel('User')  
+pyplot.ylabel('User')  
 pyplot.xticks(range(nUser))  
 pyplot.yticks(range(nUser))  
 pyplot.show()  
