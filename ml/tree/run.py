@@ -22,9 +22,13 @@ y = np.zeros(labels.shape)
   
 ''''' 标签转换为0/1 '''  
 y[labels=='fat']=1  
+print 'x=',x
+print 'y=',y
   
 ''''' 拆分训练数据与测试数据 '''  
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 0.2)  
+
+print 'x_train=',x_train, x_test, y_train, y_test
   
 ''''' 使用信息熵作为划分标准，对决策树进行训练 '''  
 clf = tree.DecisionTreeClassifier(criterion='entropy')  
@@ -36,14 +40,13 @@ with open("tree.dot", 'w') as f:
     f = tree.export_graphviz(clf, out_file=f)  
       
 ''''' 系数反映每个特征的影响力。越大表示该特征在分类中起到的作用越大 '''  
-print(clf.feature_importances_)  
+print 'feature_importances_=',clf.feature_importances_
   
 '''''测试结果的打印'''  
 answer = clf.predict(x_train)  
-print(x_train)  
-print(answer)  
-print(y_train)  
-print(np.mean( answer == y_train))  
+print 'predict=',answer 
+print 'real   =',y_train
+print 'rate=',(np.mean( answer == y_train))  
   
 '''''准确率与召回率'''  
 precision, recall, thresholds = precision_recall_curve(y_train, clf.predict(x_train))  
