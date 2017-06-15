@@ -5,7 +5,7 @@ from werkzeug import generate_password_hash, check_password_hash
 from tools.MysqlBase import *
 import hashlib
 from tools.Predict import *
-
+import subprocess
 
 from views.todos import todos_view
 from views.users import users_view
@@ -195,6 +195,25 @@ def signUp():
 @app.route('/favicon.ico')
 def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
+
+
+
+@app.route('/crawler/<todo_id>')
+def crawler(todo_id):
+    list = mysql.query('select * from bloglist where id=%s'%todo_id)
+    if len(list)>0:
+        randInx = int(len(list)*random.random())
+        list=[list[randInx]]
+        for i in list:
+            if i[1] == 'cnblog':
+                subprocess.Popen(u'python F:/git/pyutils/crawler/cnblog.py '+i[2],shell=True)         
+            elif i[1] == 'csdnblog':
+                subprocess.Popen(u'python F:/git/pyutils/crawler/csdnblog.py '+i[2],shell=True)
+        mysql.execute('update  bloglist set flag = 1 where id =%d' % (list[0][0]))
+        print 'update  bloglist set flag = 1 where id =%d' % (list[0][0])            
+
+    return json.dumps({'error':todo_id})
+
     
 if __name__ == "__main__":
     app.run(port=5000,debug=True)
