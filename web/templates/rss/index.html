@@ -6,7 +6,7 @@
 .highlight { background-color: yellow }
 </style>
   <div class="page-header">
-    <h1>RSS [<a href="{{ url_for('rss.sync')}}">sync</a>]</h1>
+    <h1>RSS [<a href="{{ url_for('rss.sync')}}">sync(<span id=num>0</span>)</a>]</h1>
   </div>
   <form action="{{ url_for('rss.index')}}" method="post">
     <div class="input-group">
@@ -37,10 +37,34 @@
 </table>
  
 <script>
-$(function(){
+
+
+function test(){
+    $.ajax({
+        url: '{{ url_for('rss.donerss')}}',
+        data: $('form').serialize(),
+        type: 'GET',
+        success: function(response){
+            var json_parsed = $.parseJSON(response);            
+            console.log(json_parsed.num);
+            console.log(json_parsed.done);
+            $('#num').html(json_parsed.num) 
+            if(json_parsed.num == json_parsed.done){
+                clearInterval(ttt);        
+            }
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+ttt = setInterval(test,1000);
     
-}); 
+//setTimeout(test(),1000);
+
+
 </script>
+
 {% endblock %}
 
 
