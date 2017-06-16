@@ -50,12 +50,12 @@ def donerss():
 def index():
     #thread.start_new_thread(timer, (1,1)) 
     if request.method == 'GET':       
-        feeds = mysql.query_h('select * from rss order by id desc')     
+        feeds = mysql.query_h('select * from rss order by id desc limit 100')     
         return render_template('rss/index.html',feeds = feeds,active='rss')        
     if request.method == 'POST':
         _key = request.form['key']
         print _key
-        feeds = mysql.query_h('select * from rss where title like \'%'+_key+u'%\' or body like \'%'+_key+u'%\' order by id desc')     
+        feeds = mysql.query_h('select * from rss where title like \'%'+_key+u'%\' or body like \'%'+_key+u'%\' order by id desc limit 100')     
         return render_template('rss/index.html',feeds = feeds,key=_key)
         
 @rss_view.route('/sync')
