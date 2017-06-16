@@ -12,17 +12,16 @@
             <th>Title</th>
             <th>Summary</th>
             <th>Link</th>
-            <th>DATE</th>
+            
         </tr>
     </thead>
     <tbody>
         {% for feed in feeds %}
         <tr>
             <td>{{ feed.get('title') }}</td>
-            <td>{{ feed.get('body') }}</td>
-            <td>{{ feed.get('link') }} </td>
-            
-            <td>{{ feed.get('dt') }}</td>
+            <td>{{ feed.get('body') }} -- {{ feed.get('dt') }}</td>
+            <td><a href='{{ feed.get('link') }}' target=_blank>Link</a> </td>
+
         </tr>
         {% endfor %}        
     </tbody>

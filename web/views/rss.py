@@ -29,7 +29,8 @@ def sync():
     mysql.execute('delete from rss')
     feeds = mysql.query_h('select * from feed')     
     for url in feeds:
-        feed = feedparser.parse(url['url']) 
-        for item in feed['items']:
-            mysql.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',(item.get('date'),item.get('link'), item.get('title'), item.get('summary')))
+        print url
+        feed = feedparser.parse(url['url'])         
+        for item in feed['items']:            
+            mysql.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',(item.get('published'),item.get('link'), item.get('title'), item.get('summary')))
     return redirect(url_for('rss.index'))
