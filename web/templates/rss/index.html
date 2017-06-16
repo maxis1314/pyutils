@@ -2,31 +2,35 @@
 {% set active = 'rss' -%}
 {% block title %}todo 列表{% endblock %}
 {% block content %}
+<style>
+.highlight { background-color: yellow }
+</style>
   <div class="page-header">
     <h1>RSS [<a href="{{ url_for('rss.sync')}}">sync</a>]</h1>
   </div>
-  
-  <table data-toggle="table" class="table table-striped table-bordered table-hover table-condensed">
+ <div id=highlight-plugin> 
+  <table id=table data-toggle="table" class="table table-striped table-bordered table-hover table-condensed">
     <thead>
         <tr>
             <th>Title</th>
             <th>Summary</th>
-            <th>Link</th>
-            
         </tr>
     </thead>
     <tbody>
         {% for feed in feeds %}
         <tr>
-            <td>{{ feed.get('title') }}</td>
+            <td>{{ feed.get('id') }}. <a href='{{ feed.get('link') }}' target=_blank>{{ feed.get('title') }}</a></td>
             <td>{{ feed.get('body') }} -- {{ feed.get('dt') }}</td>
-            <td><a href='{{ feed.get('link') }}' target=_blank>Link</a> </td>
-
         </tr>
         {% endfor %}        
     </tbody>
 </table>
- 
- 
- 
+</div>
+<script>
+$(function(){
+    
+}); 
+</script>
 {% endblock %}
+
+

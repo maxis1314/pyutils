@@ -26,7 +26,7 @@ def index():
         
 @rss_view.route('/sync')
 def sync():
-    mysql.execute('delete from rss')
+    #mysql.execute('delete from rss')
     feeds = mysql.query_h('select * from feed')     
     for url in feeds:
         print url
