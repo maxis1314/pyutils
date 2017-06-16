@@ -21,15 +21,16 @@
   <table id=table data-toggle="table" class="table table-striped table-bordered table-hover table-condensed">
     <thead>
         <tr>
-            <th>Title</th>
+             
             <th>Summary</th>
         </tr>
     </thead>
     <tbody>
         {% for feed in feeds %}
         <tr>
-            <td>{{ feed.get('id') }}. <a href='{{ feed.get('link') }}' target=_blank>{{ feed.get('title') }}</a></td>
-            <td>{{ feed.get('body') }} -- {{ feed.get('dt') }}</td>
+             
+            <td>【{{ feed.get('id') }}】<a href='{{ feed.get('link') }}' target=_blank>{{ feed.get('title') }}</a><br>
+            {{ feed.get('body') }} -- {{ feed.get('dt') }}</td>
         </tr>
         {% endfor %}        
     </tbody>
