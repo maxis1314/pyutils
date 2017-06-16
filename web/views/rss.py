@@ -16,10 +16,10 @@ rss_view = Blueprint('rss', __name__)
 
 
 @rss_view.route('/index', methods=['GET', 'POST'])
-def register():
+def index():
     if request.method == 'GET':       
         feed = feedparser.parse('http://feed.cnblogs.com/blog/u/161528/rss')        
-        return render_template('rss/index.html',feeds = feed['items'])
+        return render_template('rss/index.html',feeds = feed['items'],active='rss')
         
     if request.method == 'POST':        
         return redirect(url_for('todos.show'))
