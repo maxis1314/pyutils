@@ -29,7 +29,7 @@
         {% for feed in feeds %}
         <tr>
              
-            <td>【{{ feed.get('id') }}】<a href='{{ feed.get('link') }}' target=_blank>{{ feed.get('title') }}</a><br>
+            <td style='word-wrap:break-word;width:400px'>【{{ feed.get('id') }}】<a href='{{ feed.get('link') }}' target=_blank>{{ feed.get('title') }}</a><br>
             {{ feed.get('body') }} -- {{ feed.get('dt') }}</td>
         </tr>
         {% endfor %}        

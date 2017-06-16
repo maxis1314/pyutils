@@ -13,7 +13,7 @@ import feedparser
 mysql = MysqlBase('python')
 
 rss_view = Blueprint('rss', __name__)
-
+import re 
 
 @rss_view.route('/index', methods=['GET', 'POST'])
 def index():
@@ -33,6 +33,8 @@ def sync():
     for url in feeds:
         print url
         feed = feedparser.parse(url['url'])         
-        for item in feed['items']:            
-            mysql.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',(item.get('published'),item.get('link'), item.get('title'), item.get('summary')))
+        for item in feed['items']: 
+            body = item.get('summary')
+            body=re.sub('<[^>]*?>','',body)
+            mysql.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',(item.get('published'),item.get('link'), item.get('title'), body))
     return redirect(url_for('rss.index'))
