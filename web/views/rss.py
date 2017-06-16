@@ -24,7 +24,7 @@ def index():
         _key = request.form['key']
         print _key
         feeds = mysql.query_h('select * from rss where title like \'%'+_key+u'%\' or body like \'%'+_key+u'%\' order by id desc')     
-        return render_template('rss/index.html',feeds = feeds,active='rss')
+        return render_template('rss/index.html',feeds = feeds,key=_key)
         
 @rss_view.route('/sync')
 def sync():

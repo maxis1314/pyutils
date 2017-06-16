@@ -10,7 +10,7 @@
   </div>
   <form action="{{ url_for('rss.index')}}" method="post">
     <div class="input-group">
-      <input id="todo-content" required class="form-control input-lg" type="text" name="key" placeholder="关键字" />
+      <input id="todo-content" required class="form-control input-lg" type="text" name="key" placeholder="关键字" value='{{key}}'/>
       <span class="input-group-btn">
         <button class="btn btn-success btn-lg" type="button" onclick=submit()><span class="glyphicon glyphicon-chevron-right"></span></button>
       </span>
