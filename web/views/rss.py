@@ -27,6 +27,7 @@ def timer(no, interval):
 def sync_rss(no, interval):
     db = MysqlBase('python')
     db.execute('update feed set flag=0') 
+    db.execute('update rss set flag=1') 
     feeds = db.query_h('select * from feed')    
     for url in feeds:
         print url
@@ -49,9 +50,12 @@ def donerss():
 @rss_view.route('/index', methods=['GET', 'POST'])
 def index():
     #thread.start_new_thread(timer, (1,1)) 
+    status = int(request.args.get('status', 0))
+    if status != 0:
+        status = 1
     if request.method == 'GET':       
-        feeds = mysql.query_h('select * from rss order by id desc limit 100')     
-        return render_template('rss/index.html',feeds = feeds,active='rss')        
+        feeds = mysql.query_h('select * from rss where flag=%d order by id desc limit 100'%status)     
+        return render_template('rss/index.html',feeds = feeds,active='rss', status=status)        
     if request.method == 'POST':
         _key = request.form['key']
         print _key

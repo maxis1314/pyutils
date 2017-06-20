@@ -17,6 +17,10 @@
     </div>
   </form><br>
   
+  <div class="btn-group todo-category-switch">
+    <a class="btn btn-default{% if status == 0 %} active{% endif %}" href="{{ url_for('rss.index') }}">未读</a>
+    <a class="btn btn-default{% if status == 1 %} active{% endif %}" href="{{ url_for('rss.index', status=1) }}">已读</a>
+    </div>
   
   <table id=table data-toggle="table" class="table table-striped table-bordered table-hover table-condensed">
     <thead>
