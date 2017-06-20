@@ -57,7 +57,7 @@ function test(){
             if(json_parsed.num == json_parsed.done){
                 clearInterval(ttt);
                 if(count>1){
-                    window.location='{{ url_for('rss.index')}}';
+                    window.location='{{ url_for('rss.index', status=0)}}';
                 }
             }
         },
