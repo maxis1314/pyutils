@@ -11,8 +11,10 @@ from views.todos import todos_view
 from views.users import users_view
 from views.rss import rss_view
 
+from apps import app,apis
+
 mysql = MysqlBase('python')
-app = Flask(__name__)
+
 app.secret_key = 'F12Zr47j\3yX R~X@H!jmM]Lwf/,?KT'
 
 
