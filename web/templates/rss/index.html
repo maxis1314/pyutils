@@ -42,7 +42,7 @@
 
 <form id=form>
 RSS URL:<input id=url type=text name=url>
-<input type=hidden name=flag value=0>
+<input type=hidden name=flag value=1>
 </form>
 <button class="btn btn-medium btn-primary btn-block" type="button" onclick='addfeed()'>Add Feed</button>
 <br>
@@ -55,18 +55,20 @@ RSS URL:<input id=url type=text name=url>
 refreshfeed();
 
 function deletefeed(id){
-    $.ajax({
-        url: '/api/v1.0/feed/'+id,
-        data: $('#form').serializeArray(),//serialize(),
-        type: 'DELETE',
-        success: function(data){            
-            console.log(data); 
-            refreshfeed();            
-        },
-        error: function(error){
-            console.log(error);
-        }
-    });
+    if(confirm('Are your sure to delete?')){
+        $.ajax({
+            url: '/api/v1.0/feed/'+id,
+            data: $('#form').serializeArray(),//serialize(),
+            type: 'DELETE',
+            success: function(data){            
+                console.log(data); 
+                refreshfeed();            
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
 }
 
 function refreshfeed(){
