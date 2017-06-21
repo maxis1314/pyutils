@@ -47,13 +47,27 @@ RSS URL:<input id=url type=text name=url>
 <button class="btn btn-medium btn-primary btn-block" type="button" onclick='addfeed()'>Add Feed</button>
 <br>
 <table id="tb" border="1">
-<tr><td>b</td><td>c</td></tr>
+<tr><td>url</td><td>flag</td><td>op</td></tr>
 </table>
 
 <script>
 
 refreshfeed();
 
+function deletefeed(id){
+    $.ajax({
+        url: '/api/v1.0/feed/'+id,
+        data: $('#form').serializeArray(),//serialize(),
+        type: 'DELETE',
+        success: function(data){            
+            console.log(data); 
+            refreshfeed();            
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
 
 function refreshfeed(){
     $.ajax({
@@ -64,7 +78,7 @@ function refreshfeed(){
             console.log(data); 
             var tb = document.getElementById("tb");
             //删除原先数据，2 为保留表头，值为表头行数减1
-            for (var n = tb.rows.length - 1; n >= 0; n--) {
+            for (var n = tb.rows.length - 1; n >= 1; n--) {
                 tb.deleteRow(n);
             }
             for (var i = 0; i < data.feeds.length; i++) {
@@ -74,6 +88,8 @@ function refreshfeed(){
                 c1.innerHTML = data.feeds[i].url;
                 var c2 = row.insertCell(1);
                 c2.innerHTML = data.feeds[i].flag;
+                var c3 = row.insertCell(2);
+                c3.innerHTML = '<button onclick="deletefeed('+data.feeds[i].id+')">Delete</button>';
             }
             
         },
@@ -90,7 +106,8 @@ function addfeed(){
         type: 'POST',
         success: function(response){  
             $('#url').val('');
-            console.log(response);                
+            console.log(response);  
+            refreshfeed()
         },
         error: function(error){
             console.log(error);
