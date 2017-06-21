@@ -39,8 +39,64 @@
         {% endfor %}        
     </tbody>
 </table>
- 
+
+<form id=form>
+RSS URL:<input id=url type=text name=url>
+<input type=hidden name=flag value=0>
+</form>
+<button class="btn btn-medium btn-primary btn-block" type="button" onclick='addfeed()'>Add Feed</button>
+<br>
+<table id="tb" border="1">
+<tr><td>b</td><td>c</td></tr>
+</table>
+
 <script>
+
+refreshfeed();
+
+
+function refreshfeed(){
+    $.ajax({
+        url: '/api/v1.0/feeds',
+        data: $('#form').serializeArray(),//serialize(),
+        type: 'GET',
+        success: function(data){            
+            console.log(data); 
+            var tb = document.getElementById("tb");
+            //删除原先数据，2 为保留表头，值为表头行数减1
+            for (var n = tb.rows.length - 1; n >= 0; n--) {
+                tb.deleteRow(n);
+            }
+            for (var i = 0; i < data.feeds.length; i++) {
+                console.log(data[i])
+                var row = tb.insertRow(tb.rows.length);
+                var c1 = row.insertCell(0);
+                c1.innerHTML = data.feeds[i].url;
+                var c2 = row.insertCell(1);
+                c2.innerHTML = data.feeds[i].flag;
+            }
+            
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });
+}
+
+function addfeed(){		
+    $.ajax({
+        url: '/api/v1.0/feeds',
+        data: $('#form').serializeArray(),//serialize(),
+        type: 'POST',
+        success: function(response){  
+            $('#url').val('');
+            console.log(response);                
+        },
+        error: function(error){
+            console.log(error);
+        }
+    });    
+}
 
 count=0
 function test(){
@@ -69,6 +125,9 @@ function test(){
 ttt = setInterval(test,1000);
     
 //setTimeout(test(),1000);
+
+
+
 
 
 </script>

@@ -19,4 +19,4 @@ class Feed(db.Model):
         self.flag = flag
 
     def __repr__(self):
-        return "<Task %r>" % self.name
+        return "<Task %r>" % self.url

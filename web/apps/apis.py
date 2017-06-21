@@ -51,8 +51,8 @@ class FeedList(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument("url", type=unicode,
-                                   required=True, help="No task name provided", location="json")
-        self.reqparse.add_argument("flag", type=int, required=True, location="json")
+                                   required=True, help="No task url provided", location="form")
+        self.reqparse.add_argument("flag", type=int, required=True, location="form")
         super(FeedList, self).__init__()
 
         self.representations = {
@@ -65,7 +65,7 @@ class FeedList(Resource):
         method to get task list
         '''
         feeds = models.Feed.query.all()
-        return {"tasks": [marshal(feed, FEED_FIELDS) for feed in feeds]}
+        return {"feeds": [marshal(feed, FEED_FIELDS) for feed in feeds]}
 
     def post(self):
         '''
@@ -77,10 +77,25 @@ class FeedList(Resource):
         db.session.add(feed)
         db.session.commit()
 
-        return {"task": marshal(feed, TASK_FIELDS)}, 201
+        return {"feed": marshal(feed, FEED_FIELDS)}, 201
+        
+    
+class Feed(Resource):
+    def get(self, feed_id):
+        '''
+        method to delete task by task id
+        '''
+        feed = models.Feed.query.filter_by(id=feed_id).first()
+        if not feed:
+            abort(404)
 
-
+        db.session.delete(feed)
+        db.session.commit()
+        return {"feed": feed.id}
  
 api.add_resource(FeedList,
                  "/api/v1.0/feeds",
-                 endpoint="ep_notes")
+                 endpoint="ep_feeds")
+api.add_resource(Feed,
+                 "/api/v1.0/feed/<int:feed_id>",
+                 endpoint="ep_feed")
