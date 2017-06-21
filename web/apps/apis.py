@@ -83,6 +83,16 @@ class FeedList(Resource):
 class Feed(Resource):
     def get(self, feed_id):
         '''
+        method to get task info by task id
+        '''
+        task = models.Feed.query.filter_by(id=feed_id).first()
+
+        if not task:
+            abort(404)
+
+        return {"feed": marshal(task, FEED_FIELDS)}
+    def delete(self, feed_id):
+        '''
         method to delete task by task id
         '''
         feed = models.Feed.query.filter_by(id=feed_id).first()
