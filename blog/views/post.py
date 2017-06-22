@@ -54,7 +54,7 @@ def show_post(pid):
     if not post: abort(404)
     replys = db.query(Reply).filter(Reply.pid == pid).all()
     return render_template("post.html", post=post, replys=replys, \
-            formatDate=formatDate, formatDate2=formatDate2, getAvatar=getAvatar, replyer=replyer)
+            formatDate=formatDate, formatDate2=formatDate2, getAvatar=getAvatar, replyer=replyer,current_user=True)
 
 
 @posts.route('/archive')
@@ -66,7 +66,8 @@ def list_archive(page = 1):
     except ValueError: 
         page = 1
     #page = int(page)
-    if page < 1: abort(404)
+    if page < 1: 
+        page=1#abort(404)
     count = db.query(Post).count()
     print "count=",count
     page_count = (count + config.archive_paged - 1) // config.archive_paged
@@ -118,3 +119,12 @@ def edit_post(pid):
         return redirect("/post/%d" % (int(pid)))
     else:
         return render_template("postedit.html", error=u"标题或内容不能为空。",getAvatar=getAvatar)
+
+@posts.route('/delete/<pid>',methods=['GET', 'POST'])
+def delete_post(pid):
+    feed = db.query(Post).filter_by(id=pid).first()
+    if not feed:
+        abort(404)
+    db.delete(feed)
+    db.commit()
+    return redirect("/")
