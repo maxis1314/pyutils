@@ -17,7 +17,7 @@
           <li><a href="/archive">文章列表</a></li>
         </ul>
         {% if 'user' in session %}
-        <ul class="nav pull-right">
+        <ul class="nav ">
           <li class="dropdown" id="user_menu">
             <a href="#user_menu" class="dropdown-toggle" data-toggle="dropdown">
               <b class="caret">{{config['ADMIN_USERNAME']}}</b>
@@ -31,7 +31,7 @@
           </li>
         </ul>
         {% else %}
-        <ul class="nav pull-right">
+        <ul class="nav ">
           <li>
               <a href="/login">登录</a>
           </li>
