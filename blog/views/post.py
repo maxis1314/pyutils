@@ -120,11 +120,11 @@ def edit_post(pid):
     else:
         return render_template("postedit.html", error=u"标题或内容不能为空。",getAvatar=getAvatar)
 
-@posts.route('/delete/<pid>',methods=['GET', 'POST'])
+@posts.route('/post/delete/<pid>',methods=['GET', 'POST'])
 def delete_post(pid):
     feed = db.query(Post).filter_by(id=pid).first()
     if not feed:
         abort(404)
     db.delete(feed)
     db.commit()
-    return redirect("/")
+    return redirect("/archive")
