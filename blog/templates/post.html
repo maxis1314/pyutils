@@ -147,7 +147,7 @@
         <span class="gray little"> 楼，</span>
         <span class="gray little">{{ formatDate(reply.created_date) }}</span>
         
-        <span class="gray little"><a href="/reply/delete/{{ reply.id }}">del</a></span>
+        <span class="gray little"><a href="/reply/delete/{{ post.id }}/{{ reply.id }}">删除</a></span>
       </div>
       <div class="reply_icon">
         <a class="at" href="#;"><img src="{{ url_for('static',filename='img/reply.png') }}"></a>

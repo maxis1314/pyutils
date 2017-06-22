@@ -43,11 +43,11 @@ def add_reply(pid):
     base.replyerSet(name, email, website)
     return redirect("/post/%d" % (int(pid)))
     
-@reply.route('/reply/delete/<pid>',methods=['GET'])
-def delete_reply(pid):
-    feed = db.query(Reply).filter_by(id=pid).first()
+@reply.route('/reply/delete/<pid>/<rid>',methods=['GET'])
+def delete_reply(pid,rid):
+    feed = db.query(Reply).filter_by(id=rid).first()
     if not feed:
         abort(404)
     db.delete(feed)
     db.commit()
-    return redirect("/archive")
+    return redirect(u'/post/'+pid)
