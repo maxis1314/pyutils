@@ -29,7 +29,14 @@ CREATE TABLE  `python`.`feed` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `flag` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `python`.`feed_tag`;
+CREATE TABLE  `python`.`feed_tag` (
+  `feed_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `tag_id` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `Index_2` (`feed_id`,`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `python`.`rss`;
 CREATE TABLE  `python`.`rss` (
@@ -38,10 +45,19 @@ CREATE TABLE  `python`.`rss` (
   `dt` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `title` varchar(200) COLLATE utf8_bin DEFAULT NULL,
   `body` text COLLATE utf8_bin,
+  `flag` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `link` (`link`),
   KEY `Index_3` (`dt`)
-) ENGINE=InnoDB AUTO_INCREMENT=5607 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10797 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+DROP TABLE IF EXISTS `python`.`tags`;
+CREATE TABLE  `python`.`tags` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL DEFAULT '',
+  `feed_id` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `python`.`tbl_user`;
 CREATE TABLE  `python`.`tbl_user` (
@@ -67,4 +83,4 @@ CREATE TABLE  `python`.`todos` (
   `status` int(11) NOT NULL DEFAULT '0',
   `uid` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
