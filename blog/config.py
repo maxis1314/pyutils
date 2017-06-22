@@ -9,7 +9,7 @@ _DBNAME = "flaskblog" # 数据库名称
 #config
 SECRET_KEY = 'flaskblog'
 BLOG_TITLE = 'My Blog'
-BLOG_URL = 'http://localhost:5000/'
+BLOG_URL = 'http://localhost:5001/'
 BLOG_NAME = 'Blog'
 
 #admin info
@@ -25,6 +25,6 @@ rec.url = 'http://localhost:5000/'
 rec.paged = 8
 rec.archive_paged = 20
 rec.admin_username = 'admin'
-rec.admin_email = ''
+rec.admin_email = 'admin@admin.com'
 rec.admin_password = '1'
 rec.default_timezone = "Asia/Shanghai"
