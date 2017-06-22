@@ -128,7 +128,8 @@ function test(){
             var json_parsed = $.parseJSON(response);            
             console.log(json_parsed.num);
             console.log(json_parsed.done+'/'+json_parsed.num);
-            $('#num').html(json_parsed.done+'/'+json_parsed.num) 
+            $('#num').html(json_parsed.done+'/'+json_parsed.num);
+            refreshfeed();
             if(json_parsed.num == json_parsed.done){
                 clearInterval(ttt);
                 if(count>1){

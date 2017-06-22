@@ -35,11 +35,16 @@ def output_xml(data, code, headers=None):
     resp.headers.extend(headers or {})
     return resp
 
+TAG_FIELDS = {
+    "id": fields.Integer,
+    "name": fields.String,
+}
 
 FEED_FIELDS = {
     "id": fields.Integer,
     "url": fields.String,
     "flag": fields.Integer,
+    "tags": fields.List(fields.Nested(TAG_FIELDS))
 } 
 
 class FeedList(Resource):
