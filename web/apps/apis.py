@@ -44,7 +44,8 @@ FEED_FIELDS = {
     "id": fields.Integer,
     "url": fields.String,
     "flag": fields.Integer,
-    "tags": fields.List(fields.Nested(TAG_FIELDS))
+    "tags": fields.List(fields.Nested(TAG_FIELDS)),
+    "tags2": fields.List(fields.Nested(TAG_FIELDS)),
 } 
 
 class FeedList(Resource):
