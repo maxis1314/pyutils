@@ -27,7 +27,7 @@ def login():
         base.currentUserSet(username)
         return redirect("/posts/")
     else:
-        flash('User name or password error')
+        flash('User name or password error','error')
         return redirect("/user/login")
 
 #class LogoutHandler(BaseHandler):
