@@ -35,7 +35,6 @@ def register_blueprints(app):
 
 register_blueprints(app)
 
-
 @app.route('/index')
 def index():
     return render_template('info.html',title='index')

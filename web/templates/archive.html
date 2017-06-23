@@ -18,7 +18,7 @@
     <a href="/posts/post/{{ post.id }}">{{ post.title }}</a><span class="time">< {{ formatDate2(post.created_date) }} ></span>
     {% if 'user' in session %}
       <a href="/posts/post/edit/{{post.id}}">编辑</a>
-      <a href="/posts/post/delete/{{post.id}}">删除</a>
+      <a href="/posts/post/delete/{{post.id}}"  onclick="return confirm('Are you sure?')">删除</a>
     {% endif%}
   </article>
   </li>
