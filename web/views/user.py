@@ -23,14 +23,17 @@ def login():
     username = request.form['username']
     password = request.form['password']
     if base.userAuth(username, password):
+        flash('You were successfully logged in')
         base.currentUserSet(username)
         return redirect("/posts/")
     else:
+        flash('User name or password error')
         return redirect("/user/login")
 
 #class LogoutHandler(BaseHandler):
 @user.route('/logout')
 def logout():
     session.pop('user',None)
+    flash('You were successfully logged out')
     return redirect('/user/login')
 
