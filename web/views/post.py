@@ -127,4 +127,4 @@ def delete_post(pid):
         abort(404)
     db.delete(feed)
     db.commit()
-    return redirect("/archive")
+    return redirect("/posts/archive")

@@ -29,7 +29,7 @@ CREATE TABLE  `python`.`feed` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `flag` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS `python`.`feed_tag`;
 CREATE TABLE  `python`.`feed_tag` (
@@ -37,6 +37,33 @@ CREATE TABLE  `python`.`feed_tag` (
   `tag_id` int(10) unsigned NOT NULL DEFAULT '0',
   UNIQUE KEY `Index_2` (`feed_id`,`tag_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `python`.`post`;
+CREATE TABLE  `python`.`post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(64) DEFAULT NULL,
+  `content` text,
+  `origin_content` text,
+  `created_date` int(11) DEFAULT NULL,
+  `update_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `python`.`reply`;
+CREATE TABLE  `python`.`reply` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) DEFAULT NULL,
+  `name` varchar(64) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `website` varchar(100) DEFAULT NULL,
+  `content` text,
+  `origin_content` text,
+  `created_date` int(11) DEFAULT NULL,
+  `update_date` int(11) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `ix_reply_pid` (`pid`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `python`.`rss`;
 CREATE TABLE  `python`.`rss` (
@@ -49,7 +76,7 @@ CREATE TABLE  `python`.`rss` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `link` (`link`),
   KEY `Index_3` (`dt`)
-) ENGINE=InnoDB AUTO_INCREMENT=10797 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=10628 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 DROP TABLE IF EXISTS `python`.`tags`;
 CREATE TABLE  `python`.`tags` (
