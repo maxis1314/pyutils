@@ -234,10 +234,12 @@ import sys
 mode = sys.argv[1]
 if mode == 'debug':
     app.run(port=5000,debug=True)
-else:  
+elif mode == 'gevnet':  
     from gevent.wsgi import WSGIServer
     http_server = WSGIServer(('', 5000), app)
     http_server.serve_forever()
+else:
+    app.run(port=5000,debug=True)
     
 if __name__ == "__main__":
     #app.run(port=5000,debug=True)
