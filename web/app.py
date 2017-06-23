@@ -231,13 +231,24 @@ def crawler(todo_id):
     return json.dumps({'error':todo_id})
 
 import sys
-mode = sys.argv[1]
+if len(sys.argv)>1:
+    mode = sys.argv[1]
+else:
+    mode = 'debug'
+    
 if mode == 'debug':
     app.run(port=5000,debug=True)
 elif mode == 'gevnet':  
     from gevent.wsgi import WSGIServer
     http_server = WSGIServer(('', 5000), app)
     http_server.serve_forever()
+elif mode == 'tornado':
+    from tornado.wsgi import WSGIContainer
+    from tornado.httpserver import HTTPServer
+    from tornado.ioloop import IOLoop
+    http_server = HTTPServer(WSGIContainer(app))
+    http_server.listen(5000)
+    IOLoop.instance().start()
 else:
     app.run(port=5000,debug=True)
     
