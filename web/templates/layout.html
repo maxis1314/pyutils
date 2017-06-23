@@ -28,7 +28,8 @@
           <ul class="nav navbar-nav">
             {% set active = active|default('todos') -%}
             <li {% if active == 'todos' %}class="active"{% endif %}><a href="{{ url_for('todos.show') }}">Todo List</a></li>
-            <li {% if active == 'help' %}class="active"{% endif %}><a href="/blogHome">Blog</a></li>
+            <li {% if active == 'help' %}class="active"{% endif %}><a href="/blogHome">Crawler</a></li>
+            <li {% if active == 'help' %}class="active"{% endif %}><a href="/posts/">Blog</a></li>
             <li {% if active == 'rss' %}class="active"{% endif %}><a href="{{ url_for('rss.index') }}">RSS</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
