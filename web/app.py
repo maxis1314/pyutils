@@ -230,16 +230,18 @@ def crawler(todo_id):
 
     return json.dumps({'error':todo_id})
 
-    
-"""
-from tornado.wsgi import WSGIContainer
-from tornado.httpserver import HTTPServer
-from tornado.ioloop import IOLoop
-
-http_server = HTTPServer(WSGIContainer(app))
-http_server.listen(5000)
-IOLoop.instance().start()
-"""
+import sys
+mode = sys.argv[1]
+if mode == 'debug':
+    app.run(port=5000,debug=True)
+else:  
+    from gevent.wsgi import WSGIServer
+    http_server = WSGIServer(('', 5000), app)
+    http_server.serve_forever()
     
 if __name__ == "__main__":
-    app.run(port=5000,debug=True)
+    #app.run(port=5000,debug=True)
+    print 12
+
+
+
