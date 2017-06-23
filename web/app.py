@@ -23,6 +23,19 @@ app.register_blueprint(todos_view, url_prefix='/todos')
 app.register_blueprint(users_view, url_prefix='/users')
 app.register_blueprint(rss_view, url_prefix='/rss')
 
+def register_blueprints(app):
+    # Prevents circular imports
+    from views import posts
+    from views import reply
+    from views import user
+    #from views import admin
+    app.register_blueprint(posts, url_prefix='/posts')
+    app.register_blueprint(reply, url_prefix='/reply')
+    app.register_blueprint(user, url_prefix='/user')
+
+register_blueprints(app)
+
+
 @app.route('/index')
 def index():
     return render_template('info.html',title='index')
