@@ -5,9 +5,10 @@ import config
 import sqlalchemy as sa
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session,sessionmaker
+from sqlalchemy.pool import NullPool
 
 config = config.rec()
-engine = sa.create_engine(config.database + '?charset=utf8')
+engine = sa.create_engine(config.database + '?charset=utf8',poolclass=NullPool)
 
 db_session = scoped_session(sessionmaker(bind=engine))
 

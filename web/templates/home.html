@@ -12,7 +12,7 @@
     </div>
     <div class="rcontent">
       <b><a class="name" href="{{ r.website }}">{{ r.name }}:</a></b>
-      <a href="/post/{{ r.pid }}">
+      <a href="/posts/post/{{ r.pid }}">
       {{ replyContent(r.origin_content)}}
       </a>
   </div>
@@ -50,7 +50,7 @@
   </div>
   {% endfor %}
   {% if page_count > 1 and page == 1 %}
-  <div class="morepage"><a href="/2">>> 更多文章</a></div>
+  <div class="morepage"><a href="/posts/2">>> 更多文章</a></div>
   {% elif page_count != 1 %}
     <div class="pagination">
       <ul>

@@ -12,6 +12,7 @@ import markdown
 from models import Post, Reply
 import base
 import sqlalchemy as sa
+import re
 
 config = config.rec()
 
@@ -77,7 +78,10 @@ def list_archive(page = 1):
              page_count=page_count, getAvatar=getAvatar)
 
 
-
+def mb_substr(s,start,length=None,encoding="UTF-8") : 
+    u_s = s.decode(encoding) 
+    return (u_s[start:(start+length)] if length else u_s[start:]).encode(encoding)
+    
 @posts.route('/post/add', methods=['GET', 'POST'])
 def add_post():
     if request.method == 'GET':
@@ -88,7 +92,10 @@ def add_post():
     title = request.form["post[title]"]
     origin_content = request.form["post[content]"]
     content = markdown.markdown(origin_content)
-    if title != '' and origin_content != '':
+    if origin_content != '':
+        if title == '':
+            title = mb_substr(origin_content,0,50)
+            print title
         db.add(Post(title=title, content=content,
             origin_content=origin_content))
         db.commit()
