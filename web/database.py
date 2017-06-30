@@ -11,7 +11,7 @@ from sqlalchemy import exc
 from sqlalchemy import select
 
 config = config.rec()
-engine = sa.create_engine(config.database + '?charset=utf8',  pool_recycle=3600)
+engine = sa.create_engine(config.database + '?charset=utf8',  poolclass=NullPool)
 
 
 @event.listens_for(engine, "engine_connect")
