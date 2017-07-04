@@ -28,12 +28,12 @@ def register_blueprints(app):
     from views import posts
     from views import reply
     from views import user
-    from views import ml
+    #from views import ml
     #from views import admin
     app.register_blueprint(posts, url_prefix='/posts')
     app.register_blueprint(reply, url_prefix='/reply')
     app.register_blueprint(user, url_prefix='/user')
-    app.register_blueprint(ml, url_prefix='/ml')
+    #app.register_blueprint(ml, url_prefix='/ml')
 
 register_blueprints(app)
 
