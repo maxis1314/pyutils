@@ -22,15 +22,15 @@ def login():
     
     username = request.form['username']
     password = request.form['password']
-    connection = pika.BlockingConnection(pika.ConnectionParameters(
-        host='localhost'))
-    channel = connection.channel()
-    channel.queue_declare(queue='hello')
-    channel.basic_publish(exchange='',
-                          routing_key='hello',
-                          body=u'u:'+username+' p:'+password)
-    print(" [x] Sent 'RABBITQUEUE'")
-    connection.close()
+    #connection = pika.BlockingConnection(pika.ConnectionParameters(
+    #    host='localhost'))
+    #channel = connection.channel()
+    #channel.queue_declare(queue='hello')
+    #channel.basic_publish(exchange='',
+    #                      routing_key='hello',
+    #                      body=u'u:'+username+' p:'+password)
+    #print(" [x] Sent 'RABBITQUEUE'")
+    #connection.close()
 
     if base.userAuth(username, password):
         flash('You were successfully logged in')

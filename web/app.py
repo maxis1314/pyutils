@@ -239,7 +239,7 @@ else:
     mode = 'debug'
     
 if mode == 'debug':
-    app.run(port=5000,debug=True)
+    app.run(port=5000,debug=True,host='0.0.0.0')
 elif mode == 'gevnet':  
     from gevent.wsgi import WSGIServer
     http_server = WSGIServer(('', 5000), app)
