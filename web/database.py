@@ -49,12 +49,13 @@ def ping_connection(connection, branch):
         # restore "close with result"
         connection.should_close_with_result = save_should_close_with_result
 
-db_session = scoped_session(sessionmaker(bind=engine))
-
 Base = declarative_base()
-Base.query = db_session.query_property()
-
-db = db_session 
+def get_db(engine):        
+    db_session = scoped_session(sessionmaker(bind=engine))    
+    Base.query = db_session.query_property()
+    return db_session
+    
+db = get_db(engine) 
 
 def init_db():
     import models
