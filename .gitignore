@@ -5,3 +5,4 @@
 /crawler/originSample
 /ml/bayes2/*.npy
 /tenforflow/use/model/*.pb
+/web/uploads

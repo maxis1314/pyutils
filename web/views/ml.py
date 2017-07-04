@@ -52,14 +52,14 @@ def classify_url():
         # not continue.
         logging.info('URL Image open error: %s', err)
         return render_template(
-            'index.html', has_result=True,
+            'ml_index.html', has_result=True,
             result=(False, 'Cannot open image from URL.')
         )
 
     logging.info('Image: %s', imageurl)
     result = app.clf.classify_image(image)
     return render_template(
-        'index.html', has_result=False, result=result, imagesrc=imageurl)
+        'ml_index.html', has_result=False, result=result, imagesrc=imageurl)
 
 
 @ml.route('/classify_upload', methods=['POST'])
@@ -86,7 +86,7 @@ def classify_upload():
 
     #result = app.clf.classify_image(image)
     return render_template(
-        'ml_index.html', has_result=False, result=None
+        'ml_index.html', has_result=True, result=(True, 'Upload successfully.')
     )
 
  
