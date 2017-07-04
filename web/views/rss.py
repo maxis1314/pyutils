@@ -25,7 +25,7 @@ def timer(no, interval):
         cnt+=1  
     thread.exit_thread()  
 
-def sync_rss(no, interval):
+def sync_rss2():
     db = MysqlBase('python')
     crawler = CrawlerBase()
     title,content = crawler.get_rss('http://www.itpub.net/talk/',u'<div class="t1"><a href="([^"]*)" target="_blank" >([^<]*)</a></div>',u'<div class="r" id="[^"]*">([^<]*)')
@@ -35,12 +35,22 @@ def sync_rss(no, interval):
         body = content[i]
         body=re.sub('<[^>]*?>','',body)
         db.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',('',title[i][0], title[i][1], body))
-            
-def xxx():    
+        
+    title,content = crawler.get_rss('http://www.itpub.net/talk/index.php?m=it&page=2',u'<div class="t1"><a href="([^"]*)" target="_blank" >([^<]*)</a></div>',u'<div class="r" id="[^"]*">([^<]*)')
+    print 'num=',len(title)  
+    print content
+    for i in range(0,len(title)): 
+        body = content[i]
+        body=re.sub('<[^>]*?>','',body)
+        db.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',('',title[i][0], title[i][1], body))
+
+        
+def sync_rss(no, interval):
     db = MysqlBase('python')
     db.execute('update feed set flag=0') 
     db.execute('update rss set flag=1') 
-    feeds = db.query_h('select * from feed')    
+    feeds = db.query_h('select * from feed')   
+    sync_rss2()    
     for url in feeds:
         print url
         feed = feedparser.parse(url['url']) 
@@ -51,6 +61,7 @@ def xxx():
             body = item.get('summary')
             body=re.sub('<[^>]*?>','',body)
             db.insert('insert ignore into rss(dt,link,title,body) values(%s,%s,%s,%s)',(item.get('published'),item.get('link'), item.get('title'), body))
+    
     thread.exit_thread()
     
 @rss_view.route('/donerss')   
