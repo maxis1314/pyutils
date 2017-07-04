@@ -199,4 +199,10 @@ class CrawlerBase:
 
         #self.conn.close()
 
-                            
+    def get_rss(self,url,titlep,contentp):
+        page=self.get_html(url)
+        linkpattern = re.compile(titlep, re.S | re.U)
+        titles = linkpattern.findall(page) 
+        linkpattern = re.compile(contentp, re.S | re.U)
+        content = linkpattern.findall(page) 
+        return (titles,content)        
