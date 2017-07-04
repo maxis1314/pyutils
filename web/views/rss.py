@@ -9,6 +9,7 @@ from flask import flash,session,json
 from tools.MysqlBase import *
 import hashlib
 import feedparser
+from tools.CrawlerBase import *
 
 mysql = MysqlBase('python')
 
@@ -25,6 +26,9 @@ def timer(no, interval):
     thread.exit_thread()  
 
 def sync_rss(no, interval):
+    crawler = CrawlerBase()
+    print crawler.get_html('http://baidu.com')
+    
     db = MysqlBase('python')
     db.execute('update feed set flag=0') 
     db.execute('update rss set flag=1') 
