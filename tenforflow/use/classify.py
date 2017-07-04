@@ -4,9 +4,10 @@ import tensorflow as tf
 import numpy as np
 import re
 import os
+import sys
 
 model_dir='model/'
-image='cat.jpg'
+image=sys.argv[1]#'cat.jpg'
 
 
 #将类别ID转换为人类易读的标签
@@ -66,7 +67,7 @@ class NodeLookup(object):
 #读取训练好的Inception-v3模型来创建graph
 def create_graph():
   with tf.gfile.FastGFile(os.path.join(
-      model_dir, 'classify_image_graph_def.pb'), 'rb') as f:
+      model_dir, 'tensorflow_inception_graph.pb'), 'rb') as f:
     graph_def = tf.GraphDef()
     graph_def.ParseFromString(f.read())
     tf.import_graph_def(graph_def, name='')
