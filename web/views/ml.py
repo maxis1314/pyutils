@@ -37,10 +37,9 @@ def index():
 @ml.route('/classify_url', methods=['GET'])
 def classify_url():    
     imageurl = request.args.get('imageurl', UPLOAD_FOLDER)
-    imagefile = request.files['imagefile']
     filename_ = str(time.time()).replace('[ |:]', '_') 
     filename = os.path.join(UPLOAD_FOLDER, filename_)+'.jpg'
-    urllib.urlretrieve(imgurl,filename)
+    urllib.urlretrieve(imageurl,filename)
     return render_template(
         'ml_index.html', has_result=False, result=predict(filename), imagesrc=imageurl)
 
