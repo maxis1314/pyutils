@@ -35,26 +35,14 @@ def index():
 
 
 @ml.route('/classify_url', methods=['GET'])
-def classify_url():
-    imageurl = request.args.get('imageurl', '')
-    try:
-        string_buffer = StringIO.StringIO(
-            urllib.urlopen(imageurl).read())
-        image = caffe.io.load_image(string_buffer)
-
-    except Exception as err:
-        # For any exception we encounter in reading the image, we will just
-        # not continue.
-        logging.info('URL Image open error: %s', err)
-        return render_template(
-            'ml_index.html', has_result=True,
-            result=(False, 'Cannot open image from URL.')
-        )
-
-    logging.info('Image: %s', imageurl)
-    result = app.clf.classify_image(image)
+def classify_url():    
+    imageurl = request.args.get('imageurl', UPLOAD_FOLDER)
+    imagefile = request.files['imagefile']
+    filename_ = str(time.time()).replace('[ |:]', '_') 
+    filename = os.path.join(UPLOAD_FOLDER, filename_)+'.jpg'
+    urllib.urlretrieve(imgurl,filename)
     return render_template(
-        'ml_index.html', has_result=False, result=result, imagesrc=imageurl)
+        'ml_index.html', has_result=False, result=predict(filename), imagesrc=imageurl)
 
 
 @ml.route('/classify_upload', methods=['POST'])

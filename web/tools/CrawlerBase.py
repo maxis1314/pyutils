@@ -49,7 +49,16 @@ class CrawlerBase:
         data = gziper.read() 
         return data
 
-                          
+    def get_file(url):
+        try:
+            request = urllib2.Request(url)
+            operate=opener.open(req)
+            data=operate.read()
+            return data
+        except BaseException, e:
+            print e
+            return None
+        
     def get_html(self,url):
         try:
             header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; rv:35.0) Gecko/20100101 Firefox/35.0',\
