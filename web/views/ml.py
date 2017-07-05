@@ -30,7 +30,8 @@ ALLOWED_IMAGE_EXTENSIONS = set(['png', 'bmp', 'jpg', 'jpe', 'jpeg', 'gif'])
 
 @ml.route('/')
 def index():
-    return render_template('ml_index.html', has_result=True,result = predict())
+    imag = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../tensorflow/use/cat.jpg')
+    return render_template('ml_index.html', has_result=True,result = predict(imag))
 
 
 @ml.route('/classify_url', methods=['GET'])
@@ -69,7 +70,7 @@ def classify_upload():
         imagefile.save(filename)
         logging.info('Saving to %s.', filename)
         #image = exifutil.open_oriented_im(filename)
-        image = Image.open(filename)
+        #image = Image.open(filename)
 
     except Exception as err:
         print 'Uploaded image open error: %s' % err
@@ -80,7 +81,7 @@ def classify_upload():
 
     #result = app.clf.classify_image(image)
     return render_template(
-        'ml_index.html', has_result=True, result=(True, 'Upload successfully.')
+        'ml_index.html', has_result=True, result=predict(filename)
     )
 
  
