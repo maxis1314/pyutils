@@ -41,7 +41,7 @@ def classify_url():
     filename = os.path.join(UPLOAD_FOLDER, filename_)+'.jpg'
     urllib.urlretrieve(imageurl,filename)
     return render_template(
-        'ml_index.html', has_result=False, result=predict(filename), imagesrc=imageurl)
+        'ml_index.html', has_result=True, result=predict(filename), imagesrc=imageurl)
 
 
 @ml.route('/classify_upload', methods=['POST'])
