@@ -28,16 +28,9 @@ REPO_DIRNAME = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/..
 UPLOAD_FOLDER = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../uploads')
 ALLOWED_IMAGE_EXTENSIONS = set(['png', 'bmp', 'jpg', 'jpe', 'jpeg', 'gif'])
 
-
-#class LoginHandler(BaseHandler):
-@ml.route('/login', methods=['GET', 'POST'])
-def login():
-    return redirect("/user/login")
- 
-
 @ml.route('/')
 def index():
-    return render_template('ml_index.html', has_result=False)
+    return render_template('ml_index.html', has_result=True,result = predict())
 
 
 @ml.route('/classify_url', methods=['GET'])

@@ -92,9 +92,12 @@ def predict():
     node_lookup = NodeLookup()
     #取出前5个概率最大的值（top-5)
     top_5 = predictions.argsort()[-5:][::-1]
+    result = []
     for node_id in top_5:
       human_string = node_lookup.id_to_string(node_id)
       score = predictions[node_id]
       print('%s (score = %.5f)' % (human_string, score))
+      result.append((human_string, score))
       
     sess.close()
+    return result
