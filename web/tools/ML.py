@@ -71,8 +71,10 @@ def create_graph():
     graph_def.ParseFromString(f.read())
     tf.import_graph_def(graph_def, name='')
 
-def predict():
-    image=os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../tensorflow/use/cat.jpg')
+def predict(path=None):
+    if path is None:
+        path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)) + '/../../tensorflow/use/cat.jpg')
+    image=os.path.abspath(path)
 
     #∂¡»°Õº∆¨
     image_data = tf.gfile.FastGFile(image, 'rb').read()
