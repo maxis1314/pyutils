@@ -82,7 +82,7 @@ def classify_upload():
 
     #result = app.clf.classify_image(image)
     return render_template(
-        'ml_index.html', has_result=True, result=predict(filename),imagesrc=u'/static/'+filename_
+        'ml_index.html', has_result=True, result=predict(filename),imagesrc=u'/static/uploads/'+filename_
     )
 
  
