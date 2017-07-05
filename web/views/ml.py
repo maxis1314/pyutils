@@ -67,6 +67,7 @@ def classify_upload():
             werkzeug.secure_filename(imagefile.filename)
         filename = os.path.join(UPLOAD_FOLDER, filename_)
         print filename
+        print filename_
         imagefile.save(filename)
         logging.info('Saving to %s.', filename)
         #image = exifutil.open_oriented_im(filename)
@@ -81,7 +82,7 @@ def classify_upload():
 
     #result = app.clf.classify_image(image)
     return render_template(
-        'ml_index.html', has_result=True, result=predict(filename)
+        'ml_index.html', has_result=True, result=predict(filename),imagesrc=u'/static/'+filename_
     )
 
  
