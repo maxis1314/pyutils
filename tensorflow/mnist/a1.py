@@ -111,11 +111,11 @@ class NeuralNet(object):
 def load_mnist(dataset="training_data", digits=np.arange(10), path="."):
  
     if dataset == "training_data":
-        fname_image = os.path.join(path, 'train-images-idx3-ubyte')
-        fname_label = os.path.join(path, 'train-labels-idx1-ubyte')
+        fname_image = os.path.join(path, 'train-images.idx3-ubyte')
+        fname_label = os.path.join(path, 'train-labels.idx1-ubyte')
     elif dataset == "testing_data":
-        fname_image = os.path.join(path, 't10k-images-idx3-ubyte')
-        fname_label = os.path.join(path, 't10k-labels-idx1-ubyte')
+        fname_image = os.path.join(path, 't10k-images.idx3-ubyte')
+        fname_label = os.path.join(path, 't10k-labels.idx1-ubyte')
     else:
         raise ValueError("dataset must be 'training_data' or 'testing_data'")
  
