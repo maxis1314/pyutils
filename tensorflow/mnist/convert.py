@@ -2,8 +2,9 @@
 from PIL import Image
 from tools.NeuralNet import *
 # 读取训练好的模型
+import sys
 
-img = Image.open('1.jpg').convert('L')
+img = Image.open(sys.argv[1]).convert('L')
 
 # resize的过程
 if img.size[0] != 28 or img.size[1] != 28:
