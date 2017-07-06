@@ -7,6 +7,7 @@ import os, struct
 import cPickle as pickle  
 from array import array as pyarray
 from numpy import append, array, int8, uint8, zeros
+import sys
  
 class NeuralNet(object):
  
@@ -101,12 +102,14 @@ class NeuralNet(object):
         pickle.dump(self.w_, f1, True)
         pickle.dump(self.b_, f1, True)   
         # 把_w和_b保存到文件(pickle)
+        f1.close()  
     def load(self):
         f2 = file('my.pkl', 'rb')
         self.sizes_ = pickle.load(f2)  
         self.num_layers_ = pickle.load(f2)  
         self.w_ = pickle.load(f2)  
-        self.b_ = pickle.load(f2)  
+        self.b_ = pickle.load(f2) 
+        f2.close()         
  
 def load_mnist(dataset="training_data", digits=np.arange(10), path="."):
  
@@ -168,15 +171,21 @@ if __name__ == '__main__':
     INPUT = 28*28
     OUTPUT = 10
     net = NeuralNet([INPUT, 40, OUTPUT])
- 
-    train_set = load_samples(dataset='training_data')
-    test_set = load_samples(dataset='testing_data')
- 
-    net.SGD(train_set, 13, 100, 3.0, test_data=test_set)
- 
+    test_set = load_samples(dataset='testing_data')  
+    if len(sys.argv)==1:        
+        train_set = load_samples(dataset='training_data')        
+        net.SGD(train_set, 13, 100, 3.0, test_data=test_set)
+        net.save()
+    else:        
+        net.load()
+    
     #准确率
+    
     correct = 0;
-    for test_feature in test_set:
-        if net.predict(test_feature[0]) == test_feature[1][0]:
+    for test_feature in test_set:        
+        predicted = net.predict(test_feature[0])
+        if predicted == test_feature[1][0]:
             correct += 1
-    print("准确率: ", correct/len(test_set))
+        else:
+            print "predict: "+str(predicted)+"actual: "+str(test_feature[1][0])
+    print("acurate:", correct/len(test_set))
