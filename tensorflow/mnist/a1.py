@@ -83,7 +83,7 @@ class NeuralNet(object):
                 print("Epoch {0} complete".format(j))
  
     def evaluate(self, test_data):
-        test_results = [(np.argmax(self.feedforward(x)), y) for (x, y) in test_data]
+        test_results = [(np.argmax(self.feedforward(x)), y[0]) for (x, y) in test_data]
         return sum(int(x == y) for (x, y) in test_results)
  
     def cost_derivative(self, output_activations, y):
@@ -187,5 +187,6 @@ if __name__ == '__main__':
         if predicted == test_feature[1][0]:
             correct += 1
         else:
-            print "predict: "+str(predicted)+"actual: "+str(test_feature[1][0])
-    print("acurate:", correct/len(test_set))
+            pass
+            #print "predict: "+str(predicted)+"actual: "+str(test_feature[1][0])
+    print("acurate:", 1.0*correct/len(test_set))
