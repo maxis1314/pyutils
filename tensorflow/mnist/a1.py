@@ -9,17 +9,17 @@ from numpy import append, array, int8, uint8, zeros
  
 class NeuralNet(object):
  
-    # ³õÊ¼»¯Éñ¾­ÍøÂç£¬sizesÊÇÉñ¾­ÍøÂçµÄ²ãÊıºÍÃ¿²ãÉñ¾­Ôª¸öÊı
+    # åˆå§‹åŒ–ç¥ç»ç½‘ç»œï¼Œsizesæ˜¯ç¥ç»ç½‘ç»œçš„å±‚æ•°å’Œæ¯å±‚ç¥ç»å…ƒä¸ªæ•°
     def __init__(self, sizes):
         self.sizes_ = sizes
-        self.num_layers_ = len(sizes)  # ²ãÊı
-        self.w_ = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]  # w_¡¢b_³õÊ¼»¯ÎªÕıÌ¬·Ö²¼Ëæ»úÊı
+        self.num_layers_ = len(sizes)  # å±‚æ•°
+        self.w_ = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]  # w_ã€b_åˆå§‹åŒ–ä¸ºæ­£æ€åˆ†å¸ƒéšæœºæ•°
         self.b_ = [np.random.randn(y, 1) for y in sizes[1:]]
  
-    # Sigmoidº¯Êı£¬SĞÍÇúÏß£¬
+    # Sigmoidå‡½æ•°ï¼ŒSå‹æ›²çº¿ï¼Œ
     def sigmoid(self, z):
         return 1.0/(1.0+np.exp(-z))
-    # Sigmoidº¯ÊıµÄµ¼º¯Êı
+    # Sigmoidå‡½æ•°çš„å¯¼å‡½æ•°
     def sigmoid_prime(self, z):
         return self.sigmoid(z)*(1-self.sigmoid(z))
  
@@ -64,7 +64,7 @@ class NeuralNet(object):
         self.w_ = [w-(eta/len(mini_batch))*nw for w, nw in zip(self.w_, nabla_w)]
         self.b_ = [b-(eta/len(mini_batch))*nb for b, nb in zip(self.b_, nabla_b)]
  
-    # training_dataÊÇÑµÁ·Êı¾İ(x, y);epochsÊÇÑµÁ·´ÎÊı;mini_batch_sizeÊÇÃ¿´ÎÑµÁ·Ñù±¾Êı;etaÊÇlearning rate
+    # training_dataæ˜¯è®­ç»ƒæ•°æ®(x, y);epochsæ˜¯è®­ç»ƒæ¬¡æ•°;mini_batch_sizeæ˜¯æ¯æ¬¡è®­ç»ƒæ ·æœ¬æ•°;etaæ˜¯learning rate
     def SGD(self, training_data, epochs, mini_batch_size, eta, test_data=None):
         if test_data:
             n_test = len(test_data)
@@ -87,14 +87,14 @@ class NeuralNet(object):
     def cost_derivative(self, output_activations, y):
         return (output_activations-y)
  
-    # Ô¤²â
+    # é¢„æµ‹
     def predict(self, data):
         value = self.feedforward(data)
         return value.tolist().index(max(value))
  
-    # ±£´æÑµÁ·Ä£ĞÍ
+    # ä¿å­˜è®­ç»ƒæ¨¡å‹
     def save(self):
-        pass  # °Ñ_wºÍ_b±£´æµ½ÎÄ¼ş(pickle)
+        pass  # æŠŠ_wå’Œ_bä¿å­˜åˆ°æ–‡ä»¶(pickle)
     def load(self):
         pass
  
@@ -135,7 +135,7 @@ def load_samples(dataset="training_data"):
     image,label = load_mnist(dataset)
  
     X = [np.reshape(x,(28*28, 1)) for x in image]
-    X = [x/255.0 for x in X]   # »Ò¶ÈÖµ·¶Î§(0-255)£¬×ª»»Îª(0-1)
+    X = [x/255.0 for x in X]   # ç°åº¦å€¼èŒƒå›´(0-255)ï¼Œè½¬æ¢ä¸º(0-1)
  
     # 5 -> [0,0,0,0,0,1.0,0,0,0];  1 -> [0,1.0,0,0,0,0,0,0,0]
     def vectorized_Y(y): 
@@ -164,9 +164,9 @@ if __name__ == '__main__':
  
     net.SGD(train_set, 13, 100, 3.0, test_data=test_set)
  
-    #×¼È·ÂÊ
+    #å‡†ç¡®ç‡
     correct = 0;
     for test_feature in test_set:
         if net.predict(test_feature[0]) == test_feature[1][0]:
             correct += 1
-    print("×¼È·ÂÊ: ", correct/len(test_set))
+    print("å‡†ç¡®ç‡: ", correct/len(test_set))
