@@ -4,6 +4,7 @@
 import numpy as np
 import random
 import os, struct
+import cPickle as pickle  
 from array import array as pyarray
 from numpy import append, array, int8, uint8, zeros
  
@@ -94,9 +95,18 @@ class NeuralNet(object):
  
     # 保存训练模型
     def save(self):
-        pass  # 把_w和_b保存到文件(pickle)
+        f1 = file('my.pkl', 'wb')
+        pickle.dump(self.sizes_, f1, True)
+        pickle.dump(self.num_layers_, f1, True)
+        pickle.dump(self.w_, f1, True)
+        pickle.dump(self.b_, f1, True)   
+        # 把_w和_b保存到文件(pickle)
     def load(self):
-        pass
+        f2 = file('my.pkl', 'rb')
+        self.sizes_ = pickle.load(f2)  
+        self.num_layers_ = pickle.load(f2)  
+        self.w_ = pickle.load(f2)  
+        self.b_ = pickle.load(f2)  
  
 def load_mnist(dataset="training_data", digits=np.arange(10), path="."):
  
