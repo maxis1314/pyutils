@@ -1,4 +1,4 @@
-# code: utf-8
+# -*- coding: UTF-8 -*-
 # python3
  
 import numpy as np
